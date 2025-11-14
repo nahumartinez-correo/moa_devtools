@@ -1,0 +1,14 @@
+gene
+post:adt_tpos_codint_sap|130404|post:adt_tpos_codint_vpi|BN|post:adt_tpos_tipo_ope|CO|post:adt_tpos_tarj_desc|RED LIDER|post:adt_tpos_retiro_efec|N|post:adt_tpos_max_cuotas|1
+post:adt_tpos_codint_sap|130404|post:adt_tpos_codint_vpi|DI|post:adt_tpos_tipo_ope|CO|post:adt_tpos_tarj_desc|DINERS|post:adt_tpos_retiro_efec|N|post:adt_tpos_max_cuotas|1
+post:adt_tpos_codint_sap|130404|post:adt_tpos_codint_vpi|EL|post:adt_tpos_tipo_ope|CO|post:adt_tpos_tarj_desc|VISA DEBITO|post:adt_tpos_retiro_efec|N|post:adt_tpos_max_cuotas|1
+post:adt_tpos_codint_sap|130404|post:adt_tpos_codint_vpi|GE|post:adt_tpos_tipo_ope|CO|post:adt_tpos_tarj_desc|ARGENCARD|post:adt_tpos_retiro_efec|N|post:adt_tpos_max_cuotas|1
+post:adt_tpos_codint_sap|130404|post:adt_tpos_codint_vpi|MA|post:adt_tpos_tipo_ope|CO|post:adt_tpos_tarj_desc|MAESTRO|post:adt_tpos_retiro_efec|N|post:adt_tpos_max_cuotas|1
+post:adt_tpos_codint_sap|130404|post:adt_tpos_codint_vpi|MC|post:adt_tpos_tipo_ope|CO|post:adt_tpos_tarj_desc|MASTERCARD CREDITO|post:adt_tpos_retiro_efec|N|post:adt_tpos_max_cuotas|1
+post:adt_tpos_codint_sap|130404|post:adt_tpos_codint_vpi|PD|post:adt_tpos_tipo_ope|CO|post:adt_tpos_tarj_desc|MASTERCARD DEBITO|post:adt_tpos_retiro_efec|N|post:adt_tpos_max_cuotas|1
+post:adt_tpos_codint_sap|130404|post:adt_tpos_codint_vpi|VI|post:adt_tpos_tipo_ope|CO|post:adt_tpos_tarj_desc|VISA CREDITO|post:adt_tpos_retiro_efec|N|post:adt_tpos_max_cuotas|1
+post:adt_tpos_codint_sap|130406|post:adt_tpos_codint_vpi|CA|post:adt_tpos_tipo_ope|EX|post:adt_tpos_tarj_desc|CABAL|post:adt_tpos_retiro_efec|N|post:adt_tpos_max_cuotas|1
+post:adt_tpos_codint_sap|130409|post:adt_tpos_codint_vpi|AM|post:adt_tpos_tipo_ope|CO|post:adt_tpos_tarj_desc|AMEX|post:adt_tpos_retiro_efec|N|post:adt_tpos_max_cuotas|1
+post:adt_tpos_codint_sap|130410|post:adt_tpos_codint_vpi|MPC|post:adt_tpos_tipo_ope|CO|post:adt_tpos_tarj_desc|POINT CREDITO|post:adt_tpos_retiro_efec|N|post:adt_tpos_max_cuotas|1
+post:adt_tpos_codint_sap|130410|post:adt_tpos_codint_vpi|MPD|post:adt_tpos_tipo_ope|CO|post:adt_tpos_tarj_desc|POINT DEBITO|post:adt_tpos_retiro_efec|N|post:adt_tpos_max_cuotas|1
+post:adt_tpos_codint_sap|130410|post:adt_tpos_codint_vpi|QRI|post:adt_tpos_tipo_ope|CO|post:adt_tpos_tarj_desc|QR INTEGRADO|post:adt_tpos_retiro_efec|N|post:adt_tpos_max_cuotas|1
