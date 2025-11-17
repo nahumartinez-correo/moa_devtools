@@ -1,16 +1,10 @@
 """
-Módulo principal de MOA DevTools.
-
-Este script es el punto de entrada de la herramienta.
-Ofrece un menú principal con las tres funciones básicas:
-    1. Compilador
-    2. Configuración
-    3. Pruebas automáticas
+Integración del menú de compilador con el programa principal.
 """
 
 import os
 from utils.menu import mostrar_menu
-from compiler import builder
+from compiler.compiler_menu import menu_compilador
 from config import simulator_manager
 from tests import ahk_runner
 
@@ -36,14 +30,11 @@ def main():
             print("\nSaliendo de MOA DevTools...")
             break
         elif opcion == 1:
-            builder.menu_compilador()
+            menu_compilador()
         elif opcion == 2:
             simulator_manager.menu_configuracion()
         elif opcion == 3:
             ahk_runner.menu_pruebas()
-        else:
-            print("\n⚠️  Opción inválida. Intente nuevamente.")
-            input("\nPresione ENTER para continuar...")
 
 
 if __name__ == "__main__":
