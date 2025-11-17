@@ -33,7 +33,9 @@ def revertir_headers(lista_headers):
 
         # --- progreso en consola ---
         porcentaje = (i * 100) // total
-        print(f"\rProcesando {i}/{total} ({porcentaje}%)...", end="", flush=True)
+        # Imprimir solo cuando cambie a un múltiplo de 5
+        if porcentaje % 5 == 0:
+            print(f"\rProcesando {i}/{total} ({porcentaje}%)...", end="", flush=True)
 
         # --- ejecución silenciosa (sin captura de salida) ---
         subprocess.run(
@@ -42,7 +44,7 @@ def revertir_headers(lista_headers):
             stderr=subprocess.DEVNULL
         )
 
-        time.sleep(0.01)
+        time.sleep(0.001)
 
     print("\nOperación completada.\n")
     log_info(f"Revert finalizado. Headers revertidos: {total}")

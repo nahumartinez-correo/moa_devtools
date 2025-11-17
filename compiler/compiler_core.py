@@ -16,6 +16,9 @@ CARPETA_MOAPROJ = r"C:\moaproj"
 
 EXTENSIONES_ESPECIALES = {"fld", "dsc", "plb", "pat", "pic", "tag"}
 
+# Backup para restaurar archivos especiales luego de la compilación
+_BACKUP_ESPECIALES = {}
+
 
 def compilar_lista_archivos(version, ruta_post, lista_relativa):
     """Compila una lista de archivos por ruta relativa dentro de POST."""
@@ -34,9 +37,12 @@ def compilar_archivo(version, ruta_post, ruta_abs):
 
     log_info(f"Compilación solicitada para: {ruta_abs} (módulo: {modulo})")
 
+    # Patch de include particular (postXXXX.h)
     _patch_include_particular(version, ruta_post, ruta_abs, modulo)
 
+    # Archivos especiales (.fld, .pat, etc.)
     if nombre_sin_ext in EXTENSIONES_ESPECIALES:
+        _patch_especial(version, ruta_abs)  # <<< NUEVO
         comando = _compilar_especial(version, nombre_sin_ext)
         log_info(f"Compilación identificada como especial: {comando}")
     else:
@@ -48,6 +54,9 @@ def compilar_archivo(version, ruta_post, ruta_abs):
 
     # Restaurar include particular al terminar
     _restaurar_include_particular(ruta_abs)
+
+    # Restaurar archivo especial si corresponde
+    _restaurar_especial(ruta_abs)  # <<< NUEVO
 
 
 def _patch_include_particular(version, ruta_post, ruta_abs, modulo):
@@ -106,6 +115,55 @@ def _patch_include_particular(version, ruta_post, ruta_abs, modulo):
         log_info("No se detectó include particular para reemplazar.")
 
 
+def _patch_especial(version, ruta_abs):
+    """
+    Aplica reemplazos de includes generales dentro de un archivo especial
+    (.fld, .dsc, .plb, etc.) y guarda un backup para restaurar luego.
+    """
+
+    if ruta_abs in _BACKUP_ESPECIALES:
+        return  # ya estaba parcheado
+
+    try:
+        with open(ruta_abs, "r", encoding="utf-8", errors="ignore") as f:
+            original = f.read()
+    except Exception:
+        return
+
+    _BACKUP_ESPECIALES[ruta_abs] = original  # backup
+
+    # Obtener reemplazos generales
+    from compiler.includes_manager import obtener_reemplazos_generales
+    reemplazos = obtener_reemplazos_generales(version)
+
+    nuevo = original
+    for viejo, nuevo_val in reemplazos.items():
+        nuevo = nuevo.replace(viejo, nuevo_val)
+
+    if nuevo != original:
+        try:
+            with open(ruta_abs, "w", encoding="utf-8") as f:
+                f.write(nuevo)
+            log_info(f"Archivo especial actualizado: {ruta_abs}")
+        except Exception:
+            pass
+
+
+def _restaurar_especial(ruta_abs):
+    """Restaura el archivo especial modificado durante la compilación."""
+    if ruta_abs not in _BACKUP_ESPECIALES:
+        return
+
+    try:
+        with open(ruta_abs, "w", encoding="utf-8") as f:
+            f.write(_BACKUP_ESPECIALES[ruta_abs])
+        log_info(f"Archivo especial restaurado: {ruta_abs}")
+    except Exception:
+        pass
+
+    del _BACKUP_ESPECIALES[ruta_abs]
+
+
 def _compilar_especial(version, nombre):
     """Construye el comando para compilar un archivo especial."""
     return f"imp{nombre} -npost C:\\moaproj\\{version}\\src\\POST\\{nombre}"
@@ -160,13 +218,10 @@ def _restaurar_include_particular(ruta_abs):
     for linea in lineas:
         l = linea.strip()
 
-        # Detectar include parcheado
-        # Ejemplo: #include "C:\moaproj\V47.09\src\POST\pres\postPRES.h"
+        # Detectar include parcheado (ruta absoluta)
         if l.lower().startswith('#include "c:'):
-            # Extraer el nombre del .h (o lo que sea) de la ruta final
-            parte = l.split("\\")[-1]             # postPRES.h"
-            nuevo_include = f'#include "{parte}'  # reconstruir
-
+            parte = l.split("\\")[-1]   # postPRES.h"
+            nuevo_include = f'#include "{parte}'
             nuevas.append(nuevo_include + "\n")
             cambiado = True
             continue
