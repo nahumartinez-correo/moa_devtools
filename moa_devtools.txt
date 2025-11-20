@@ -1,0 +1,75 @@
+moa_devtools
+|
+|-- compiler (Es lo que quiero modificar)
+|   |
+|   |-- __init__.py
+|   |
+|   |-- compiler_core.py
+|   |
+|   |-- compiler_menu.py
+|   |
+|   |-- include_patcher.py
+|   |
+|   |-- includes_manager.py
+|   |
+|   |-- restore_manager.py
+|   |
+|   |-- session_state.py
+|   |
+|   |-- svn_changes.py
+|   |
+|   |-- svn_manager.py
+|   |
+|   |-- version_selector.py
+|
+|-- config
+|   |
+|   |-- __init__.py
+|   |
+|   |-- session_state.py
+|   |
+|   |-- simulator_manager.py
+|   |
+|   |-- switch_config.py
+|
+|-- tests
+|   |
+|   |-- __init__.py
+|   |
+|   |-- ahk_runner.py
+|   |
+|   |-- mosaic_table_manager.py
+|   |
+|   |-- simulators_manager.py
+|   |
+|   |-- codes
+|   |   |
+|   |   |-- test_vender_carta_simple_con_log.ahk
+|   |
+|   |-- set_up_tests
+|       |
+|       |-- test_vender_carta_simple_con_log
+|           |
+|           |-- simulators.txt 
+|           |
+|           |-- table_Tarjeta_POS.txt
+|           |
+|           |-- table_Terminal_MP.txt
+|
+|-- utils
+|   |
+|   |-- __init__.py
+|   |
+|   |-- logger.py
+|   |
+|   |-- menu.py
+|   |
+|   |-- permissions.py
+|   |
+|   |-- service_manager.py
+|   |
+|   |-- simulators
+|       |
+|       |-- simuladorMP.py
+|
+|-- main.py
