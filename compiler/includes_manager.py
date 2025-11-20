@@ -37,4 +37,9 @@ def obtener_reemplazos_generales(version):
         '#include "field.h"'       : f'#include "{ofb}\\field.h"',
         '#include "gsp.h"'         : f'#include "{base}\\gsp.h"',
         '#include "Hcommstd.h"'    : f'#include "{base}\\Hcommstd.h"',
+        '#include "hcommstd.h"'    : f'#include "{base}\\Hcommstd.h"',
+        '#include "HCOMMSTD.h"'    : f'#include "{base}\\Hcommstd.h"',
+        '#include <hcommstd.h>'    : f'#include "{base}\\Hcommstd.h"',
+        '#include "HCOMMSTD.H"'    : f'#include "{base}\\Hcommstd.h"',
+        '#include "color.h"'       : f'#include "{base}\\color.h"',
     }

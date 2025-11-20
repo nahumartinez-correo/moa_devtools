@@ -201,9 +201,9 @@ def parse_iso_fields(data: bytes, active_fields: list):
         monto = seg(12)
         ticket = seg(20)
         imprime_ticket = seg(2)
-        medio_pago = seg(20)
+        medio_pago = seg(12)
         cuotas = seg(2)
-        serial = seg(72)
+        serial = seg(82)
 
         parsed[109] = {
             "nombre": "Datos de operación MP (nuevo layout)",

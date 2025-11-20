@@ -11,7 +11,7 @@ import subprocess
 from utils.logger import log_info, log_error
 
 
-COMANDO_BC = r'bc -npost -s -v -Ic:\moa\src\include'
+COMANDO_BC = r'bc -npost -s -v -Id:\moa\src\include'
 CARPETA_MOAPROJ = r"C:\moaproj"
 
 EXTENSIONES_ESPECIALES = {"fld", "dsc", "plb", "pat", "pic", "tag"}

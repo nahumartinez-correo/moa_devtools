@@ -44,7 +44,7 @@ def revertir_headers(lista_headers):
             stderr=subprocess.DEVNULL
         )
 
-        time.sleep(0.001)
+        #time.sleep(0.001)
 
     print("\nOperación completada.\n")
     log_info(f"Revert finalizado. Headers revertidos: {total}")
