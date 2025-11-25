@@ -390,3 +390,46 @@
 [2025-11-25 13:29:26] Reiniciando ciclo de espera de requests...
 [2025-11-25 13:29:26] Cliente desconectado.
 [2025-11-25 13:29:26] Esperando conexión entrante...
+[2025-11-25 14:18:30] Simulador_MP iniciado.
+[2025-11-25 14:18:30] Iniciando Simulador_MP (escucha puerto 9999)... Interactivo=True, Condición=server_down
+[2025-11-25 14:18:32] Servidor escuchando en 0.0.0.0:9999
+[2025-11-25 14:18:32] Esperando conexión entrante...
+[2025-11-25 14:18:34] Conexión establecida desde 127.0.0.1:62326
+[2025-11-25 14:18:34] Mensaje recibido (313 bytes).
+[2025-11-25 14:18:34] Cerrando servidor.
+[2025-11-25 14:22:42] Simulador_MP iniciado.
+[2025-11-25 14:22:42] Iniciando Simulador_MP (escucha puerto 9999)... Interactivo=True, Condición=server_down
+[2025-11-25 14:22:44] Servidor escuchando en 0.0.0.0:9999
+[2025-11-25 14:22:44] Esperando conexión entrante...
+[2025-11-25 14:22:47] Conexión establecida desde 127.0.0.1:62401
+[2025-11-25 14:22:47] Mensaje recibido (313 bytes).
+[2025-11-25 14:22:47] Cerrando servidor.
+[2025-11-25 14:23:34] Simulador_MP iniciado.
+[2025-11-25 14:23:34] Iniciando Simulador_MP (escucha puerto 9999)... Interactivo=True, Condición=server_down
+[2025-11-25 14:23:36] Servidor escuchando en 0.0.0.0:9999
+[2025-11-25 14:23:36] Esperando conexión entrante...
+[2025-11-25 14:23:38] Conexión establecida desde 127.0.0.1:62413
+[2025-11-25 14:23:38] Mensaje recibido (313 bytes).
+[2025-11-25 14:23:38] [100011/server_down] Campo 105 generado:
+[2025-11-25 14:23:38]   http_code  = 500
+[2025-11-25 14:23:38]   error_code = 9999
+[2025-11-25 14:23:38]   message    = SERVER DOWN
+[2025-11-25 14:23:38] Respuesta enviada (817 bytes).
+[2025-11-25 14:23:38] Esperando ENTER para continuar...
+[2025-11-25 14:23:53] Reiniciando ciclo de espera de requests...
+[2025-11-25 14:23:53] Cliente desconectado.
+[2025-11-25 14:23:53] Esperando conexión entrante...
+[2025-11-25 14:24:08] Simulador_MP iniciado.
+[2025-11-25 14:24:08] Iniciando Simulador_MP (escucha puerto 9999)... Interactivo=True, Condición=None
+[2025-11-25 14:24:10] Servidor escuchando en 0.0.0.0:9999
+[2025-11-25 14:24:10] Esperando conexión entrante...
+[2025-11-25 14:24:14] Conexión establecida desde 127.0.0.1:62424
+[2025-11-25 14:24:14] Mensaje recibido (313 bytes).
+[2025-11-25 14:24:14]  - Http_code: 201
+[2025-11-25 14:24:14]  - Order_id: ORDTST01KAE6YQ8CEE52TPH30PP1WW9D
+[2025-11-25 14:24:14]  - Payment_id: PAY01KAE6YQ8CEE52TPH30S204EYT
+[2025-11-25 14:24:14]  - Status_pago: created
+[2025-11-25 14:24:14]  - Status_mp: created
+[2025-11-25 14:24:14]  - Relleno: 368 bytes
+[2025-11-25 14:24:14] Respuesta enviada (817 bytes).
+[2025-11-25 14:24:14] Esperando ENTER para continuar...

@@ -6,7 +6,6 @@
 
 from Simulador_MP_logger import log
 
-
 class Response100011:
     """
     Generador de campos asociados al código de procesamiento 100011.
@@ -32,53 +31,98 @@ class Response100011:
 
         condicion = responder.condicion
 
-        match numero_de_bit:
+        # =======================================================
+        # ============= 1) MATCH POR CONDICIÓN ===================
+        # =======================================================
+        match condicion:
 
-            case 105:
+            # --------------------------
+            # Condición: SERVER_DOWN
+            # --------------------------
+            case "server_down":
+                match numero_de_bit:
 
-                log("----- CAMPO 105 (Datos de orden de pago) -----")
+                    case 105:
+                        http_code = "500".ljust(4)
+                        error_code = "9999".ljust(4)
+                        message = "SERVER DOWN".ljust(492)
 
-                if condicion == "server_down":
-                    http_code = "500".ljust(4)
-                    error_code = "9999".ljust(4)
-                    message = "SERVER DOWN".ljust(492)
-                    contenido = (http_code + error_code + message).encode("ascii")
+                        contenido = (http_code + error_code + message).encode("ascii")
+                        longitud = len(contenido)
+                        raw = responder.int_to_bcd_2bytes(longitud) + contenido
 
-                    # Logueo detallado
-                    log(f" - Http_code: {http_code.strip()}")
-                    log(f" - Error_code: {error_code.strip()}")
-                    log(f" - Message: SERVER DOWN")
-                    log(f" - Relleno: 492 bytes")
+                        responder.fields_copy[105] = {
+                            "nombre": "Datos de orden de pago (server_down)",
+                            "valor": "Campo 105 generado - server_down",
+                            "raw": raw
+                        }
 
-                else:
-                    http_code = "201".ljust(4)
-                    order_id = "ORDTST01KAE6YQ8CEE52TPH30PP1WW9D".ljust(32)
-                    payment_id = "PAY01KAE6YQ8CEE52TPH30S204EYT".ljust(32)
-                    status_pay = "created".ljust(32)
-                    status_mp = "created".ljust(32)
-                    dummy = "".ljust(368)
+                        # --- LOGUEO ---
+                        log(f"[ 100011 / server_down ] Campo 105 generado:")
+                        log(f"  http_code  = {http_code.strip()}")
+                        log(f"  error_code = {error_code.strip()}")
+                        log(f"  message    = {message.strip()}")
 
-                    contenido = (http_code + order_id + payment_id +
-                                 status_pay + status_mp + dummy).encode("ascii")
+                    case 106:
+                        return
 
-                    # Logueo detallado
-                    log(f" - Http_code: {http_code.strip()}")
-                    log(f" - Order_id: {order_id.strip()}")
-                    log(f" - Payment_id: {payment_id.strip()}")
-                    log(f" - Status_pago: {status_pay.strip()}")
-                    log(f" - Status_mp: {status_mp.strip()}")
-                    log(" - Relleno: 368 bytes")
+                    case 107:
+                        return
 
-                longitud = len(contenido)
-                raw = responder.int_to_bcd_2bytes(longitud) + contenido
+                    case _:
+                        return
 
-                log(f" - Longitud total: {longitud} bytes")
 
-                responder.fields_copy[105] = {
-                    "nombre": "Datos de orden de pago",
-                    "valor": "Campo 105 generado",
-                    "raw": raw
-                }
-
+            # =======================================================
+            # ============= 2) DEFAULT (RESPUESTA NORMAL) ============
+            # =======================================================
             case _:
-                return
+                match numero_de_bit:
+
+                    # --------------------------
+                    # Campo 105 normal
+                    # --------------------------
+                    case 105:
+                        http_code = "201".ljust(4)
+                        order_id = "ORDTST01KAE6YQ8CEE52TPH30PP1WW9D".ljust(32)
+                        payment_id = "PAY01KAE6YQ8CEE52TPH30S204EYT".ljust(32)
+                        status_pay = "created".ljust(32)
+                        status_mp = "created".ljust(32)
+                        dummy = "".ljust(368)
+
+                        contenido = (
+                            http_code +
+                            order_id +
+                            payment_id +
+                            status_pay +
+                            status_mp +
+                            dummy
+                        ).encode("ascii")
+
+                        longitud = len(contenido)
+                        raw = responder.int_to_bcd_2bytes(longitud) + contenido
+
+                        responder.fields_copy[105] = {
+                            "nombre": "Datos de orden de pago",
+                            "valor": "Campo 105 generado (normal)",
+                            "raw": raw
+                        }
+
+                        # Logueo detallado
+                        log(f"[ 100011 / OK ] Campo 105 generado:")
+                        log(f" - Http_code: {http_code.strip()}")
+                        log(f" - Order_id: {order_id.strip()}")
+                        log(f" - Payment_id: {payment_id.strip()}")
+                        log(f" - Status_pago: {status_pay.strip()}")
+                        log(f" - Status_mp: {status_mp.strip()}")
+                        log(" - Relleno: 368 bytes")
+
+
+                    case 106:
+                        return
+
+                    case 107:
+                        return
+
+                    case _:
+                        return

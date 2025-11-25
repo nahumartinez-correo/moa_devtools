@@ -1,35 +1,127 @@
 # --------------------------------------------------------------
 # Simulador_MP_response_100010.py
-# Respuesta para código 100010 (consulta orden)
+# Respuesta para código de procesamiento 100010 (consultar orden).
+# Construye campos 105/106/107 si corresponde, según la condición.
 # --------------------------------------------------------------
 
+from Simulador_MP_logger import log
+
 class Response100010:
+    """
+    Generador de campos asociados al código de procesamiento 100010.
+    Cada campo puede variar según la condición simulada.
+    """
 
     @staticmethod
     def build_field(responder, numero_de_bit: int):
+        """
+        Construye un campo ISO8583 para este código.
 
-        match numero_de_bit:
+        Parámetros
+        ----------
+        responder : Responder
+            Instancia del orquestador.
+        numero_de_bit : int
+            Campo que debe generarse.
 
-            case 105:
-                http_code = "200".ljust(4)
-                order_id = "ORDTST01KAE6YQ8CEE52TPH30PP1WW9D".ljust(32)
-                payment_id = "PAY01KAE6YQ8CEE52TPH30S204EYT".ljust(32)
-                stat_pay = "at_terminal".ljust(32)
-                stat_mp = "at_terminal".ljust(15)
-                stat_det = "at_terminal".ljust(30)
+        Retorno
+        -------
+        None
+        """
 
-                contenido = (http_code + order_id + payment_id +
-                             stat_pay + stat_mp + stat_det).encode("ascii")
+        condicion = responder.condicion
 
-                longitud = len(contenido)
-                longitud_bcd = responder.int_to_bcd_2bytes(longitud)
-                raw = longitud_bcd + contenido
+        # =======================================================
+        # ============= 1) MATCH POR CONDICIÓN ===================
+        # =======================================================
+        match condicion:
 
-                responder.fields_copy[105] = {
-                    "nombre": "Consulta de orden",
-                    "valor": "Consulta orden",
-                    "raw": raw
-                }
+            # --------------------------
+            # Condición: SERVER_DOWN
+            # --------------------------
+            case "server_down":
+                match numero_de_bit:
 
+                    case 105:
+                        http_code = "500".ljust(4)
+                        error_code = "9999".ljust(4)
+                        message = "SERVER DOWN".ljust(492)
+
+                        contenido = (http_code + error_code + message).encode("ascii")
+                        longitud = len(contenido)
+                        raw = responder.int_to_bcd_2bytes(longitud) + contenido
+
+                        responder.fields_copy[105] = {
+                            "nombre": "Datos de consulta de status de orden de pago (server_down)",
+                            "valor": "Campo 105 generado - server_down",
+                            "raw": raw
+                        }
+
+                        # --- LOGUEO DETALLADO ---
+                        log(f"[ 100010 / server_down ] Campo 105 generado:")
+                        log(f"  http_code  = {http_code.strip()}")
+                        log(f"  error_code = {error_code.strip()}")
+                        log(f"  message    = {message.strip()}")
+
+                    case 106:
+                        return
+
+                    case 107:
+                        return
+
+                    case _:
+                        return
+
+
+            # =======================================================
+            # ============= 2) DEFAULT (RESPUESTA NORMAL) ============
+            # =======================================================
             case _:
-                return
+                match numero_de_bit:
+
+                    # --------------------------
+                    # Campo 105 normal
+                    # --------------------------
+                    case 105:
+                        http_code = "200".ljust(4)
+                        order_id = "ORDTST01KAE6YQ8CEE52TPH30PP1WW9D".ljust(32)
+                        payment_id = "PAY01KAE6YQ8CEE52TPH30S204EYT".ljust(32)
+                        stat_pay = "at_terminal".ljust(32)
+                        stat_mp = "at_terminal".ljust(15)
+                        stat_det = "at_terminal".ljust(30)
+
+                        contenido = (
+                            http_code +
+                            order_id +
+                            payment_id +
+                            stat_pay +
+                            stat_mp +
+                            stat_det
+                        ).encode("ascii")
+
+                        longitud = len(contenido)
+                        raw = responder.int_to_bcd_2bytes(longitud) + contenido
+
+                        responder.fields_copy[105] = {
+                            "nombre": "Datos de consulta de status de orden de pago",
+                            "valor": "Campo 105 generado (normal)",
+                            "raw": raw
+                        }
+
+                        # --- LOGUEO DETALLADO ---
+                        log(f"[ 100010 / OK ] Campo 105 generado:")
+                        log(f" - Http_code: {http_code.strip()}")
+                        log(f" - Order_id: {order_id.strip()}")
+                        log(f" - Payment_id: {payment_id.strip()}")
+                        log(f" - Status_pago: {status_pay.strip()}")
+                        log(f" - Status_mp: {status_mp.strip()}")
+
+
+                    case 106:
+                        return
+
+                    case 107:
+                        return
+
+                    case _:
+                        return
