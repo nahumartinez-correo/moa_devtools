@@ -1,7 +1,8 @@
 # --------------------------------------------------------------
 # Simulador_MP_server.py
 # Servidor TCP para Simulador_MP.
-# Atiende un cliente a la vez, procesa mensajes y espera ENTER tras cada respuesta.
+# Recibe mensajes, los parsea y delega a Responder, aplicando
+# parámetros interactivo y condición simulada.
 # --------------------------------------------------------------
 
 import socket
@@ -14,7 +15,6 @@ from Simulador_MP_logger import log
 from Simulador_MP_parser import parse_message
 from Simulador_MP_responder import Responder
 
-# Intento de import de psutil para matar procesos si es necesario
 try:
     import psutil
     PSUTIL_AVAILABLE = True
@@ -78,14 +78,19 @@ def clear_screen():
     except Exception:
         pass
 
-def start_server():
+def start_server(interactivo: bool = False, condicion: str | None = None):
     """
-    Inicia el servidor. Si el puerto está en uso, se intenta liberar
-    asumiendo que la instancia previa es del simulador.
-    El servidor atiende un cliente a la vez. Tras enviar cada respuesta
-    se espera ENTER para limpiar pantalla y continuar.
+    Inicia el servidor TCP y maneja un cliente a la vez.
+
+    Parámetros
+    ----------
+    interactivo : bool
+        Si es True, el servidor esperará ENTER tras cada respuesta.
+    condicion : str | None
+        Condición simulada a aplicar en todas las respuestas.
     """
-    log("Iniciando Simulador_MP (escucha puerto 9999)...")
+
+    log(f"Iniciando Simulador_MP (escucha puerto 9999)... Interactivo={interactivo}, Condición={condicion}")
 
     if is_port_in_use(PORT):
         log(f"Puerto {PORT} detectado como ocupado. Se intentará liberar.")
@@ -117,8 +122,15 @@ def start_server():
 
                         log(f"Mensaje recibido ({len(data)} bytes).")
                         parsed = parse_message(data)
-                        responder = Responder(parsed)
+
+                        responder = Responder(
+                            parsed,
+                            interactivo=interactivo,
+                            condicion=condicion
+                        )
+
                         response = responder.build_response_message()
+
                         try:
                             conn.sendall(response)
                             log(f"Respuesta enviada ({len(response)} bytes).")
@@ -126,18 +138,16 @@ def start_server():
                             log(f"Error al enviar respuesta: {e}")
                             break
 
-                        # Pausa controlada: esperar ENTER para continuar con el ciclo.
-                        log("Esperando ENTER para continuar. Presione Ctrl+C para detener el servidor.")
-                        try:
-                            input()
-                        except KeyboardInterrupt:
-                            log("Detención por teclado solicitada. Saliendo.")
-                            raise
+                        if interactivo:
+                            log("Esperando ENTER para continuar...")
+                            try:
+                                input()
+                            except KeyboardInterrupt:
+                                log("Detención por teclado solicitada. Saliendo.")
+                                raise
 
                         clear_screen()
                         log("Reiniciando ciclo de espera de requests...")
-
-                # al salir del with conn:, se vuelve a esperar nueva conexión
 
         except KeyboardInterrupt:
             log("Servidor detenido por teclado.")
