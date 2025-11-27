@@ -42,4 +42,5 @@ def obtener_reemplazos_generales(version):
         '#include <hcommstd.h>'    : f'#include "{base}\\Hcommstd.h"',
         '#include "HCOMMSTD.H"'    : f'#include "{base}\\Hcommstd.h"',
         '#include "color.h"'       : f'#include "{base}\\color.h"',
+        '#include "cuentas.h"'     : f'#include "{base}\\cuentas.h"',
     }

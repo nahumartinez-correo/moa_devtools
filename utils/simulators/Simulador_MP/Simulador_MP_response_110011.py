@@ -1,14 +1,14 @@
 # --------------------------------------------------------------
-# Simulador_MP_response_100010.py
-# Respuesta para código de procesamiento 100010 (consultar orden).
+# Simulador_MP_response_110011.py
+# Respuesta para código de procesamiento 110011 (crear orden con QR).
 # Construye campos 105/106/107 si corresponde, según la condición.
 # --------------------------------------------------------------
 
 from Simulador_MP_logger import log
 
-class Response100010:
+class Response110011:
     """
-    Generador de campos asociados al código de procesamiento 100010.
+    Generador de campos asociados al código de procesamiento 110011.
     Cada campo puede variar según la condición simulada.
     """
 
@@ -52,13 +52,13 @@ class Response100010:
                         raw = responder.int_to_bcd_2bytes(longitud) + contenido
 
                         responder.fields_copy[105] = {
-                            "nombre": "Datos de consulta de status de orden de pago (server_down)",
+                            "nombre": "Datos de orden de pago (server_down)",
                             "valor": "Campo 105 generado - server_down",
                             "raw": raw
                         }
 
-                        # --- LOGUEO DETALLADO ---
-                        log(f"[ 100010 / server_down ] Campo 105 generado:")
+                        # --- LOGUEO ---
+                        log(f"[ 110011 - QR / server_down ] Campo 105 generado:")
                         log(f"  http_code  = {http_code.strip()}")
                         log(f"  error_code = {error_code.strip()}")
                         log(f"  message    = {message.strip()}")
@@ -83,40 +83,28 @@ class Response100010:
                     # Campo 105 normal
                     # --------------------------
                     case 105:
-                        http_code = "200".ljust(4)
-                        order_id = "ORDTST01KAE6YQ8CEE52TPH30PP1WW9D".ljust(32)
-                        payment_id = "PAY01KAE6YQ8CEE52TPH30S204EYT".ljust(32)
-                        status_pago = "processed".ljust(32)
-                        payment_ref = "1234567890".ljust(20)
-                        mp_status = "processed".ljust(15)
-                        dummy = "".ljust(365)
+                        http_code = "201".ljust(4)
+                        dummy = "".ljust(496)
 
                         contenido = (
                             http_code +
-                            order_id +
-                            payment_id +
-                            status_pago +
-                            payment_ref +
-                            mp_status
+                            dummy
                         ).encode("ascii")
 
                         longitud = len(contenido)
                         raw = responder.int_to_bcd_2bytes(longitud) + contenido
 
                         responder.fields_copy[105] = {
-                            "nombre": "Datos de consulta de status de orden de pago",
+                            "nombre": "Datos de orden de pago",
                             "valor": "Campo 105 generado (normal)",
                             "raw": raw
                         }
 
-                        # --- LOGUEO DETALLADO ---
-                        log(f"[ 100010 / OK ] Campo 105 generado:")
+                        # Logueo detallado
+                        log(f"[ 110011 - QR / OK ] Campo 105 generado:")
                         log(f" - Http_code: {http_code.strip()}")
-                        log(f" - Order_id: {order_id.strip()}")
-                        log(f" - Payment_id: {payment_id.strip()}")
-                        log(f" - Status_pago: {status_pago.strip()}")
-                        log(f" - Payment_ref: {payment_ref.strip()}")
-                        log(f" - mp_status: {mp_status.strip()}")
+                        log(" - Relleno: 496 bytes")
+
 
                     case 106:
                         return

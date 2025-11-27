@@ -1,7 +1,7 @@
 # --------------------------------------------------------------
 # parser/field_109/parser_109_100011.py
 # Campo 109 para código 100011
-# Crear la orden de pago
+# Crear la orden de pago con Smart Point
 # --------------------------------------------------------------
 
 class Parser109:
@@ -16,7 +16,7 @@ class Parser109:
             idx += n
             return s
 
-        # Layout específico para el código 100011 - Crear la orden de pago
+        # Layout específico para el código 100011 - Crear la orden de pago con Smart Point
         match "100011":
 
             case "100011":
@@ -36,7 +36,7 @@ class Parser109:
                 serial = seg(82)
 
                 return {
-                    "nombre": "Campo 109 (100011)",
+                    "nombre": "Campo 109 (100011 - Smart Point)",
                     "tipo_terminal": tipo_terminal,
                     "external_reference": reference,
                     "operador_id": operador,

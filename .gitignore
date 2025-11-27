@@ -6,3 +6,6 @@ __pycache__/
 
 # Distribuciones y entornos
 *.egg-info/
+
+# Archivos de logueo
+*.log
