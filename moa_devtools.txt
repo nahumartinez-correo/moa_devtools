@@ -70,6 +70,10 @@ moa_devtools
 |   |
 |   |-- simulators
 |       |
-|       |-- simuladorMP.py
+|       |-- simuladorMP
+|           |
+|           |-- simuladorMP.py
+|           |
+|           |-- Simulador_MP
 |
 |-- main.py
