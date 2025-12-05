@@ -12,18 +12,17 @@ from tests import ahk_runner
 def limpiar_consola():
     """Limpia la pantalla y muestra el encabezado."""
     os.system("cls")
-    print("=" * 70)
-    print("        MOA DevTools - HERRAMIENTAS DE DESARROLLO")
-    print("=" * 70, "\n")
+    print("MOA DevTools - Herramientas de desarrollo")
+    print("Menú principal\n")
 
 
 def main():
     while True:
         limpiar_consola()
-        opcion = mostrar_menu("MENÚ PRINCIPAL - MOA DevTools", [
-            "Compilador",
-            "Configuración",
-            "Pruebas automáticas"
+        opcion = mostrar_menu("Menú principal de MOA DevTools", [
+            "Compilador de aplicaciones",
+            "Configuración de simuladores",
+            "Ejecución de pruebas automáticas"
         ])
 
         if opcion == 0:

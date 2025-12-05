@@ -10,18 +10,18 @@ def mostrar_menu(titulo, opciones, incluir_salida=True):
     Parámetros:
         titulo (str): Título del menú a mostrar.
         opciones (list[str]): Lista de opciones disponibles.
-        incluir_salida (bool): Si es True, agrega la opción "0. Volver / Salir".
+        incluir_salida (bool): Si es True, agrega la opción "0) Volver o salir".
                                Si es False, se asume que la opción 0 ya está incluida.
 
     Retorna:
         int: El número de opción elegido por el usuario.
              (0 representa la opción de volver o salir)
     """
-    print(f"\n=== {titulo} ===\n")
+    print(f"\n{titulo}\n")
 
     # Mostrar la opción 0 automáticamente, si corresponde
     if incluir_salida:
-        print("0) Volver / Salir")
+        print("0) Volver o salir")
 
     # Listar las demás opciones
     for i, op in enumerate(opciones, 1):
