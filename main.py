@@ -7,6 +7,7 @@ from utils.menu import mostrar_menu
 from compiler.compiler_menu import menu_compilador
 from config import simulator_manager
 from tests import ahk_runner
+from utils import simulators_menu
 
 
 def limpiar_consola():
@@ -20,10 +21,11 @@ def limpiar_consola():
 def main():
     while True:
         limpiar_consola()
-        opcion = mostrar_menu("MENÚ PRINCIPAL - MOA DevTools", [
-            "Compilador",
-            "Configuración",
-            "Pruebas automáticas"
+        opcion = mostrar_menu("Menú principal de MOA DevTools", [
+            "Compilador de aplicaciones",
+            "Configuración de simuladores",
+            "Ejecución de pruebas automáticas",
+            "Simuladores"
         ])
 
         if opcion == 0:
@@ -35,6 +37,8 @@ def main():
             simulator_manager.menu_configuracion()
         elif opcion == 3:
             ahk_runner.menu_pruebas()
+        elif opcion == 4:
+            simulators_menu.menu_simuladores()
 
 
 if __name__ == "__main__":

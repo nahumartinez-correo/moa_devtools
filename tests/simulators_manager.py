@@ -4,7 +4,7 @@ Módulo para controlar la ejecución de simuladores de prueba.
 
 Lee el archivo "simulators.txt" dentro de la carpeta de setup
 de la prueba y levanta los simuladores correspondientes
-ubicados en utils/simulators/.
+ubicados en utils/simulators/{nombre}/{nombre}.py.
 """
 
 import os
@@ -50,11 +50,23 @@ def iniciar_simuladores(nombre_prueba: str):
         return
 
     for sim_name in simuladores:
-        sim_path = os.path.join(ruta_base, "..", "utils", "simulators", f"{sim_name}.py")
-        sim_path = os.path.abspath(sim_path)
+        sim_dir = os.path.join(ruta_base, "..", "utils", "simulators", sim_name)
+        sim_path = os.path.abspath(os.path.join(sim_dir, f"{sim_name}.py"))
+
+        if not os.path.isdir(sim_dir):
+            print(
+                "❌ No se encontró la carpeta del simulador '",
+                f"{sim_name}' en utils/simulators/<nombre>/",
+                sep="",
+            )
+            continue
 
         if not os.path.exists(sim_path):
-            print(f"❌ No se encontró el simulador '{sim_name}' en utils/simulators/")
+            print(
+                "❌ No se encontró el simulador '",
+                f"{sim_name}' en utils/simulators/<nombre>/<nombre>.py",
+                sep="",
+            )
             continue
 
         try:
