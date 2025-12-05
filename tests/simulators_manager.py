@@ -4,7 +4,7 @@ Módulo para controlar la ejecución de simuladores de prueba.
 
 Lee el archivo "simulators.txt" dentro de la carpeta de setup
 de la prueba y levanta los simuladores correspondientes
-ubicados en utils/simulators/.
+ubicados en utils/simulators/{nombre}/{nombre}.py.
 """
 
 import os
@@ -49,16 +49,30 @@ def iniciar_simuladores(nombre_prueba: str):
         print("⚠️  El archivo simulators.txt está vacío.")
         return
 
-    for sim_name in simuladores:
-        sim_path = os.path.join(ruta_base, "..", "utils", "simulators", f"{sim_name}.py")
-        sim_path = os.path.abspath(sim_path)
+    ruta_simuladores = os.path.abspath(os.path.join(ruta_base, "..", "utils", "simulators"))
 
-        if not os.path.exists(sim_path):
-            print(f"❌ No se encontró el simulador '{sim_name}' en utils/simulators/")
+    for sim_name in simuladores:
+        sim_dir = os.path.join(ruta_simuladores, sim_name)
+        sim_path = os.path.join(sim_dir, f"{sim_name}.py")
+
+        if not os.path.isdir(sim_dir):
+            print(
+                f"❌ No se encontró la carpeta del simulador '{sim_name}' en utils/simulators/{sim_name}/"
+            )
+            continue
+
+        if not os.path.isfile(sim_path):
+            print(
+                f"❌ No se encontró el archivo de entrada '{sim_name}.py' dentro de utils/simulators/{sim_name}/"
+            )
             continue
 
         try:
-            proceso = subprocess.Popen(["python", sim_path], creationflags=subprocess.CREATE_NEW_CONSOLE)
+            proceso = subprocess.Popen(
+                ["python", sim_path],
+                cwd=sim_dir,
+                creationflags=getattr(subprocess, "CREATE_NEW_CONSOLE", 0),
+            )
             procesos_simuladores.append(proceso)
             print(f"✅ Simulador '{sim_name}' iniciado correctamente (PID {proceso.pid}).")
         except Exception as e:

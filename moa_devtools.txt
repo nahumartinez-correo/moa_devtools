@@ -70,6 +70,15 @@ moa_devtools
 |   |
 |   |-- simulators
 |       |
-|       |-- simuladorMP.py
+|       |-- Simulador_MP
+|           |
+|           |-- Simulador_MP.py
+|           |-- Simulador_MP_logger.py
+|           |-- Simulador_MP_server.py
+|           |-- Simulador_MP_parser.py
+|           |-- Simulador_MP_responder.py
+|           |-- Simulador_MP_conditions.py
+|           |-- Simulador_MP_response_*.py
+|           |-- Simulador_MP.log
 |
 |-- main.py
