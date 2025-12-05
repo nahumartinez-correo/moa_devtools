@@ -64,12 +64,18 @@ moa_devtools
 |   |
 |   |-- menu.py
 |   |
+|   |-- simulators_menu.py
+|   |
 |   |-- permissions.py
 |   |
 |   |-- service_manager.py
 |   |
 |   |-- simulators
 |       |
-|       |-- simuladorMP.py
+|       |-- simuladorMP
+|           |
+|           |-- simuladorMP.py
+|           |
+|           |-- Simulador_MP
 |
 |-- main.py
