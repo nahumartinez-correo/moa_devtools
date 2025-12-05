@@ -12,6 +12,30 @@ def _limpiar_consola():
     print("=" * 70, "\n")
 
 
+def _mostrar_pantalla_construccion(contexto):
+    """Muestra una pantalla de marcador de posición para las opciones no implementadas."""
+    _limpiar_consola()
+    print(f"=== {contexto.upper()} ===\n")
+    print("Pantalla en construcción.\n")
+    input("Presione ENTER para volver al menú anterior...")
+
+
+def _mostrar_menu_parametros():
+    """Despliega el submenú de parámetros del simulador."""
+    while True:
+        _limpiar_consola()
+        opcion = mostrar_menu(
+            "Parámetros del simulador",
+            ["Pantalla en construcción"],
+        )
+
+        if opcion == 0:
+            return
+
+        print("\nLa configuración de parámetros se encuentra en construcción.\n")
+        input("Presione ENTER para volver al menú anterior...")
+
+
 def menu_simuladores():
     """Presenta el menú de simuladores y sus opciones principales."""
     while True:
@@ -33,27 +57,3 @@ def menu_simuladores():
             _mostrar_menu_parametros()
         elif opcion == 3:
             _mostrar_pantalla_construccion("Cierre de instancias")
-
-
-def _mostrar_pantalla_construccion(contexto):
-    """Muestra la pantalla de construcción para opciones aún no implementadas."""
-    _limpiar_consola()
-    print(f"=== {contexto.upper()} ===\n")
-    print("Pantalla en construcción.\n")
-    input("Presione ENTER para volver al menú anterior...")
-
-
-def _mostrar_menu_parametros():
-    """Despliega el submenú de parámetros del simulador."""
-    while True:
-        _limpiar_consola()
-        opcion = mostrar_menu(
-            "Parámetros del simulador",
-            ["Pantalla en construcción"],
-        )
-
-        if opcion == 0:
-            return
-
-        print("\nLa configuración de parámetros se encuentra en construcción.\n")
-        input("Presione ENTER para volver al menú anterior...")

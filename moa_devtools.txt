@@ -32,6 +32,12 @@ moa_devtools
 |   |
 |   |-- switch_config.py
 |
+|-- simulators
+|   |
+|   |-- __init__.py
+|   |
+|   |-- simulator_menu.py
+|
 |-- tests
 |   |
 |   |-- __init__.py
@@ -50,7 +56,7 @@ moa_devtools
 |       |
 |       |-- test_vender_carta_simple_con_log
 |           |
-|           |-- simulators.txt 
+|           |-- simulators.txt
 |           |
 |           |-- table_Tarjeta_POS.txt
 |           |
@@ -75,11 +81,5 @@ moa_devtools
 |           |-- simuladorMP.py
 |           |
 |           |-- Simulador_MP
-|
-|-- simulators
-|   |
-|   |-- __init__.py
-|   |
-|   |-- simulator_menu.py
 |
 |-- main.py
