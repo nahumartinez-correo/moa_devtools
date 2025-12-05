@@ -46,7 +46,7 @@ def menu_compilador():
 
         estado.version = version
 
-        ruta_post = os.path.join(CARPETA_MOAPROJ, version, "src", "POST")
+        ruta_post = os.path.join(CARPETA_MOAPROJ, version, "src")
 
         _limpiar_pantalla()
         print("=== COMPILADOR — Preparando entorno ===\n")

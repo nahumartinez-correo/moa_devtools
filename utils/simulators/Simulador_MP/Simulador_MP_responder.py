@@ -8,6 +8,8 @@
 from datetime import datetime
 from Simulador_MP_response_100011 import Response100011
 from Simulador_MP_response_100010 import Response100010
+from Simulador_MP_response_110011 import Response110011
+from Simulador_MP_response_210015 import Response210015
 from Simulador_MP_conditions import CONDITIONS
 
 
@@ -130,11 +132,21 @@ class Responder:
         """
 
         match codigo:
+            # Crear orden de pago con Smart Point
             case "100011":
                 return Response100011.build_field(self, numero_de_bit)
 
+            # Consultar orden de pago con Smart Point
             case "100010":
                 return Response100010.build_field(self, numero_de_bit)
+
+            # Crear orden de pago con QR
+            case "110011":
+                return Response110011.build_field(self, numero_de_bit)
+
+            # Consultar un pago con QR
+            case "210015":
+                return Response210015.build_field(self, numero_de_bit)
 
             case _:
                 log(f"No hay módulo definido para el código {codigo}")

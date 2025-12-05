@@ -3,6 +3,10 @@ __pycache__/
 *.py[cod]
 *.pyo
 *.pyd
+*.pyc
 
 # Distribuciones y entornos
 *.egg-info/
+
+# Archivos de logueo
+*.log

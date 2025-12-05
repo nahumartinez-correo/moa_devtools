@@ -433,3 +433,1033 @@
 [2025-11-25 14:24:14]  - Relleno: 368 bytes
 [2025-11-25 14:24:14] Respuesta enviada (817 bytes).
 [2025-11-25 14:24:14] Esperando ENTER para continuar...
+[2025-11-26 13:14:23] Simulador_MP iniciado.
+[2025-11-26 13:14:23] Iniciando Simulador_MP (escucha puerto 9999)... Interactivo=True, Condición=None
+[2025-11-26 13:14:25] Servidor escuchando en 0.0.0.0:9999
+[2025-11-26 13:14:25] Esperando conexión entrante...
+[2025-11-26 13:15:20] Conexión establecida desde 127.0.0.1:53082
+[2025-11-26 13:15:20] Mensaje recibido (197 bytes).
+[2025-11-26 13:15:20] Respuesta enviada (199 bytes).
+[2025-11-26 13:15:20] Esperando ENTER para continuar...
+[2025-11-26 13:15:41] Reiniciando ciclo de espera de requests...
+[2025-11-26 13:15:41] Cliente desconectado.
+[2025-11-26 13:15:41] Esperando conexión entrante...
+[2025-11-26 13:17:26] Simulador_MP iniciado.
+[2025-11-26 13:17:26] Iniciando Simulador_MP (escucha puerto 9999)... Interactivo=True, Condición=None
+[2025-11-26 13:17:28] Servidor escuchando en 0.0.0.0:9999
+[2025-11-26 13:17:28] Esperando conexión entrante...
+[2025-11-26 13:17:30] Conexión establecida desde 127.0.0.1:53117
+[2025-11-26 13:17:30] Mensaje recibido (197 bytes).
+[2025-11-26 13:17:30] Cerrando servidor.
+[2025-11-26 13:18:21] Simulador_MP iniciado.
+[2025-11-26 13:18:21] Iniciando Simulador_MP (escucha puerto 9999)... Interactivo=True, Condición=None
+[2025-11-26 13:18:23] Servidor escuchando en 0.0.0.0:9999
+[2025-11-26 13:18:23] Esperando conexión entrante...
+[2025-11-26 13:18:25] Conexión establecida desde 127.0.0.1:53131
+[2025-11-26 13:18:25] Mensaje recibido (197 bytes).
+[2025-11-26 13:18:25] [ 110011 - QR / OK ] Campo 105 generado:
+[2025-11-26 13:18:25]  - Http_code: 201
+[2025-11-26 13:18:25]  - Relleno: 496 bytes
+[2025-11-26 13:18:25] Respuesta enviada (701 bytes).
+[2025-11-26 13:18:25] Esperando ENTER para continuar...
+[2025-11-26 13:18:36] Reiniciando ciclo de espera de requests...
+[2025-11-26 13:18:36] Cliente desconectado.
+[2025-11-26 13:18:36] Esperando conexión entrante...
+[2025-11-26 13:18:39] Conexión establecida desde 127.0.0.1:53135
+[2025-11-26 13:18:39] Mensaje recibido (175 bytes).
+[2025-11-26 13:18:39] Respuesta enviada (177 bytes).
+[2025-11-26 13:18:39] Esperando ENTER para continuar...
+[2025-11-26 13:45:29] Reiniciando ciclo de espera de requests...
+[2025-11-26 13:45:29] Cliente desconectado.
+[2025-11-26 13:45:29] Esperando conexión entrante...
+[2025-11-26 13:45:44] Simulador_MP iniciado.
+[2025-11-26 13:45:44] Iniciando Simulador_MP (escucha puerto 9999)... Interactivo=True, Condición=None
+[2025-11-26 13:45:46] Servidor escuchando en 0.0.0.0:9999
+[2025-11-26 13:45:46] Esperando conexión entrante...
+[2025-11-26 13:45:49] Conexión establecida desde 127.0.0.1:53501
+[2025-11-26 13:45:49] Mensaje recibido (175 bytes).
+[2025-11-26 13:45:50] [ 210015 - QR / OK ] Campo 105 generado:
+[2025-11-26 13:45:50]  - Http_code: 201
+[2025-11-26 13:45:50]  - mp_status_pago: CLOSED
+[2025-11-26 13:45:50]  - mp_order_id: 1234567890
+[2025-11-26 13:45:50]  - mp_payment_date: 26112025133000
+[2025-11-26 13:45:50]  - mp_payment_id: 2323232323
+[2025-11-26 13:45:50]  - mp_auth_code: 12345678901234567890
+[2025-11-26 13:45:50]  - mp_refund_id: 1234567890
+[2025-11-26 13:45:50]  - mp_refund_date: 26112025133000
+[2025-11-26 13:45:50]  - mp_description: NI IDEA QUE DECIR...
+[2025-11-26 13:45:50]  - mp_ext_reference: 2255887744
+[2025-11-26 13:45:50]  - mp_refund_amount: 000000000000
+[2025-11-26 13:45:50]  - mp_amount: 000000230000
+[2025-11-26 13:45:50]  - mp_refund_status: CREATED
+[2025-11-26 13:45:50]  - mp_payment_method: QRI
+[2025-11-26 13:45:50]  - mp_payment_type: MP
+[2025-11-26 13:45:50]  - mp_refund_payment_id: 465789123
+[2025-11-26 13:45:50]  - mp_paging_total: 1
+[2025-11-26 13:45:50] Respuesta enviada (198 bytes).
+[2025-11-26 13:45:50] Esperando ENTER para continuar...
+[2025-11-26 13:45:56] Reiniciando ciclo de espera de requests...
+[2025-11-26 13:45:56] Cliente desconectado.
+[2025-11-26 13:45:56] Esperando conexión entrante...
+[2025-11-26 13:45:56] Conexión establecida desde 127.0.0.1:53503
+[2025-11-26 13:45:56] Mensaje recibido (150 bytes).
+[2025-11-26 13:45:56] Respuesta enviada (152 bytes).
+[2025-11-26 13:45:56] Esperando ENTER para continuar...
+[2025-11-26 13:45:57] Reiniciando ciclo de espera de requests...
+[2025-11-26 13:45:57] Cliente desconectado.
+[2025-11-26 13:45:57] Esperando conexión entrante...
+[2025-11-26 13:46:28] Conexión establecida desde 127.0.0.1:53514
+[2025-11-26 13:46:28] Mensaje recibido (197 bytes).
+[2025-11-26 13:46:28] [ 110011 - QR / OK ] Campo 105 generado:
+[2025-11-26 13:46:28]  - Http_code: 201
+[2025-11-26 13:46:28]  - Relleno: 496 bytes
+[2025-11-26 13:46:28] Respuesta enviada (701 bytes).
+[2025-11-26 13:46:28] Esperando ENTER para continuar...
+[2025-11-26 13:46:38] Reiniciando ciclo de espera de requests...
+[2025-11-26 13:46:38] Cliente desconectado.
+[2025-11-26 13:46:38] Esperando conexión entrante...
+[2025-11-26 13:46:41] Conexión establecida desde 127.0.0.1:53517
+[2025-11-26 13:46:41] Mensaje recibido (175 bytes).
+[2025-11-26 13:46:41] [ 210015 - QR / OK ] Campo 105 generado:
+[2025-11-26 13:46:41]  - Http_code: 201
+[2025-11-26 13:46:41]  - mp_status_pago: CLOSED
+[2025-11-26 13:46:41]  - mp_order_id: 1234567890
+[2025-11-26 13:46:41]  - mp_payment_date: 26112025133000
+[2025-11-26 13:46:41]  - mp_payment_id: 2323232323
+[2025-11-26 13:46:41]  - mp_auth_code: 12345678901234567890
+[2025-11-26 13:46:41]  - mp_refund_id: 1234567890
+[2025-11-26 13:46:41]  - mp_refund_date: 26112025133000
+[2025-11-26 13:46:41]  - mp_description: NI IDEA QUE DECIR...
+[2025-11-26 13:46:41]  - mp_ext_reference: 2255887744
+[2025-11-26 13:46:41]  - mp_refund_amount: 000000000000
+[2025-11-26 13:46:41]  - mp_amount: 000000230000
+[2025-11-26 13:46:41]  - mp_refund_status: CREATED
+[2025-11-26 13:46:41]  - mp_payment_method: QRI
+[2025-11-26 13:46:41]  - mp_payment_type: MP
+[2025-11-26 13:46:41]  - mp_refund_payment_id: 465789123
+[2025-11-26 13:46:41]  - mp_paging_total: 1
+[2025-11-26 13:46:41] Respuesta enviada (198 bytes).
+[2025-11-26 13:46:41] Esperando ENTER para continuar...
+[2025-11-26 13:47:05] Reiniciando ciclo de espera de requests...
+[2025-11-26 13:47:05] Cliente desconectado.
+[2025-11-26 13:47:05] Esperando conexión entrante...
+[2025-11-26 13:50:42] Simulador_MP iniciado.
+[2025-11-26 13:50:42] Iniciando Simulador_MP (escucha puerto 9999)... Interactivo=True, Condición=None
+[2025-11-26 13:50:44] Servidor escuchando en 0.0.0.0:9999
+[2025-11-26 13:50:44] Esperando conexión entrante...
+[2025-11-26 13:50:49] Conexión establecida desde 127.0.0.1:53578
+[2025-11-26 13:50:49] Mensaje recibido (175 bytes).
+[2025-11-26 13:50:49] [ 210015 - QR / OK ] Campo 105 generado:
+[2025-11-26 13:50:49]  - Http_code: 201
+[2025-11-26 13:50:49]  - mp_status_pago: CLOSED
+[2025-11-26 13:50:49]  - mp_order_id: 1234567890
+[2025-11-26 13:50:49]  - mp_payment_date: 26112025133000
+[2025-11-26 13:50:49]  - mp_payment_id: 2323232323
+[2025-11-26 13:50:49]  - mp_auth_code: 12345678901234567890
+[2025-11-26 13:50:49]  - mp_refund_id: 1234567890
+[2025-11-26 13:50:49]  - mp_refund_date: 26112025133000
+[2025-11-26 13:50:49]  - mp_description: NI IDEA QUE DECIR...
+[2025-11-26 13:50:49]  - mp_ext_reference: 2255887744
+[2025-11-26 13:50:49]  - mp_refund_amount: 000000000000
+[2025-11-26 13:50:49]  - mp_amount: 000000230000
+[2025-11-26 13:50:49]  - mp_refund_status: CREATED
+[2025-11-26 13:50:49]  - mp_payment_method: QRI
+[2025-11-26 13:50:49]  - mp_payment_type: MP
+[2025-11-26 13:50:49]  - mp_refund_payment_id: 465789123
+[2025-11-26 13:50:49]  - mp_paging_total: 1
+[2025-11-26 13:50:49] Respuesta enviada (681 bytes).
+[2025-11-26 13:50:49] Esperando ENTER para continuar...
+[2025-11-26 13:51:18] Reiniciando ciclo de espera de requests...
+[2025-11-26 13:51:18] Cliente desconectado.
+[2025-11-26 13:51:18] Esperando conexión entrante...
+[2025-11-26 13:51:18] Conexión establecida desde 127.0.0.1:53584
+[2025-11-26 13:51:18] Mensaje recibido (175 bytes).
+[2025-11-26 13:51:18] [ 210015 - QR / OK ] Campo 105 generado:
+[2025-11-26 13:51:18]  - Http_code: 201
+[2025-11-26 13:51:18]  - mp_status_pago: CLOSED
+[2025-11-26 13:51:18]  - mp_order_id: 1234567890
+[2025-11-26 13:51:18]  - mp_payment_date: 26112025133000
+[2025-11-26 13:51:18]  - mp_payment_id: 2323232323
+[2025-11-26 13:51:18]  - mp_auth_code: 12345678901234567890
+[2025-11-26 13:51:18]  - mp_refund_id: 1234567890
+[2025-11-26 13:51:18]  - mp_refund_date: 26112025133000
+[2025-11-26 13:51:18]  - mp_description: NI IDEA QUE DECIR...
+[2025-11-26 13:51:18]  - mp_ext_reference: 2255887744
+[2025-11-26 13:51:18]  - mp_refund_amount: 000000000000
+[2025-11-26 13:51:18]  - mp_amount: 000000230000
+[2025-11-26 13:51:18]  - mp_refund_status: CREATED
+[2025-11-26 13:51:18]  - mp_payment_method: QRI
+[2025-11-26 13:51:18]  - mp_payment_type: MP
+[2025-11-26 13:51:18]  - mp_refund_payment_id: 465789123
+[2025-11-26 13:51:18]  - mp_paging_total: 1
+[2025-11-26 13:51:18] Respuesta enviada (681 bytes).
+[2025-11-26 13:51:18] Esperando ENTER para continuar...
+[2025-11-26 15:32:35] Reiniciando ciclo de espera de requests...
+[2025-11-26 15:32:35] Cliente desconectado.
+[2025-11-26 15:32:35] Esperando conexión entrante...
+[2025-11-26 15:43:42] Simulador_MP iniciado.
+[2025-11-26 15:43:42] Iniciando Simulador_MP (escucha puerto 9999)... Interactivo=True, Condición=None
+[2025-11-26 15:43:44] Servidor escuchando en 0.0.0.0:9999
+[2025-11-26 15:43:44] Esperando conexión entrante...
+[2025-11-26 15:44:19] Conexión establecida desde 127.0.0.1:64677
+[2025-11-26 15:44:19] Mensaje recibido (197 bytes).
+[2025-11-26 15:44:19] [ 110011 - QR / OK ] Campo 105 generado:
+[2025-11-26 15:44:19]  - Http_code: 201
+[2025-11-26 15:44:19]  - Relleno: 496 bytes
+[2025-11-26 15:44:19] Respuesta enviada (701 bytes).
+[2025-11-26 15:44:19] Esperando ENTER para continuar...
+[2025-11-26 15:44:25] Reiniciando ciclo de espera de requests...
+[2025-11-26 15:44:25] Cliente desconectado.
+[2025-11-26 15:44:25] Esperando conexión entrante...
+[2025-11-26 15:44:27] Conexión establecida desde 127.0.0.1:64679
+[2025-11-26 15:44:27] Mensaje recibido (175 bytes).
+[2025-11-26 15:44:27] [ 210015 - QR / OK ] Campo 105 generado:
+[2025-11-26 15:44:27]  - Http_code: 201
+[2025-11-26 15:44:27]  - mp_status_pago: CLOSED
+[2025-11-26 15:44:27]  - mp_order_id: 1234567890
+[2025-11-26 15:44:27]  - mp_payment_date: 26112025133000
+[2025-11-26 15:44:27]  - mp_payment_id: 2323232323
+[2025-11-26 15:44:27]  - mp_auth_code: 12345678901234567890
+[2025-11-26 15:44:27]  - mp_refund_id: 1234567890
+[2025-11-26 15:44:27]  - mp_refund_date: 26112025133000
+[2025-11-26 15:44:27]  - mp_description: NI IDEA QUE DECIR...
+[2025-11-26 15:44:27]  - mp_ext_reference: 2255887744
+[2025-11-26 15:44:27]  - mp_refund_amount: 000000000000
+[2025-11-26 15:44:27]  - mp_amount: 000000230000
+[2025-11-26 15:44:27]  - mp_refund_status: CREATED
+[2025-11-26 15:44:27]  - mp_payment_method: QRI
+[2025-11-26 15:44:27]  - mp_payment_type: MP
+[2025-11-26 15:44:27]  - mp_refund_payment_id: 465789123
+[2025-11-26 15:44:27]  - mp_paging_total: 1
+[2025-11-26 15:44:27] Respuesta enviada (679 bytes).
+[2025-11-26 15:44:27] Esperando ENTER para continuar...
+[2025-11-26 15:49:14] Reiniciando ciclo de espera de requests...
+[2025-11-26 15:49:14] Cliente desconectado.
+[2025-11-26 15:49:14] Esperando conexión entrante...
+[2025-11-26 15:49:17] Conexión establecida desde 127.0.0.1:64754
+[2025-11-26 15:49:17] Mensaje recibido (175 bytes).
+[2025-11-26 15:49:17] [ 210015 - QR / OK ] Campo 105 generado:
+[2025-11-26 15:49:17]  - Http_code: 201
+[2025-11-26 15:49:17]  - mp_status_pago: CLOSED
+[2025-11-26 15:49:17]  - mp_order_id: 1234567890
+[2025-11-26 15:49:17]  - mp_payment_date: 26112025133000
+[2025-11-26 15:49:17]  - mp_payment_id: 2323232323
+[2025-11-26 15:49:17]  - mp_auth_code: 12345678901234567890
+[2025-11-26 15:49:17]  - mp_refund_id: 1234567890
+[2025-11-26 15:49:17]  - mp_refund_date: 26112025133000
+[2025-11-26 15:49:17]  - mp_description: NI IDEA QUE DECIR...
+[2025-11-26 15:49:17]  - mp_ext_reference: 2255887744
+[2025-11-26 15:49:17]  - mp_refund_amount: 000000000000
+[2025-11-26 15:49:17]  - mp_amount: 000000230000
+[2025-11-26 15:49:17]  - mp_refund_status: CREATED
+[2025-11-26 15:49:17]  - mp_payment_method: QRI
+[2025-11-26 15:49:17]  - mp_payment_type: MP
+[2025-11-26 15:49:17]  - mp_refund_payment_id: 465789123
+[2025-11-26 15:49:17]  - mp_paging_total: 1
+[2025-11-26 15:49:17] Respuesta enviada (679 bytes).
+[2025-11-26 15:49:17] Esperando ENTER para continuar...
+[2025-11-26 15:50:15] Reiniciando ciclo de espera de requests...
+[2025-11-26 15:50:15] Cliente desconectado.
+[2025-11-26 15:50:15] Esperando conexión entrante...
+[2025-11-26 16:11:41] Simulador_MP iniciado.
+[2025-11-26 16:11:41] Iniciando Simulador_MP (escucha puerto 9999)... Interactivo=True, Condición=None
+[2025-11-26 16:11:43] Servidor escuchando en 0.0.0.0:9999
+[2025-11-26 16:11:43] Esperando conexión entrante...
+[2025-11-26 16:11:58] Conexión establecida desde 127.0.0.1:64922
+[2025-11-26 16:11:58] Mensaje recibido (313 bytes).
+[2025-11-26 16:11:58] [ 100011 - Smart Point / OK ] Campo 105 generado:
+[2025-11-26 16:11:58]  - Http_code: 201
+[2025-11-26 16:11:58]  - Order_id: ORDTST01KAE6YQ8CEE52TPH30PP1WW9D
+[2025-11-26 16:11:58]  - Payment_id: PAY01KAE6YQ8CEE52TPH30S204EYT
+[2025-11-26 16:11:58]  - Status_pago: created
+[2025-11-26 16:11:58]  - Status_mp: created
+[2025-11-26 16:11:58]  - Relleno: 368 bytes
+[2025-11-26 16:11:58] Respuesta enviada (817 bytes).
+[2025-11-26 16:11:58] Esperando ENTER para continuar...
+[2025-11-26 16:13:45] Reiniciando ciclo de espera de requests...
+[2025-11-26 16:13:45] Cliente desconectado.
+[2025-11-26 16:13:45] Esperando conexión entrante...
+[2025-11-26 16:13:47] Conexión establecida desde 127.0.0.1:64948
+[2025-11-26 16:13:47] Mensaje recibido (172 bytes).
+[2025-11-26 16:13:47] [ 100010 / OK ] Campo 105 generado:
+[2025-11-26 16:13:47]  - Http_code: 200
+[2025-11-26 16:13:47]  - Order_id: ORDTST01KAE6YQ8CEE52TPH30PP1WW9D
+[2025-11-26 16:13:47]  - Payment_id: PAY01KAE6YQ8CEE52TPH30S204EYT
+[2025-11-26 16:13:47] Cerrando servidor.
+[2025-11-26 16:16:03] Simulador_MP iniciado.
+[2025-11-26 16:16:03] Iniciando Simulador_MP (escucha puerto 9999)... Interactivo=True, Condición=None
+[2025-11-26 16:16:05] Servidor escuchando en 0.0.0.0:9999
+[2025-11-26 16:16:05] Esperando conexión entrante...
+[2025-11-26 16:16:06] Conexión establecida desde 127.0.0.1:64987
+[2025-11-26 16:16:06] Mensaje recibido (172 bytes).
+[2025-11-26 16:16:06] [ 100010 / OK ] Campo 105 generado:
+[2025-11-26 16:16:06]  - Http_code: 200
+[2025-11-26 16:16:06]  - Order_id: ORDTST01KAE6YQ8CEE52TPH30PP1WW9D
+[2025-11-26 16:16:06]  - Payment_id: PAY01KAE6YQ8CEE52TPH30S204EYT
+[2025-11-26 16:16:06] Cerrando servidor.
+[2025-11-26 16:17:36] Simulador_MP iniciado.
+[2025-11-26 16:17:36] Iniciando Simulador_MP (escucha puerto 9999)... Interactivo=True, Condición=None
+[2025-11-26 16:17:38] Servidor escuchando en 0.0.0.0:9999
+[2025-11-26 16:17:38] Esperando conexión entrante...
+[2025-11-26 16:17:39] Conexión establecida desde 127.0.0.1:65006
+[2025-11-26 16:17:39] Mensaje recibido (172 bytes).
+[2025-11-26 16:17:39] [ 100010 / OK ] Campo 105 generado:
+[2025-11-26 16:17:39]  - Http_code: 200
+[2025-11-26 16:17:39]  - Order_id: ORDTST01KAE6YQ8CEE52TPH30PP1WW9D
+[2025-11-26 16:17:39]  - Payment_id: PAY01KAE6YQ8CEE52TPH30S204EYT
+[2025-11-26 16:17:39]  - Status_pago: at_terminal
+[2025-11-26 16:17:39] Cerrando servidor.
+[2025-11-26 16:18:26] Simulador_MP iniciado.
+[2025-11-26 16:18:26] Iniciando Simulador_MP (escucha puerto 9999)... Interactivo=True, Condición=None
+[2025-11-26 16:18:28] Servidor escuchando en 0.0.0.0:9999
+[2025-11-26 16:18:28] Esperando conexión entrante...
+[2025-11-26 16:18:30] Conexión establecida desde 127.0.0.1:65024
+[2025-11-26 16:18:30] Mensaje recibido (172 bytes).
+[2025-11-26 16:18:30] [ 100010 / OK ] Campo 105 generado:
+[2025-11-26 16:18:30]  - Http_code: 200
+[2025-11-26 16:18:30]  - Order_id: ORDTST01KAE6YQ8CEE52TPH30PP1WW9D
+[2025-11-26 16:18:30]  - Payment_id: PAY01KAE6YQ8CEE52TPH30S204EYT
+[2025-11-26 16:18:30]  - Status_pago: at_terminal
+[2025-11-26 16:18:30]  - Status_mp: at_terminal
+[2025-11-26 16:18:30] Respuesta enviada (321 bytes).
+[2025-11-26 16:18:30] Esperando ENTER para continuar...
+[2025-11-26 16:25:02] Reiniciando ciclo de espera de requests...
+[2025-11-26 16:25:02] Cliente desconectado.
+[2025-11-26 16:25:02] Esperando conexión entrante...
+[2025-11-26 16:26:00] Conexión establecida desde 127.0.0.1:65105
+[2025-11-26 16:26:00] Mensaje recibido (313 bytes).
+[2025-11-26 16:26:00] [ 100011 - Smart Point / OK ] Campo 105 generado:
+[2025-11-26 16:26:00]  - Http_code: 201
+[2025-11-26 16:26:00]  - Order_id: ORDTST01KAE6YQ8CEE52TPH30PP1WW9D
+[2025-11-26 16:26:00]  - Payment_id: PAY01KAE6YQ8CEE52TPH30S204EYT
+[2025-11-26 16:26:00]  - Status_pago: created
+[2025-11-26 16:26:00]  - Status_mp: created
+[2025-11-26 16:26:00]  - Relleno: 368 bytes
+[2025-11-26 16:26:00] Respuesta enviada (817 bytes).
+[2025-11-26 16:26:00] Esperando ENTER para continuar...
+[2025-11-26 16:26:45] Reiniciando ciclo de espera de requests...
+[2025-11-26 16:26:45] Cliente desconectado.
+[2025-11-26 16:26:45] Esperando conexión entrante...
+[2025-11-26 16:26:49] Conexión establecida desde 127.0.0.1:65115
+[2025-11-26 16:26:49] Mensaje recibido (172 bytes).
+[2025-11-26 16:26:49] [ 100010 / OK ] Campo 105 generado:
+[2025-11-26 16:26:49]  - Http_code: 200
+[2025-11-26 16:26:49]  - Order_id: ORDTST01KAE6YQ8CEE52TPH30PP1WW9D
+[2025-11-26 16:26:49]  - Payment_id: PAY01KAE6YQ8CEE52TPH30S204EYT
+[2025-11-26 16:26:49]  - Status_pago: at_terminal
+[2025-11-26 16:26:49]  - Status_mp: at_terminal
+[2025-11-26 16:26:49] Respuesta enviada (321 bytes).
+[2025-11-26 16:26:49] Esperando ENTER para continuar...
+[2025-11-26 16:27:34] Reiniciando ciclo de espera de requests...
+[2025-11-26 16:27:34] Cliente desconectado.
+[2025-11-26 16:27:34] Esperando conexión entrante...
+[2025-11-26 17:20:25] Conexión establecida desde 127.0.0.1:62568
+[2025-11-26 17:20:25] Mensaje recibido (313 bytes).
+[2025-11-26 17:20:25] [ 100011 - Smart Point / OK ] Campo 105 generado:
+[2025-11-26 17:20:25]  - Http_code: 201
+[2025-11-26 17:20:25]  - Order_id: ORDTST01KAE6YQ8CEE52TPH30PP1WW9D
+[2025-11-26 17:20:25]  - Payment_id: PAY01KAE6YQ8CEE52TPH30S204EYT
+[2025-11-26 17:20:25]  - Status_pago: created
+[2025-11-26 17:20:25]  - Status_mp: created
+[2025-11-26 17:20:25]  - Relleno: 368 bytes
+[2025-11-26 17:20:25] Respuesta enviada (817 bytes).
+[2025-11-26 17:20:25] Esperando ENTER para continuar...
+[2025-11-26 17:23:07] Reiniciando ciclo de espera de requests...
+[2025-11-26 17:23:07] Cliente desconectado.
+[2025-11-26 17:23:07] Esperando conexión entrante...
+[2025-11-26 17:23:12] Conexión establecida desde 127.0.0.1:62607
+[2025-11-26 17:23:12] Mensaje recibido (197 bytes).
+[2025-11-26 17:23:12] [ 110011 - QR / OK ] Campo 105 generado:
+[2025-11-26 17:23:12]  - Http_code: 201
+[2025-11-26 17:23:12]  - Relleno: 496 bytes
+[2025-11-26 17:23:12] Respuesta enviada (701 bytes).
+[2025-11-26 17:23:12] Esperando ENTER para continuar...
+[2025-11-26 17:23:30] Reiniciando ciclo de espera de requests...
+[2025-11-26 17:23:30] Cliente desconectado.
+[2025-11-26 17:23:30] Esperando conexión entrante...
+[2025-11-26 17:23:35] Conexión establecida desde 127.0.0.1:62613
+[2025-11-26 17:23:35] Mensaje recibido (175 bytes).
+[2025-11-26 17:23:35] [ 210015 - QR / OK ] Campo 105 generado:
+[2025-11-26 17:23:35]  - Http_code: 201
+[2025-11-26 17:23:35]  - mp_status_pago: CLOSED
+[2025-11-26 17:23:35]  - mp_order_id: 1234567890
+[2025-11-26 17:23:35]  - mp_payment_date: 26112025133000
+[2025-11-26 17:23:35]  - mp_payment_id: 2323232323
+[2025-11-26 17:23:35]  - mp_auth_code: 12345678901234567890
+[2025-11-26 17:23:35]  - mp_refund_id: 1234567890
+[2025-11-26 17:23:35]  - mp_refund_date: 26112025133000
+[2025-11-26 17:23:35]  - mp_description: NI IDEA QUE DECIR...
+[2025-11-26 17:23:35]  - mp_ext_reference: 2255887744
+[2025-11-26 17:23:35]  - mp_refund_amount: 000000000000
+[2025-11-26 17:23:35]  - mp_amount: 000000230000
+[2025-11-26 17:23:35]  - mp_refund_status: CREATED
+[2025-11-26 17:23:35]  - mp_payment_method: QRI
+[2025-11-26 17:23:35]  - mp_payment_type: MP
+[2025-11-26 17:23:35]  - mp_refund_payment_id: 465789123
+[2025-11-26 17:23:35]  - mp_paging_total: 1
+[2025-11-26 17:23:35] Respuesta enviada (679 bytes).
+[2025-11-26 17:23:35] Esperando ENTER para continuar...
+[2025-11-26 17:26:02] Reiniciando ciclo de espera de requests...
+[2025-11-26 17:26:02] Cliente desconectado.
+[2025-11-26 17:26:02] Esperando conexión entrante...
+[2025-11-26 17:26:02] Conexión establecida desde 127.0.0.1:62663
+[2025-11-26 17:26:02] Mensaje recibido (175 bytes).
+[2025-11-26 17:26:02] [ 210015 - QR / OK ] Campo 105 generado:
+[2025-11-26 17:26:02]  - Http_code: 201
+[2025-11-26 17:26:02]  - mp_status_pago: CLOSED
+[2025-11-26 17:26:02]  - mp_order_id: 1234567890
+[2025-11-26 17:26:02]  - mp_payment_date: 26112025133000
+[2025-11-26 17:26:02]  - mp_payment_id: 2323232323
+[2025-11-26 17:26:02]  - mp_auth_code: 12345678901234567890
+[2025-11-26 17:26:02]  - mp_refund_id: 1234567890
+[2025-11-26 17:26:02]  - mp_refund_date: 26112025133000
+[2025-11-26 17:26:02]  - mp_description: NI IDEA QUE DECIR...
+[2025-11-26 17:26:02]  - mp_ext_reference: 2255887744
+[2025-11-26 17:26:02]  - mp_refund_amount: 000000000000
+[2025-11-26 17:26:02]  - mp_amount: 000000230000
+[2025-11-26 17:26:02]  - mp_refund_status: CREATED
+[2025-11-26 17:26:02]  - mp_payment_method: QRI
+[2025-11-26 17:26:02]  - mp_payment_type: MP
+[2025-11-26 17:26:02]  - mp_refund_payment_id: 465789123
+[2025-11-26 17:26:02]  - mp_paging_total: 1
+[2025-11-26 17:26:02] Respuesta enviada (679 bytes).
+[2025-11-26 17:26:02] Esperando ENTER para continuar...
+[2025-11-26 17:26:04] Reiniciando ciclo de espera de requests...
+[2025-11-26 17:26:04] Cliente desconectado.
+[2025-11-26 17:26:04] Esperando conexión entrante...
+[2025-11-26 17:26:07] Conexión establecida desde 127.0.0.1:62668
+[2025-11-26 17:26:07] Mensaje recibido (150 bytes).
+[2025-11-26 17:26:07] Respuesta enviada (152 bytes).
+[2025-11-26 17:26:07] Esperando ENTER para continuar...
+[2025-11-26 17:26:16] Reiniciando ciclo de espera de requests...
+[2025-11-26 17:26:16] Cliente desconectado.
+[2025-11-26 17:26:16] Esperando conexión entrante...
+[2025-11-26 17:26:52] Conexión establecida desde 127.0.0.1:62678
+[2025-11-26 17:26:52] Mensaje recibido (197 bytes).
+[2025-11-26 17:26:52] [ 110011 - QR / OK ] Campo 105 generado:
+[2025-11-26 17:26:52]  - Http_code: 201
+[2025-11-26 17:26:52]  - Relleno: 496 bytes
+[2025-11-26 17:26:52] Respuesta enviada (701 bytes).
+[2025-11-26 17:26:52] Esperando ENTER para continuar...
+[2025-11-26 17:27:28] Reiniciando ciclo de espera de requests...
+[2025-11-26 17:27:28] Cliente desconectado.
+[2025-11-26 17:27:28] Esperando conexión entrante...
+[2025-11-26 17:27:30] Conexión establecida desde 127.0.0.1:62690
+[2025-11-26 17:27:30] Mensaje recibido (175 bytes).
+[2025-11-26 17:27:30] [ 210015 - QR / OK ] Campo 105 generado:
+[2025-11-26 17:27:30]  - Http_code: 201
+[2025-11-26 17:27:30]  - mp_status_pago: CLOSED
+[2025-11-26 17:27:30]  - mp_order_id: 1234567890
+[2025-11-26 17:27:30]  - mp_payment_date: 26112025133000
+[2025-11-26 17:27:30]  - mp_payment_id: 2323232323
+[2025-11-26 17:27:30]  - mp_auth_code: 12345678901234567890
+[2025-11-26 17:27:30]  - mp_refund_id: 1234567890
+[2025-11-26 17:27:30]  - mp_refund_date: 26112025133000
+[2025-11-26 17:27:30]  - mp_description: NI IDEA QUE DECIR...
+[2025-11-26 17:27:30]  - mp_ext_reference: 2255887744
+[2025-11-26 17:27:30]  - mp_refund_amount: 000000000000
+[2025-11-26 17:27:30]  - mp_amount: 000000230000
+[2025-11-26 17:27:30]  - mp_refund_status: CREATED
+[2025-11-26 17:27:30]  - mp_payment_method: QRI
+[2025-11-26 17:27:30]  - mp_payment_type: MP
+[2025-11-26 17:27:30]  - mp_refund_payment_id: 465789123
+[2025-11-26 17:27:30]  - mp_paging_total: 1
+[2025-11-26 17:27:30] Respuesta enviada (679 bytes).
+[2025-11-26 17:27:30] Esperando ENTER para continuar...
+[2025-11-26 17:36:05] Reiniciando ciclo de espera de requests...
+[2025-11-26 17:36:05] Cliente desconectado.
+[2025-11-26 17:36:05] Esperando conexión entrante...
+[2025-11-26 17:43:20] Simulador_MP iniciado.
+[2025-11-26 17:43:20] Iniciando Simulador_MP (escucha puerto 9999)... Interactivo=True, Condición=None
+[2025-11-26 17:43:22] Servidor escuchando en 0.0.0.0:9999
+[2025-11-26 17:43:22] Esperando conexión entrante...
+[2025-11-26 17:43:24] Conexión establecida desde 127.0.0.1:62891
+[2025-11-26 17:43:24] Mensaje recibido (197 bytes).
+[2025-11-26 17:43:24] [ 110011 - QR / OK ] Campo 105 generado:
+[2025-11-26 17:43:24]  - Http_code: 201
+[2025-11-26 17:43:24]  - Relleno: 496 bytes
+[2025-11-26 17:43:24] Respuesta enviada (701 bytes).
+[2025-11-26 17:43:24] Esperando ENTER para continuar...
+[2025-11-26 17:43:30] Reiniciando ciclo de espera de requests...
+[2025-11-26 17:43:30] Cliente desconectado.
+[2025-11-26 17:43:30] Esperando conexión entrante...
+[2025-11-26 17:43:33] Conexión establecida desde 127.0.0.1:62894
+[2025-11-26 17:43:33] Mensaje recibido (175 bytes).
+[2025-11-26 17:43:33] [ 210015 - QR / OK ] Campo 105 generado:
+[2025-11-26 17:43:33]  - Http_code: 200
+[2025-11-26 17:43:33]  - mp_status_pago: approved
+[2025-11-26 17:43:33]  - mp_order_id: 1234567890
+[2025-11-26 17:43:33]  - mp_payment_date: 26112025133000
+[2025-11-26 17:43:33]  - mp_payment_id: 2323232323
+[2025-11-26 17:43:33]  - mp_auth_code: 12345678901234567890
+[2025-11-26 17:43:33]  - mp_refund_id: 1234567890
+[2025-11-26 17:43:33]  - mp_refund_date: 26112025133000
+[2025-11-26 17:43:33]  - mp_description: NI IDEA QUE DECIR...
+[2025-11-26 17:43:33]  - mp_ext_reference: 2255887744
+[2025-11-26 17:43:33]  - mp_refund_amount: 000000000000
+[2025-11-26 17:43:33]  - mp_amount: 000000230000
+[2025-11-26 17:43:33]  - mp_refund_status: CREATED
+[2025-11-26 17:43:33]  - mp_payment_method: QRI
+[2025-11-26 17:43:33]  - mp_payment_type: MP
+[2025-11-26 17:43:33]  - mp_refund_payment_id: 465789123
+[2025-11-26 17:43:33]  - mp_paging_total: 1
+[2025-11-26 17:43:33] Respuesta enviada (679 bytes).
+[2025-11-26 17:43:33] Esperando ENTER para continuar...
+[2025-11-26 17:43:54] Reiniciando ciclo de espera de requests...
+[2025-11-26 17:43:54] Cliente desconectado.
+[2025-11-26 17:43:54] Esperando conexión entrante...
+[2025-11-27 12:39:06] Simulador_MP iniciado.
+[2025-11-27 12:39:06] Iniciando Simulador_MP (escucha puerto 9999)... Interactivo=True, Condición=None
+[2025-11-27 12:39:08] Servidor escuchando en 0.0.0.0:9999
+[2025-11-27 12:39:08] Esperando conexión entrante...
+[2025-11-27 12:39:52] Conexión establecida desde 127.0.0.1:50762
+[2025-11-27 12:39:52] Mensaje recibido (197 bytes).
+[2025-11-27 12:39:52] [ 110011 - QR / OK ] Campo 105 generado:
+[2025-11-27 12:39:52]  - Http_code: 201
+[2025-11-27 12:39:52]  - Relleno: 496 bytes
+[2025-11-27 12:39:52] Respuesta enviada (701 bytes).
+[2025-11-27 12:39:52] Esperando ENTER para continuar...
+[2025-11-27 12:40:02] Reiniciando ciclo de espera de requests...
+[2025-11-27 12:40:02] Cliente desconectado.
+[2025-11-27 12:40:02] Esperando conexión entrante...
+[2025-11-27 12:41:01] Conexión establecida desde 127.0.0.1:50776
+[2025-11-27 12:41:01] Mensaje recibido (175 bytes).
+[2025-11-27 12:41:01] [ 210015 - QR / OK ] Campo 105 generado:
+[2025-11-27 12:41:01]  - Http_code: 200
+[2025-11-27 12:41:01]  - mp_status_pago: approved
+[2025-11-27 12:41:01]  - mp_order_id: 1234567890
+[2025-11-27 12:41:01]  - mp_payment_date: 26112025133000
+[2025-11-27 12:41:01]  - mp_payment_id: 2323232323
+[2025-11-27 12:41:01]  - mp_auth_code: 12345678901234567890
+[2025-11-27 12:41:01]  - mp_refund_id: 1234567890
+[2025-11-27 12:41:01]  - mp_refund_date: 26112025133000
+[2025-11-27 12:41:01]  - mp_description: NI IDEA QUE DECIR...
+[2025-11-27 12:41:01]  - mp_ext_reference: 2255887744
+[2025-11-27 12:41:01]  - mp_refund_amount: 000000000000
+[2025-11-27 12:41:01]  - mp_amount: 000000230000
+[2025-11-27 12:41:01]  - mp_refund_status: CREATED
+[2025-11-27 12:41:01]  - mp_payment_method: QRI
+[2025-11-27 12:41:01]  - mp_payment_type: MP
+[2025-11-27 12:41:01]  - mp_refund_payment_id: 465789123
+[2025-11-27 12:41:01]  - mp_paging_total: 1
+[2025-11-27 12:41:01] Respuesta enviada (679 bytes).
+[2025-11-27 12:41:01] Esperando ENTER para continuar...
+[2025-11-27 12:41:01] Reiniciando ciclo de espera de requests...
+[2025-11-27 12:41:01] Cliente desconectado.
+[2025-11-27 12:41:01] Esperando conexión entrante...
+[2025-11-27 12:44:07] Conexión establecida desde 127.0.0.1:60721
+[2025-11-27 12:44:07] Mensaje recibido (313 bytes).
+[2025-11-27 12:44:07] [ 100011 - Smart Point / OK ] Campo 105 generado:
+[2025-11-27 12:44:07]  - Http_code: 201
+[2025-11-27 12:44:07]  - Order_id: ORDTST01KAE6YQ8CEE52TPH30PP1WW9D
+[2025-11-27 12:44:07]  - Payment_id: PAY01KAE6YQ8CEE52TPH30S204EYT
+[2025-11-27 12:44:07]  - Status_pago: created
+[2025-11-27 12:44:07]  - Status_mp: created
+[2025-11-27 12:44:07]  - Relleno: 368 bytes
+[2025-11-27 12:44:07] Respuesta enviada (817 bytes).
+[2025-11-27 12:44:07] Esperando ENTER para continuar...
+[2025-11-27 12:44:25] Reiniciando ciclo de espera de requests...
+[2025-11-27 12:44:25] Cliente desconectado.
+[2025-11-27 12:44:25] Esperando conexión entrante...
+[2025-11-27 12:44:28] Conexión establecida desde 127.0.0.1:60729
+[2025-11-27 12:44:28] Mensaje recibido (172 bytes).
+[2025-11-27 12:44:28] [ 100010 / OK ] Campo 105 generado:
+[2025-11-27 12:44:28]  - Http_code: 200
+[2025-11-27 12:44:28]  - Order_id: ORDTST01KAE6YQ8CEE52TPH30PP1WW9D
+[2025-11-27 12:44:28]  - Payment_id: PAY01KAE6YQ8CEE52TPH30S204EYT
+[2025-11-27 12:44:28]  - Status_pago: at_terminal
+[2025-11-27 12:44:28]  - Status_mp: at_terminal
+[2025-11-27 12:44:28] Respuesta enviada (321 bytes).
+[2025-11-27 12:44:28] Esperando ENTER para continuar...
+[2025-11-27 13:26:14] Reiniciando ciclo de espera de requests...
+[2025-11-27 13:26:14] Cliente desconectado.
+[2025-11-27 13:26:14] Esperando conexión entrante...
+[2025-11-27 13:27:52] Conexión establecida desde 127.0.0.1:63948
+[2025-11-27 13:27:52] Mensaje recibido (313 bytes).
+[2025-11-27 13:27:52] [ 100011 - Smart Point / OK ] Campo 105 generado:
+[2025-11-27 13:27:52]  - Http_code: 201
+[2025-11-27 13:27:52]  - Order_id: ORDTST01KAE6YQ8CEE52TPH30PP1WW9D
+[2025-11-27 13:27:52]  - Payment_id: PAY01KAE6YQ8CEE52TPH30S204EYT
+[2025-11-27 13:27:52]  - Status_pago: created
+[2025-11-27 13:27:52]  - Status_mp: created
+[2025-11-27 13:27:52]  - Relleno: 368 bytes
+[2025-11-27 13:27:52] Respuesta enviada (817 bytes).
+[2025-11-27 13:27:52] Esperando ENTER para continuar...
+[2025-11-27 13:28:02] Reiniciando ciclo de espera de requests...
+[2025-11-27 13:28:02] Cliente desconectado.
+[2025-11-27 13:28:02] Esperando conexión entrante...
+[2025-11-27 13:28:04] Conexión establecida desde 127.0.0.1:63951
+[2025-11-27 13:28:04] Mensaje recibido (172 bytes).
+[2025-11-27 13:28:04] [ 100010 / OK ] Campo 105 generado:
+[2025-11-27 13:28:04]  - Http_code: 200
+[2025-11-27 13:28:04]  - Order_id: ORDTST01KAE6YQ8CEE52TPH30PP1WW9D
+[2025-11-27 13:28:04]  - Payment_id: PAY01KAE6YQ8CEE52TPH30S204EYT
+[2025-11-27 13:28:04]  - Status_pago: at_terminal
+[2025-11-27 13:28:04]  - Status_mp: at_terminal
+[2025-11-27 13:28:04] Respuesta enviada (321 bytes).
+[2025-11-27 13:28:04] Esperando ENTER para continuar...
+[2025-11-27 13:40:11] Reiniciando ciclo de espera de requests...
+[2025-11-27 13:40:11] Cliente desconectado.
+[2025-11-27 13:40:11] Esperando conexión entrante...
+[2025-11-27 14:08:54] Simulador_MP iniciado.
+[2025-11-27 14:08:54] Iniciando Simulador_MP (escucha puerto 9999)... Interactivo=True, Condición=None
+[2025-11-27 14:08:56] Servidor escuchando en 0.0.0.0:9999
+[2025-11-27 14:08:56] Esperando conexión entrante...
+[2025-11-27 14:09:04] Conexión establecida desde 127.0.0.1:61937
+[2025-11-27 14:09:04] Mensaje recibido (313 bytes).
+[2025-11-27 14:09:04] [ 100011 - Smart Point / OK ] Campo 105 generado:
+[2025-11-27 14:09:04]  - Http_code: 201
+[2025-11-27 14:09:04]  - Order_id: ORDTST01KAE6YQ8CEE52TPH30PP1WW9D
+[2025-11-27 14:09:04]  - Payment_id: PAY01KAE6YQ8CEE52TPH30S204EYT
+[2025-11-27 14:09:04]  - Status_pago: created
+[2025-11-27 14:09:04]  - Status_mp: created
+[2025-11-27 14:09:04]  - Relleno: 368 bytes
+[2025-11-27 14:09:04] Respuesta enviada (817 bytes).
+[2025-11-27 14:09:04] Esperando ENTER para continuar...
+[2025-11-27 14:10:04] Reiniciando ciclo de espera de requests...
+[2025-11-27 14:10:04] Cliente desconectado.
+[2025-11-27 14:10:04] Esperando conexión entrante...
+[2025-11-27 14:11:31] Simulador_MP iniciado.
+[2025-11-27 14:11:31] Iniciando Simulador_MP (escucha puerto 9999)... Interactivo=True, Condición=None
+[2025-11-27 14:11:34] Servidor escuchando en 0.0.0.0:9999
+[2025-11-27 14:11:34] Esperando conexión entrante...
+[2025-11-27 14:11:59] Conexión establecida desde 127.0.0.1:61980
+[2025-11-27 14:11:59] Mensaje recibido (313 bytes).
+[2025-11-27 14:11:59] [ 100011 - Smart Point / OK ] Campo 105 generado:
+[2025-11-27 14:11:59]  - Http_code: 201
+[2025-11-27 14:11:59]  - Order_id: ORDTST01KAE6YQ8CEE52TPH30PP1WW9D
+[2025-11-27 14:11:59]  - Payment_id: PAY01KAE6YQ8CEE52TPH30S204EYT
+[2025-11-27 14:11:59]  - Status_pago: created
+[2025-11-27 14:11:59]  - Status_mp: created
+[2025-11-27 14:11:59]  - Relleno: 368 bytes
+[2025-11-27 14:11:59] Respuesta enviada (817 bytes).
+[2025-11-27 14:11:59] Esperando ENTER para continuar...
+[2025-11-27 14:12:03] Reiniciando ciclo de espera de requests...
+[2025-11-27 14:12:03] Cliente desconectado.
+[2025-11-27 14:12:03] Esperando conexión entrante...
+[2025-11-27 14:12:05] Conexión establecida desde 127.0.0.1:61981
+[2025-11-27 14:12:05] Mensaje recibido (172 bytes).
+[2025-11-27 14:12:05] [ 100010 / OK ] Campo 105 generado:
+[2025-11-27 14:12:05]  - Http_code: 200
+[2025-11-27 14:12:05]  - Order_id: ORDTST01KAE6YQ8CEE52TPH30PP1WW9D
+[2025-11-27 14:12:05]  - Payment_id: PAY01KAE6YQ8CEE52TPH30S204EYT
+[2025-11-27 14:12:05]  - Status_pago: processed
+[2025-11-27 14:12:05]  - Status_mp: processed
+[2025-11-27 14:12:05] Respuesta enviada (341 bytes).
+[2025-11-27 14:12:05] Esperando ENTER para continuar...
+[2025-11-27 14:15:03] Reiniciando ciclo de espera de requests...
+[2025-11-27 14:15:03] Cliente desconectado.
+[2025-11-27 14:15:03] Esperando conexión entrante...
+[2025-11-27 14:19:40] Simulador_MP iniciado.
+[2025-11-27 14:19:40] Iniciando Simulador_MP (escucha puerto 9999)... Interactivo=True, Condición=None
+[2025-11-27 14:19:42] Servidor escuchando en 0.0.0.0:9999
+[2025-11-27 14:19:42] Esperando conexión entrante...
+[2025-11-27 14:21:32] Conexión establecida desde 127.0.0.1:62091
+[2025-11-27 14:21:32] Mensaje recibido (313 bytes).
+[2025-11-27 14:21:32] [ 100011 - Smart Point / OK ] Campo 105 generado:
+[2025-11-27 14:21:32]  - Http_code: 201
+[2025-11-27 14:21:32]  - Order_id: ORDTST01KAE6YQ8CEE52TPH30PP1WW9D
+[2025-11-27 14:21:32]  - Payment_id: PAY01KAE6YQ8CEE52TPH30S204EYT
+[2025-11-27 14:21:32]  - Status_pago: created
+[2025-11-27 14:21:32]  - Payment_ref: 
+[2025-11-27 14:21:32]  - Status_mp: created
+[2025-11-27 14:21:32]  - Relleno: 368 bytes
+[2025-11-27 14:21:32] Respuesta enviada (817 bytes).
+[2025-11-27 14:21:32] Esperando ENTER para continuar...
+[2025-11-27 14:22:42] Reiniciando ciclo de espera de requests...
+[2025-11-27 14:22:42] Cliente desconectado.
+[2025-11-27 14:22:42] Esperando conexión entrante...
+[2025-11-27 14:22:44] Conexión establecida desde 127.0.0.1:62105
+[2025-11-27 14:22:44] Mensaje recibido (172 bytes).
+[2025-11-27 14:22:44] [ 100010 / OK ] Campo 105 generado:
+[2025-11-27 14:22:44]  - Http_code: 200
+[2025-11-27 14:22:44]  - Order_id: ORDTST01KAE6YQ8CEE52TPH30PP1WW9D
+[2025-11-27 14:22:44]  - Payment_id: PAY01KAE6YQ8CEE52TPH30S204EYT
+[2025-11-27 14:22:44]  - Status_pago: processed
+[2025-11-27 14:22:44]  - Payment_ref: 1234567890
+[2025-11-27 14:22:44]  - Status_mp: processed
+[2025-11-27 14:22:44] Respuesta enviada (311 bytes).
+[2025-11-27 14:22:44] Esperando ENTER para continuar...
+[2025-11-27 14:23:51] Reiniciando ciclo de espera de requests...
+[2025-11-27 14:23:51] Cliente desconectado.
+[2025-11-27 14:23:51] Esperando conexión entrante...
+[2025-11-27 14:33:58] Conexión establecida desde 127.0.0.1:62243
+[2025-11-27 14:33:58] Mensaje recibido (313 bytes).
+[2025-11-27 14:33:58] [ 100011 - Smart Point / OK ] Campo 105 generado:
+[2025-11-27 14:33:58]  - Http_code: 201
+[2025-11-27 14:33:58]  - Order_id: ORDTST01KAE6YQ8CEE52TPH30PP1WW9D
+[2025-11-27 14:33:58]  - Payment_id: PAY01KAE6YQ8CEE52TPH30S204EYT
+[2025-11-27 14:33:58]  - Status_pago: created
+[2025-11-27 14:33:58]  - Payment_ref: 
+[2025-11-27 14:33:58]  - Status_mp: created
+[2025-11-27 14:33:58]  - Relleno: 368 bytes
+[2025-11-27 14:33:58] Respuesta enviada (817 bytes).
+[2025-11-27 14:33:58] Esperando ENTER para continuar...
+[2025-11-27 14:34:03] Reiniciando ciclo de espera de requests...
+[2025-11-27 14:34:03] Cliente desconectado.
+[2025-11-27 14:34:03] Esperando conexión entrante...
+[2025-11-27 14:34:06] Conexión establecida desde 127.0.0.1:62245
+[2025-11-27 14:34:06] Mensaje recibido (172 bytes).
+[2025-11-27 14:34:06] [ 100010 / OK ] Campo 105 generado:
+[2025-11-27 14:34:06]  - Http_code: 200
+[2025-11-27 14:34:06]  - Order_id: ORDTST01KAE6YQ8CEE52TPH30PP1WW9D
+[2025-11-27 14:34:06]  - Payment_id: PAY01KAE6YQ8CEE52TPH30S204EYT
+[2025-11-27 14:34:06]  - Status_pago: processed
+[2025-11-27 14:34:06]  - Payment_ref: 1234567890
+[2025-11-27 14:34:06]  - Status_mp: processed
+[2025-11-27 14:34:06] Respuesta enviada (311 bytes).
+[2025-11-27 14:34:06] Esperando ENTER para continuar...
+[2025-11-27 14:37:16] Reiniciando ciclo de espera de requests...
+[2025-11-27 14:37:16] Cliente desconectado.
+[2025-11-27 14:37:16] Esperando conexión entrante...
+[2025-11-27 17:20:44] Conexión establecida desde 127.0.0.1:63902
+[2025-11-27 17:20:44] Mensaje recibido (313 bytes).
+[2025-11-27 17:20:44] [ 100011 - Smart Point / OK ] Campo 105 generado:
+[2025-11-27 17:20:44]  - Http_code: 201
+[2025-11-27 17:20:44]  - Order_id: ORDTST01KAE6YQ8CEE52TPH30PP1WW9D
+[2025-11-27 17:20:44]  - Payment_id: PAY01KAE6YQ8CEE52TPH30S204EYT
+[2025-11-27 17:20:44]  - Status_pago: created
+[2025-11-27 17:20:44]  - Payment_ref: 
+[2025-11-27 17:20:44]  - Status_mp: created
+[2025-11-27 17:20:44]  - Relleno: 368 bytes
+[2025-11-27 17:20:44] Respuesta enviada (817 bytes).
+[2025-11-27 17:20:44] Esperando ENTER para continuar...
+[2025-11-27 17:20:54] Reiniciando ciclo de espera de requests...
+[2025-11-27 17:20:54] Cliente desconectado.
+[2025-11-27 17:20:54] Esperando conexión entrante...
+[2025-11-27 17:20:57] Conexión establecida desde 127.0.0.1:63906
+[2025-11-27 17:20:57] Mensaje recibido (172 bytes).
+[2025-11-27 17:20:57] [ 100010 / OK ] Campo 105 generado:
+[2025-11-27 17:20:57]  - Http_code: 200
+[2025-11-27 17:20:57]  - Order_id: ORDTST01KAE6YQ8CEE52TPH30PP1WW9D
+[2025-11-27 17:20:57]  - Payment_id: PAY01KAE6YQ8CEE52TPH30S204EYT
+[2025-11-27 17:20:57]  - Status_pago: processed
+[2025-11-27 17:20:57]  - Payment_ref: 1234567890
+[2025-11-27 17:20:57]  - Status_mp: processed
+[2025-11-27 17:20:57] Respuesta enviada (311 bytes).
+[2025-11-27 17:20:57] Esperando ENTER para continuar...
+[2025-11-27 17:22:02] Reiniciando ciclo de espera de requests...
+[2025-11-27 17:22:02] Cliente desconectado.
+[2025-11-27 17:22:02] Esperando conexión entrante...
+[2025-11-27 17:26:52] Conexión establecida desde 127.0.0.1:63977
+[2025-11-27 17:26:52] Mensaje recibido (197 bytes).
+[2025-11-27 17:26:52] [ 110011 - QR / OK ] Campo 105 generado:
+[2025-11-27 17:26:52]  - Http_code: 201
+[2025-11-27 17:26:52]  - Relleno: 496 bytes
+[2025-11-27 17:26:52] Respuesta enviada (701 bytes).
+[2025-11-27 17:26:52] Esperando ENTER para continuar...
+[2025-11-27 17:27:16] Reiniciando ciclo de espera de requests...
+[2025-11-27 17:27:16] Cliente desconectado.
+[2025-11-27 17:27:16] Esperando conexión entrante...
+[2025-11-27 17:27:18] Conexión establecida desde 127.0.0.1:63984
+[2025-11-27 17:27:18] Mensaje recibido (175 bytes).
+[2025-11-27 17:27:18] [ 210015 - QR / OK ] Campo 105 generado:
+[2025-11-27 17:27:18]  - Http_code: 200
+[2025-11-27 17:27:18]  - mp_status_pago: approved
+[2025-11-27 17:27:18]  - mp_order_id: 1234567890
+[2025-11-27 17:27:18]  - mp_payment_date: 26112025133000
+[2025-11-27 17:27:18]  - mp_payment_id: 2323232323
+[2025-11-27 17:27:18]  - mp_auth_code: 12345678901234567890
+[2025-11-27 17:27:18]  - mp_refund_id: 1234567890
+[2025-11-27 17:27:18]  - mp_refund_date: 26112025133000
+[2025-11-27 17:27:18]  - mp_description: NI IDEA QUE DECIR...
+[2025-11-27 17:27:18]  - mp_ext_reference: 2255887744
+[2025-11-27 17:27:18]  - mp_refund_amount: 000000000000
+[2025-11-27 17:27:18]  - mp_amount: 000000230000
+[2025-11-27 17:27:18]  - mp_refund_status: CREATED
+[2025-11-27 17:27:18]  - mp_payment_method: QRI
+[2025-11-27 17:27:18]  - mp_payment_type: MP
+[2025-11-27 17:27:18]  - mp_refund_payment_id: 465789123
+[2025-11-27 17:27:18]  - mp_paging_total: 1
+[2025-11-27 17:27:18] Respuesta enviada (679 bytes).
+[2025-11-27 17:27:18] Esperando ENTER para continuar...
+[2025-11-27 17:32:07] Reiniciando ciclo de espera de requests...
+[2025-11-27 17:32:07] Cliente desconectado.
+[2025-11-27 17:32:07] Esperando conexión entrante...
+[2025-11-27 17:33:42] Simulador_MP iniciado.
+[2025-11-27 17:33:42] Iniciando Simulador_MP (escucha puerto 9999)... Interactivo=True, Condición=None
+[2025-11-27 17:33:44] Servidor escuchando en 0.0.0.0:9999
+[2025-11-27 17:33:44] Esperando conexión entrante...
+[2025-11-27 17:35:05] Conexión establecida desde 127.0.0.1:64082
+[2025-11-27 17:35:05] Mensaje recibido (197 bytes).
+[2025-11-27 17:35:05] [ 110011 - QR / OK ] Campo 105 generado:
+[2025-11-27 17:35:05]  - Http_code: 201
+[2025-11-27 17:35:05]  - Relleno: 496 bytes
+[2025-11-27 17:35:05] Respuesta enviada (701 bytes).
+[2025-11-27 17:35:05] Esperando ENTER para continuar...
+[2025-11-27 17:35:12] Reiniciando ciclo de espera de requests...
+[2025-11-27 17:35:12] Cliente desconectado.
+[2025-11-27 17:35:12] Esperando conexión entrante...
+[2025-11-27 17:35:15] Conexión establecida desde 127.0.0.1:64086
+[2025-11-27 17:35:15] Mensaje recibido (175 bytes).
+[2025-11-27 17:35:15] [ 210015 - QR / OK ] Campo 105 generado:
+[2025-11-27 17:35:15]  - Http_code: 200
+[2025-11-27 17:35:15]  - mp_status_pago: approved
+[2025-11-27 17:35:15]  - mp_order_id: 1234567890
+[2025-11-27 17:35:15]  - mp_payment_date: 26112025133000
+[2025-11-27 17:35:15]  - mp_payment_id: 2323232323
+[2025-11-27 17:35:15]  - mp_auth_code: 12345678901234567890
+[2025-11-27 17:35:15]  - mp_refund_id: 
+[2025-11-27 17:35:15]  - mp_refund_date: 
+[2025-11-27 17:35:15]  - mp_description: Pago aprobado
+[2025-11-27 17:35:15]  - mp_ext_reference: 2255887744
+[2025-11-27 17:35:15]  - mp_refund_amount: 
+[2025-11-27 17:35:15]  - mp_amount: 000000230000
+[2025-11-27 17:35:15]  - mp_refund_status: 
+[2025-11-27 17:35:15]  - mp_payment_method: QRI
+[2025-11-27 17:35:15]  - mp_payment_type: QRI
+[2025-11-27 17:35:15]  - mp_refund_payment_id: 
+[2025-11-27 17:35:15]  - mp_paging_total: 1
+[2025-11-27 17:35:15] Respuesta enviada (679 bytes).
+[2025-11-27 17:35:15] Esperando ENTER para continuar...
+[2025-11-27 17:36:38] Reiniciando ciclo de espera de requests...
+[2025-11-27 17:36:38] Cliente desconectado.
+[2025-11-27 17:36:38] Esperando conexión entrante...
+[2025-11-27 17:37:33] Conexión establecida desde 127.0.0.1:64123
+[2025-11-27 17:37:33] Mensaje recibido (197 bytes).
+[2025-11-27 17:37:33] [ 110011 - QR / OK ] Campo 105 generado:
+[2025-11-27 17:37:33]  - Http_code: 201
+[2025-11-27 17:37:33]  - Relleno: 496 bytes
+[2025-11-27 17:37:33] Respuesta enviada (701 bytes).
+[2025-11-27 17:37:33] Esperando ENTER para continuar...
+[2025-11-27 17:37:38] Reiniciando ciclo de espera de requests...
+[2025-11-27 17:37:38] Cliente desconectado.
+[2025-11-27 17:37:38] Esperando conexión entrante...
+[2025-11-27 17:37:40] Conexión establecida desde 127.0.0.1:64125
+[2025-11-27 17:37:40] Mensaje recibido (175 bytes).
+[2025-11-27 17:37:40] [ 210015 - QR / OK ] Campo 105 generado:
+[2025-11-27 17:37:40]  - Http_code: 200
+[2025-11-27 17:37:40]  - mp_status_pago: approved
+[2025-11-27 17:37:40]  - mp_order_id: 1234567890
+[2025-11-27 17:37:40]  - mp_payment_date: 26112025133000
+[2025-11-27 17:37:40]  - mp_payment_id: 2323232323
+[2025-11-27 17:37:40]  - mp_auth_code: 12345678901234567890
+[2025-11-27 17:37:40]  - mp_refund_id: 
+[2025-11-27 17:37:40]  - mp_refund_date: 
+[2025-11-27 17:37:40]  - mp_description: Pago aprobado
+[2025-11-27 17:37:40]  - mp_ext_reference: 2255887744
+[2025-11-27 17:37:40]  - mp_refund_amount: 
+[2025-11-27 17:37:40]  - mp_amount: 000000230000
+[2025-11-27 17:37:40]  - mp_refund_status: 
+[2025-11-27 17:37:40]  - mp_payment_method: QRI
+[2025-11-27 17:37:40]  - mp_payment_type: QRI
+[2025-11-27 17:37:40]  - mp_refund_payment_id: 
+[2025-11-27 17:37:40]  - mp_paging_total: 1
+[2025-11-27 17:37:40] Respuesta enviada (679 bytes).
+[2025-11-27 17:37:40] Esperando ENTER para continuar...
+[2025-11-27 17:40:35] Reiniciando ciclo de espera de requests...
+[2025-11-27 17:40:35] Cliente desconectado.
+[2025-11-27 17:40:35] Esperando conexión entrante...
+[2025-11-27 17:41:06] Simulador_MP iniciado.
+[2025-11-27 17:41:06] Iniciando Simulador_MP (escucha puerto 9999)... Interactivo=True, Condición=None
+[2025-11-27 17:41:08] Servidor escuchando en 0.0.0.0:9999
+[2025-11-27 17:41:08] Esperando conexión entrante...
+[2025-11-27 17:42:02] Conexión establecida desde 127.0.0.1:64167
+[2025-11-27 17:42:02] Mensaje recibido (197 bytes).
+[2025-11-27 17:42:02] [ 110011 - QR / OK ] Campo 105 generado:
+[2025-11-27 17:42:02]  - Http_code: 201
+[2025-11-27 17:42:02]  - Relleno: 496 bytes
+[2025-11-27 17:42:02] Respuesta enviada (701 bytes).
+[2025-11-27 17:42:02] Esperando ENTER para continuar...
+[2025-11-27 17:42:05] Reiniciando ciclo de espera de requests...
+[2025-11-27 17:42:05] Cliente desconectado.
+[2025-11-27 17:42:05] Esperando conexión entrante...
+[2025-11-27 17:42:08] Conexión establecida desde 127.0.0.1:64170
+[2025-11-27 17:42:08] Mensaje recibido (175 bytes).
+[2025-11-27 17:42:08] [ 210015 - QR / OK ] Campo 105 generado:
+[2025-11-27 17:42:08]  - Http_code: 200
+[2025-11-27 17:42:08]  - mp_status_pago: approved
+[2025-11-27 17:42:08]  - mp_order_id: 1234567890
+[2025-11-27 17:42:08]  - mp_payment_date: 26112025133000
+[2025-11-27 17:42:08]  - mp_payment_id: 1234
+[2025-11-27 17:42:08]  - mp_auth_code: 12345678901234567890
+[2025-11-27 17:42:08]  - mp_refund_id: 
+[2025-11-27 17:42:08]  - mp_refund_date: 
+[2025-11-27 17:42:08]  - mp_description: Pago aprobado
+[2025-11-27 17:42:08]  - mp_ext_reference: 2255887744
+[2025-11-27 17:42:08]  - mp_refund_amount: 
+[2025-11-27 17:42:08]  - mp_amount: 000000230000
+[2025-11-27 17:42:08]  - mp_refund_status: 
+[2025-11-27 17:42:08]  - mp_payment_method: QRI
+[2025-11-27 17:42:08]  - mp_payment_type: QRI
+[2025-11-27 17:42:08]  - mp_refund_payment_id: 
+[2025-11-27 17:42:08]  - mp_paging_total: 1
+[2025-11-27 17:42:08] Respuesta enviada (679 bytes).
+[2025-11-27 17:42:08] Esperando ENTER para continuar...
+[2025-11-27 17:42:31] Reiniciando ciclo de espera de requests...
+[2025-11-27 17:42:31] Cliente desconectado.
+[2025-11-27 17:42:31] Esperando conexión entrante...
+[2025-11-27 17:42:36] Conexión establecida desde 127.0.0.1:64177
+[2025-11-27 17:42:36] Mensaje recibido (197 bytes).
+[2025-11-27 17:42:36] [ 110011 - QR / OK ] Campo 105 generado:
+[2025-11-27 17:42:36]  - Http_code: 201
+[2025-11-27 17:42:36]  - Relleno: 496 bytes
+[2025-11-27 17:42:36] Respuesta enviada (701 bytes).
+[2025-11-27 17:42:36] Esperando ENTER para continuar...
+[2025-11-27 17:42:43] Reiniciando ciclo de espera de requests...
+[2025-11-27 17:42:43] Cliente desconectado.
+[2025-11-27 17:42:43] Esperando conexión entrante...
+[2025-11-27 17:42:45] Conexión establecida desde 127.0.0.1:64180
+[2025-11-27 17:42:45] Mensaje recibido (175 bytes).
+[2025-11-27 17:42:45] [ 210015 - QR / OK ] Campo 105 generado:
+[2025-11-27 17:42:45]  - Http_code: 200
+[2025-11-27 17:42:45]  - mp_status_pago: approved
+[2025-11-27 17:42:45]  - mp_order_id: 1234567890
+[2025-11-27 17:42:45]  - mp_payment_date: 26112025133000
+[2025-11-27 17:42:45]  - mp_payment_id: 1234
+[2025-11-27 17:42:45]  - mp_auth_code: 12345678901234567890
+[2025-11-27 17:42:45]  - mp_refund_id: 
+[2025-11-27 17:42:45]  - mp_refund_date: 
+[2025-11-27 17:42:45]  - mp_description: Pago aprobado
+[2025-11-27 17:42:45]  - mp_ext_reference: 2255887744
+[2025-11-27 17:42:45]  - mp_refund_amount: 
+[2025-11-27 17:42:45]  - mp_amount: 000000230000
+[2025-11-27 17:42:45]  - mp_refund_status: 
+[2025-11-27 17:42:45]  - mp_payment_method: QRI
+[2025-11-27 17:42:45]  - mp_payment_type: QRI
+[2025-11-27 17:42:45]  - mp_refund_payment_id: 
+[2025-11-27 17:42:45]  - mp_paging_total: 1
+[2025-11-27 17:42:45] Respuesta enviada (679 bytes).
+[2025-11-27 17:42:45] Esperando ENTER para continuar...
+[2025-11-27 17:44:12] Reiniciando ciclo de espera de requests...
+[2025-11-27 17:44:12] Cliente desconectado.
+[2025-11-27 17:44:12] Esperando conexión entrante...
+[2025-11-27 17:44:30] Simulador_MP iniciado.
+[2025-11-27 17:44:30] Iniciando Simulador_MP (escucha puerto 9999)... Interactivo=True, Condición=None
+[2025-11-27 17:44:33] Servidor escuchando en 0.0.0.0:9999
+[2025-11-27 17:44:33] Esperando conexión entrante...
+[2025-11-27 17:44:46] Conexión establecida desde 127.0.0.1:64212
+[2025-11-27 17:44:46] Mensaje recibido (197 bytes).
+[2025-11-27 17:44:46] [ 110011 - QR / OK ] Campo 105 generado:
+[2025-11-27 17:44:46]  - Http_code: 201
+[2025-11-27 17:44:46]  - Relleno: 496 bytes
+[2025-11-27 17:44:46] Respuesta enviada (701 bytes).
+[2025-11-27 17:44:46] Esperando ENTER para continuar...
+[2025-11-27 17:44:50] Reiniciando ciclo de espera de requests...
+[2025-11-27 17:44:50] Cliente desconectado.
+[2025-11-27 17:44:50] Esperando conexión entrante...
+[2025-11-27 17:44:53] Conexión establecida desde 127.0.0.1:64213
+[2025-11-27 17:44:53] Mensaje recibido (175 bytes).
+[2025-11-27 17:44:53] [ 210015 - QR / OK ] Campo 105 generado:
+[2025-11-27 17:44:53]  - Http_code: 200
+[2025-11-27 17:44:53]  - mp_status_pago: approved
+[2025-11-27 17:44:53]  - mp_order_id: 1234567890
+[2025-11-27 17:44:53]  - mp_payment_date: 26112025133000
+[2025-11-27 17:44:53]  - mp_payment_id: 2323
+[2025-11-27 17:44:53]  - mp_auth_code: 12345678901234567890
+[2025-11-27 17:44:53]  - mp_refund_id: 
+[2025-11-27 17:44:53]  - mp_refund_date: 
+[2025-11-27 17:44:53]  - mp_description: Pago aprobado
+[2025-11-27 17:44:53]  - mp_ext_reference: 2255887744
+[2025-11-27 17:44:53]  - mp_refund_amount: 
+[2025-11-27 17:44:53]  - mp_amount: 000000230000
+[2025-11-27 17:44:53]  - mp_refund_status: 
+[2025-11-27 17:44:53]  - mp_payment_method: QRI
+[2025-11-27 17:44:53]  - mp_payment_type: QRI
+[2025-11-27 17:44:53]  - mp_refund_payment_id: 
+[2025-11-27 17:44:53]  - mp_paging_total: 1
+[2025-11-27 17:44:53] Respuesta enviada (679 bytes).
+[2025-11-27 17:44:53] Esperando ENTER para continuar...
+[2025-11-27 17:46:09] Reiniciando ciclo de espera de requests...
+[2025-11-27 17:46:09] Cliente desconectado.
+[2025-11-27 17:46:09] Esperando conexión entrante...
+[2025-11-27 17:47:29] Simulador_MP iniciado.
+[2025-11-27 17:47:29] Iniciando Simulador_MP (escucha puerto 9999)... Interactivo=True, Condición=None
+[2025-11-27 17:47:31] Servidor escuchando en 0.0.0.0:9999
+[2025-11-27 17:47:31] Esperando conexión entrante...
+[2025-11-27 17:49:03] Conexión establecida desde 127.0.0.1:64284
+[2025-11-27 17:49:03] Mensaje recibido (197 bytes).
+[2025-11-27 17:49:03] [ 110011 - QR / OK ] Campo 105 generado:
+[2025-11-27 17:49:03]  - Http_code: 201
+[2025-11-27 17:49:03]  - Relleno: 496 bytes
+[2025-11-27 17:49:03] Respuesta enviada (701 bytes).
+[2025-11-27 17:49:03] Esperando ENTER para continuar...
+[2025-11-27 17:49:06] Reiniciando ciclo de espera de requests...
+[2025-11-27 17:49:06] Cliente desconectado.
+[2025-11-27 17:49:06] Esperando conexión entrante...
+[2025-11-27 17:49:08] Conexión establecida desde 127.0.0.1:64285
+[2025-11-27 17:49:08] Mensaje recibido (175 bytes).
+[2025-11-27 17:49:08] [ 210015 - QR / OK ] Campo 105 generado:
+[2025-11-27 17:49:08]  - Http_code: 200
+[2025-11-27 17:49:08]  - mp_status_pago: approved
+[2025-11-27 17:49:08]  - mp_order_id: 1234567890
+[2025-11-27 17:49:08]  - mp_payment_date: 26112025133000
+[2025-11-27 17:49:08]  - mp_payment_id: 1235
+[2025-11-27 17:49:08]  - mp_auth_code: 12345678901234567890
+[2025-11-27 17:49:08]  - mp_refund_id: 
+[2025-11-27 17:49:08]  - mp_refund_date: 
+[2025-11-27 17:49:08]  - mp_description: Pago aprobado
+[2025-11-27 17:49:08]  - mp_ext_reference: 2255887744
+[2025-11-27 17:49:08]  - mp_refund_amount: 
+[2025-11-27 17:49:08]  - mp_amount: 000000230000
+[2025-11-27 17:49:08]  - mp_refund_status: 
+[2025-11-27 17:49:08]  - mp_payment_method: QRI
+[2025-11-27 17:49:08]  - mp_payment_type: QRI
+[2025-11-27 17:49:08]  - mp_refund_payment_id: 
+[2025-11-27 17:49:08]  - mp_paging_total: 1
+[2025-11-27 17:49:08] Respuesta enviada (679 bytes).
+[2025-11-27 17:49:08] Esperando ENTER para continuar...
+[2025-11-27 17:51:35] Reiniciando ciclo de espera de requests...
+[2025-11-27 17:51:35] Cliente desconectado.
+[2025-11-27 17:51:35] Esperando conexión entrante...
+[2025-11-27 17:53:21] Conexión establecida desde 127.0.0.1:64341
+[2025-11-27 17:53:21] Mensaje recibido (197 bytes).
+[2025-11-27 17:53:21] [ 110011 - QR / OK ] Campo 105 generado:
+[2025-11-27 17:53:21]  - Http_code: 201
+[2025-11-27 17:53:21]  - Relleno: 496 bytes
+[2025-11-27 17:53:21] Respuesta enviada (701 bytes).
+[2025-11-27 17:53:21] Esperando ENTER para continuar...
+[2025-11-27 17:53:26] Reiniciando ciclo de espera de requests...
+[2025-11-27 17:53:26] Cliente desconectado.
+[2025-11-27 17:53:26] Esperando conexión entrante...
+[2025-11-27 17:53:28] Conexión establecida desde 127.0.0.1:64342
+[2025-11-27 17:53:28] Mensaje recibido (175 bytes).
+[2025-11-27 17:53:28] [ 210015 - QR / OK ] Campo 105 generado:
+[2025-11-27 17:53:28]  - Http_code: 200
+[2025-11-27 17:53:28]  - mp_status_pago: approved
+[2025-11-27 17:53:28]  - mp_order_id: 1234567890
+[2025-11-27 17:53:28]  - mp_payment_date: 26112025133000
+[2025-11-27 17:53:28]  - mp_payment_id: 1235
+[2025-11-27 17:53:28]  - mp_auth_code: 12345678901234567890
+[2025-11-27 17:53:28]  - mp_refund_id: 
+[2025-11-27 17:53:28]  - mp_refund_date: 
+[2025-11-27 17:53:28]  - mp_description: Pago aprobado
+[2025-11-27 17:53:28]  - mp_ext_reference: 2255887744
+[2025-11-27 17:53:28]  - mp_refund_amount: 
+[2025-11-27 17:53:28]  - mp_amount: 000000230000
+[2025-11-27 17:53:28]  - mp_refund_status: 
+[2025-11-27 17:53:28]  - mp_payment_method: QRI
+[2025-11-27 17:53:28]  - mp_payment_type: QRI
+[2025-11-27 17:53:28]  - mp_refund_payment_id: 
+[2025-11-27 17:53:28]  - mp_paging_total: 1
+[2025-11-27 17:53:28] Respuesta enviada (679 bytes).
+[2025-11-27 17:53:28] Esperando ENTER para continuar...
+[2025-11-27 17:55:13] Reiniciando ciclo de espera de requests...
+[2025-11-27 17:55:13] Cliente desconectado.
+[2025-11-27 17:55:13] Esperando conexión entrante...
+[2025-11-27 17:55:56] Conexión establecida desde 127.0.0.1:64377
+[2025-11-27 17:55:56] Mensaje recibido (313 bytes).
+[2025-11-27 17:55:56] [ 100011 - Smart Point / OK ] Campo 105 generado:
+[2025-11-27 17:55:56]  - Http_code: 201
+[2025-11-27 17:55:56]  - Order_id: ORDTST01KAE6YQ8CEE52TPH30PP1WW9D
+[2025-11-27 17:55:56]  - Payment_id: PAY01KAE6YQ8CEE52TPH30S204EYT
+[2025-11-27 17:55:56]  - Status_pago: created
+[2025-11-27 17:55:56]  - Payment_ref: 
+[2025-11-27 17:55:56]  - mp_status: created
+[2025-11-27 17:55:56]  - Relleno: 368 bytes
+[2025-11-27 17:55:56] Respuesta enviada (817 bytes).
+[2025-11-27 17:55:56] Esperando ENTER para continuar...
+[2025-11-27 17:56:02] Reiniciando ciclo de espera de requests...
+[2025-11-27 17:56:02] Cliente desconectado.
+[2025-11-27 17:56:02] Esperando conexión entrante...
+[2025-11-27 17:56:04] Conexión establecida desde 127.0.0.1:64378
+[2025-11-27 17:56:04] Mensaje recibido (172 bytes).
+[2025-11-27 17:56:04] [ 100010 / OK ] Campo 105 generado:
+[2025-11-27 17:56:04]  - Http_code: 200
+[2025-11-27 17:56:04]  - Order_id: ORDTST01KAE6YQ8CEE52TPH30PP1WW9D
+[2025-11-27 17:56:04]  - Payment_id: PAY01KAE6YQ8CEE52TPH30S204EYT
+[2025-11-27 17:56:04]  - Status_pago: processed
+[2025-11-27 17:56:04]  - Payment_ref: 1234567890
+[2025-11-27 17:56:04]  - mp_status: processed
+[2025-11-27 17:56:04] Respuesta enviada (311 bytes).
+[2025-11-27 17:56:04] Esperando ENTER para continuar...
