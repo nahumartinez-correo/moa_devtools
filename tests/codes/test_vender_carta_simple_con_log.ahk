@@ -10,7 +10,7 @@ appPath := "D:\MOA\BIN\rt.exe"
 waitStartup := 10000          ; Tiempo de espera al iniciar (ms)
 delayClickDefault := 200    ; Tiempo entre clics por defecto (ms)
 logFile := "C:\MOA\Test\test_log.txt"   ; Ruta del log
-pythonScript := "C:\MOA\Test\simuladorMP.py"
+pythonScript := "C:\MOA\Test\simuladorMP\simuladorMP.py"
 
 ; --- COORDENADAS ---
 
