@@ -53,6 +53,14 @@ def iniciar_simuladores(nombre_prueba: str):
         sim_dir = os.path.join(ruta_base, "..", "utils", "simulators", sim_name)
         sim_path = os.path.abspath(os.path.join(sim_dir, f"{sim_name}.py"))
 
+        if not os.path.isdir(sim_dir):
+            print(
+                "❌ No se encontró la carpeta del simulador '",
+                f"{sim_name}' en utils/simulators/<nombre>/",
+                sep="",
+            )
+            continue
+
         if not os.path.exists(sim_path):
             print(
                 "❌ No se encontró el simulador '",
