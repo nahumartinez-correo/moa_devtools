@@ -1,5 +1,7 @@
 """Gestión de simuladores y ejecución de procesos auxiliares."""
 
+import os
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -36,9 +38,45 @@ def iniciar_simulador_sin_parametros(simulador):
     if not entrypoint.exists():
         raise FileNotFoundError(f"No se encontró el entrypoint para {simulador}")
 
-    proceso = subprocess.Popen([sys.executable, str(entrypoint)])
+    proceso = _abrir_proceso_en_consola(entrypoint)
     _simuladores_activos.append({"nombre": simulador, "proceso": proceso})
     return proceso
+
+
+def _abrir_proceso_en_consola(entrypoint: Path):
+    """Abre el simulador en una nueva consola cuando es posible."""
+    args = [sys.executable, str(entrypoint)]
+    popen_kwargs = {}
+
+    if os.name == "nt":
+        popen_kwargs["creationflags"] = subprocess.CREATE_NEW_CONSOLE
+    else:
+        terminal = _terminal_disponible()
+        if terminal:
+            args = [terminal, "-e", sys.executable, str(entrypoint)]
+        else:
+            popen_kwargs["start_new_session"] = True
+            popen_kwargs["stdout"] = subprocess.DEVNULL
+            popen_kwargs["stderr"] = subprocess.DEVNULL
+
+    return subprocess.Popen(args, **popen_kwargs)
+
+
+def _terminal_disponible():
+    """Devuelve una terminal gráfica/disponible en sistemas tipo Unix."""
+    posibles = [
+        "x-terminal-emulator",
+        "gnome-terminal",
+        "konsole",
+        "xfce4-terminal",
+        "xterm",
+    ]
+
+    for terminal in posibles:
+        if shutil.which(terminal):
+            return terminal
+
+    return None
 
 
 def _detener_proceso_simulador(registro):
