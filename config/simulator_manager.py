@@ -1,23 +1,15 @@
-import os
 from utils.menu import mostrar_menu
 from utils.logger import log_info, log_error
 from utils.permissions import es_administrador
 from utils import service_manager
+from utils.common import limpiar_consola
 from config import switch_config, session_state
-
-
-def limpiar_consola():
-    """Limpia la pantalla y muestra el encabezado."""
-    os.system("cls")
-    print("=" * 70)
-    print("        MOA DevTools - CONFIGURACIÓN DE SIMULADOR")
-    print("=" * 70, "\n")
 
 
 def menu_configuracion():
     """Menú principal de configuración de MercadoPago."""
     while True:
-        limpiar_consola()
+        limpiar_consola("MOA DevTools - CONFIGURACIÓN DE SIMULADOR")
 
         if not es_administrador():
             print("⚠️  No tiene permisos de administrador.")
@@ -37,7 +29,7 @@ def menu_configuracion():
             print("\n↩️  Volviendo al menú principal...\n")
             return
 
-        limpiar_consola()
+        limpiar_consola("MOA DevTools - CONFIGURACIÓN DE SIMULADOR")
         seleccion = opciones[opcion - 1]
         print(f"🧩 Configurando entorno para: {seleccion}\n")
 

@@ -4,16 +4,12 @@ import time
 from utils.menu import mostrar_menu
 from utils.permissions import es_administrador
 from utils.logger import log_info, log_error
+from utils.common import limpiar_consola
 from config import session_state
 from tests import simulators_manager
 
 
-def limpiar_consola():
-    """Limpia la pantalla y muestra encabezado del módulo."""
-    os.system("cls")
-    print("=" * 70)
-    print("        MOA DevTools - PRUEBAS AUTOMÁTICAS")
-    print("=" * 70, "\n")
+ENCABEZADO_PRUEBAS = "MOA DevTools - PRUEBAS AUTOMÁTICAS"
 
 
 def obtener_lista_tests():
@@ -83,7 +79,7 @@ def restaurar_entorno_tablas(nombre_prueba):
 
 def ejecutar_test(ruta_test, nombre_legible):
     """Ejecuta un archivo AHK y controla tablas y simuladores."""
-    limpiar_consola()
+    limpiar_consola(ENCABEZADO_PRUEBAS)
     print(f"🧪 Ejecutando {nombre_legible}...\n")
 
     nombre_prueba = os.path.splitext(os.path.basename(ruta_test))[0]
@@ -140,7 +136,7 @@ def ejecutar_test(ruta_test, nombre_legible):
 
 def menu_pruebas():
     """Menú principal de pruebas automáticas."""
-    limpiar_consola()
+    limpiar_consola(ENCABEZADO_PRUEBAS)
 
     if not es_administrador():
         print("⚠️  Este módulo requiere permisos de administrador.")
@@ -156,7 +152,7 @@ def menu_pruebas():
     opciones = [nombre for nombre, _ in tests]
 
     while True:
-        limpiar_consola()
+        limpiar_consola(ENCABEZADO_PRUEBAS)
         opcion = mostrar_menu("MENÚ DE PRUEBAS AUTOMÁTICAS", opciones)
 
         if opcion == 0:  # Volver / Salir

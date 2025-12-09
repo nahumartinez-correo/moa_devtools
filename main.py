@@ -2,28 +2,25 @@
 Integración del menú de compilador con el programa principal.
 """
 
-import os
+from utils.common import limpiar_consola
 from utils.menu import mostrar_menu
 from compiler.compiler_menu import menu_compilador
 from config import simulator_manager
 from tests import ahk_runner
-
-
-def limpiar_consola():
-    """Limpia la pantalla y muestra el encabezado."""
-    os.system("cls")
-    print("=" * 70)
-    print("        MOA DevTools - HERRAMIENTAS DE DESARROLLO")
-    print("=" * 70, "\n")
+from simulators.simulators_menu import menu_simuladores
+from utils.cleanup import registrar_limpieza_pyc
 
 
 def main():
+    registrar_limpieza_pyc()
+
     while True:
-        limpiar_consola()
+        limpiar_consola("MOA DevTools - HERRAMIENTAS DE DESARROLLO")
         opcion = mostrar_menu("MENÚ PRINCIPAL - MOA DevTools", [
             "Compilador",
             "Configuración",
-            "Pruebas automáticas"
+            "Pruebas automáticas",
+            "Simuladores"
         ])
 
         if opcion == 0:
@@ -35,6 +32,8 @@ def main():
             simulator_manager.menu_configuracion()
         elif opcion == 3:
             ahk_runner.menu_pruebas()
+        elif opcion == 4:
+            menu_simuladores()
 
 
 if __name__ == "__main__":
