@@ -50,7 +50,7 @@ moa_devtools
 |       |
 |       |-- test_vender_carta_simple_con_log
 |           |
-|           |-- simulators.txt 
+|           |-- simulators.txt
 |           |
 |           |-- table_Tarjeta_POS.txt
 |           |
@@ -67,9 +67,39 @@ moa_devtools
 |   |-- permissions.py
 |   |
 |   |-- service_manager.py
+|
+|-- simulators
 |   |
-|   |-- simulators
+|   |-- __init__.py
+|   |
+|   |-- simulators_menu.py
+|   |
+|   |-- codes
 |       |
-|       |-- simuladorMP.py
+|       |-- __init__.py
+|       |
+|       |-- Simulador_MP
+|           |
+|           |-- __init__.py
+|           |
+|           |-- Simulador_MP.py
+|           |
+|           |-- Simulador_MP_conditions.py
+|           |
+|           |-- Simulador_MP_logger.py
+|           |
+|           |-- Simulador_MP_parser.py
+|           |
+|           |-- Simulador_MP_responder.py
+|           |
+|           |-- Simulador_MP_response_100010.py
+|           |
+|           |-- Simulador_MP_response_100011.py
+|           |
+|           |-- Simulador_MP_response_110011.py
+|           |
+|           |-- Simulador_MP_response_210015.py
+|           |
+|           |-- Simulador_MP_server.py
 |
 |-- main.py
