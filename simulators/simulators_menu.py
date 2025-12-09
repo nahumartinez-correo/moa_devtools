@@ -1,9 +1,12 @@
-from pathlib import Path
 from utils.common import limpiar_consola
 from utils.menu import mostrar_menu
+from simulators.manager import (
+    obtener_simuladores_disponibles,
+    iniciar_simulador_sin_parametros,
+    detener_todos_los_simuladores,
+)
 
 
-CODES_DIR = Path(__file__).resolve().parent / "codes"
 ENCABEZADO_SIMULADORES = "MOA DevTools - SIMULADORES"
 
 
@@ -18,25 +21,10 @@ def _pantalla_en_construccion(titulo_opcion, simulador=None, modo=None):
     input("Presione ENTER para volver...")
 
 
-def _obtener_simuladores_disponibles():
-    """Devuelve una lista ordenada con los simuladores detectados."""
-    simuladores = []
-    if not CODES_DIR.exists():
-        return simuladores
-
-    for ruta in CODES_DIR.iterdir():
-        if ruta.is_dir():
-            entry_point = ruta / f"{ruta.name}.py"
-            if entry_point.exists():
-                simuladores.append(ruta.name)
-
-    return sorted(simuladores, key=str.lower)
-
-
 def _menu_selector_simulador(modo):
     """Permite seleccionar un simulador según el modo solicitado."""
     while True:
-        simuladores = _obtener_simuladores_disponibles()
+        simuladores = obtener_simuladores_disponibles()
         limpiar_consola(ENCABEZADO_SIMULADORES)
 
         if not simuladores:
@@ -50,7 +38,20 @@ def _menu_selector_simulador(modo):
             return
 
         simulador_elegido = simuladores[opcion - 1]
-        _pantalla_en_construccion("Simulador en construcción", simulador_elegido, modo)
+        if modo == "sin parámetros":
+            try:
+                proceso = iniciar_simulador_sin_parametros(simulador_elegido)
+                print(
+                    f"🚀 Simulador '{simulador_elegido}' iniciado sin parámetros (PID {proceso.pid}).\n"
+                )
+            except FileNotFoundError as e:
+                print(f"❌ No se pudo iniciar el simulador: {e}\n")
+            except Exception as e:
+                print(f"❌ Error inesperado al iniciar el simulador: {e}\n")
+
+            input("Presione ENTER para volver al menú de simuladores...")
+        else:
+            _pantalla_en_construccion("Simulador en construcción", simulador_elegido, modo)
 
 
 def menu_simuladores():
@@ -71,4 +72,6 @@ def menu_simuladores():
         elif opcion == 2:
             _menu_selector_simulador("con parámetros")
         elif opcion == 3:
-            _pantalla_en_construccion("Detener todos los simuladores")
+            detener_todos_los_simuladores()
+            print("✅ Todos los simuladores han sido detenidos (si había en ejecución).\n")
+            input("Presione ENTER para continuar...")
