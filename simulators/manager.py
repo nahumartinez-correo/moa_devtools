@@ -32,28 +32,39 @@ def _obtener_entrypoint(simulador):
     return CODES_DIR / simulador / f"{simulador}.py"
 
 
-def iniciar_simulador_sin_parametros(simulador):
+def iniciar_simulador_sin_parametros(simulador, interactivo: bool = False):
     """Inicia un simulador en un proceso separado sin argumentos adicionales."""
     entrypoint = _obtener_entrypoint(simulador)
 
     if not entrypoint.exists():
         raise FileNotFoundError(f"No se encontró el entrypoint para {simulador}")
 
-    proceso = _abrir_proceso_en_consola(entrypoint)
+    extra_args = ["--interactivo"] if interactivo else []
+    proceso = _abrir_proceso_en_consola(entrypoint, extra_args)
     _simuladores_activos.append({"nombre": simulador, "proceso": proceso})
     return proceso
 
 
-def iniciar_simulador_con_condicion(simulador: str, condicion: str):
+def iniciar_simulador_con_condicion(
+    simulador: str, condicion: str, interactivo: bool = False
+):
     """Inicia un simulador con una condición específica."""
     entrypoint = _obtener_entrypoint(simulador)
 
     if not entrypoint.exists():
         raise FileNotFoundError(f"No se encontró el entrypoint para {simulador}")
 
-    proceso = _abrir_proceso_en_consola(entrypoint, ["--condicion", condicion])
+    extra_args = ["--condicion", condicion]
+    if interactivo:
+        extra_args.append("--interactivo")
+
+    proceso = _abrir_proceso_en_consola(entrypoint, extra_args)
     _simuladores_activos.append(
-        {"nombre": simulador, "proceso": proceso, "condicion": condicion}
+        {
+            "nombre": simulador,
+            "proceso": proceso,
+            "condicion": condicion,
+        }
     )
     return proceso
 

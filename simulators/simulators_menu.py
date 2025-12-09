@@ -23,7 +23,7 @@ def _pantalla_en_construccion(titulo_opcion, simulador=None, modo=None):
     input("Presione ENTER para volver...")
 
 
-def _menu_selector_simulador(modo):
+def _menu_selector_simulador(modo: str, interactivo: bool = False):
     """Permite seleccionar un simulador según el modo solicitado."""
     while True:
         simuladores = obtener_simuladores_disponibles()
@@ -40,11 +40,16 @@ def _menu_selector_simulador(modo):
             return
 
         simulador_elegido = simuladores[opcion - 1]
-        if modo == "sin parámetros":
+        if modo == "sin_parametros":
             try:
-                proceso = iniciar_simulador_sin_parametros(simulador_elegido)
+                proceso = iniciar_simulador_sin_parametros(
+                    simulador_elegido, interactivo=interactivo
+                )
+                modo_texto = "sin parámetros"
+                if interactivo:
+                    modo_texto += " (modo interactivo)"
                 print(
-                    f"🚀 Simulador '{simulador_elegido}' iniciado sin parámetros (PID {proceso.pid}).\n"
+                    f"🚀 Simulador '{simulador_elegido}' iniciado {modo_texto} (PID {proceso.pid}).\n"
                 )
             except FileNotFoundError as e:
                 print(f"❌ No se pudo iniciar el simulador: {e}\n")
@@ -53,14 +58,14 @@ def _menu_selector_simulador(modo):
 
             input("Presione ENTER para volver al menú de simuladores...")
         else:
-            _menu_selector_condicion(simulador_elegido)
+            _menu_selector_condicion(simulador_elegido, interactivo)
 
 
 def _formatear_nombre_condicion(nombre_clave):
     return nombre_clave.replace("_", " ").capitalize()
 
 
-def _menu_selector_condicion(simulador):
+def _menu_selector_condicion(simulador, interactivo: bool = False):
     """Muestra las condiciones disponibles para un simulador y permite ejecutarlo."""
     while True:
         condiciones = obtener_condiciones_simulador(simulador)
@@ -82,9 +87,14 @@ def _menu_selector_condicion(simulador):
 
         condicion_clave = list(condiciones.keys())[opcion - 1]
         try:
-            proceso = iniciar_simulador_con_condicion(simulador, condicion_clave)
+            proceso = iniciar_simulador_con_condicion(
+                simulador, condicion_clave, interactivo=interactivo
+            )
+            modo_texto = "con condición"
+            if interactivo:
+                modo_texto += " (modo interactivo)"
             print(
-                f"🚀 Simulador '{simulador}' iniciado con condición '{condicion_clave}' (PID {proceso.pid}).\n"
+                f"🚀 Simulador '{simulador}' iniciado {modo_texto} '{condicion_clave}' (PID {proceso.pid}).\n"
             )
         except FileNotFoundError as e:
             print(f"❌ No se pudo iniciar el simulador: {e}\n")
@@ -100,7 +110,9 @@ def menu_simuladores():
         limpiar_consola(ENCABEZADO_SIMULADORES)
         opcion = mostrar_menu("MENÚ DE SIMULADORES", [
             "Iniciar sin parámetros",
+            "Iniciar sin parámetros (MODO INTERACTIVO)",
             "Iniciar con parámetros",
+            "Iniciar con parámetros (MODO INTERACTIVO)",
             "Detener todos los simuladores"
         ])
 
@@ -108,10 +120,14 @@ def menu_simuladores():
             print("\n↩️  Volviendo al menú principal...\n")
             return
         elif opcion == 1:
-            _menu_selector_simulador("sin parámetros")
+            _menu_selector_simulador("sin_parametros")
         elif opcion == 2:
-            _menu_selector_simulador("con parámetros")
+            _menu_selector_simulador("sin_parametros", interactivo=True)
         elif opcion == 3:
+            _menu_selector_simulador("con_parametros")
+        elif opcion == 4:
+            _menu_selector_simulador("con_parametros", interactivo=True)
+        elif opcion == 5:
             detener_todos_los_simuladores()
             print("✅ Todos los simuladores han sido detenidos (si había en ejecución).\n")
             input("Presione ENTER para continuar...")
