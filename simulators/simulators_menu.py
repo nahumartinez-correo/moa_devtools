@@ -3,6 +3,8 @@ from utils.menu import mostrar_menu
 from simulators.manager import (
     obtener_simuladores_disponibles,
     iniciar_simulador_sin_parametros,
+    iniciar_simulador_con_condicion,
+    obtener_condiciones_simulador,
     detener_todos_los_simuladores,
 )
 
@@ -51,7 +53,45 @@ def _menu_selector_simulador(modo):
 
             input("Presione ENTER para volver al menú de simuladores...")
         else:
-            _pantalla_en_construccion("Simulador en construcción", simulador_elegido, modo)
+            _menu_selector_condicion(simulador_elegido)
+
+
+def _formatear_nombre_condicion(nombre_clave):
+    return nombre_clave.replace("_", " ").capitalize()
+
+
+def _menu_selector_condicion(simulador):
+    """Muestra las condiciones disponibles para un simulador y permite ejecutarlo."""
+    while True:
+        condiciones = obtener_condiciones_simulador(simulador)
+        limpiar_consola(ENCABEZADO_SIMULADORES)
+
+        if not condiciones:
+            print("⚠️  No hay condiciones definidas para este simulador.\n")
+            input("Presione ENTER para volver al menú anterior...")
+            return
+
+        opciones = [_formatear_nombre_condicion(nombre) for nombre in condiciones.keys()]
+        opcion = mostrar_menu(
+            f"CONDICIONES DISPONIBLES - {simulador}",
+            opciones,
+        )
+
+        if opcion == 0:
+            return
+
+        condicion_clave = list(condiciones.keys())[opcion - 1]
+        try:
+            proceso = iniciar_simulador_con_condicion(simulador, condicion_clave)
+            print(
+                f"🚀 Simulador '{simulador}' iniciado con condición '{condicion_clave}' (PID {proceso.pid}).\n"
+            )
+        except FileNotFoundError as e:
+            print(f"❌ No se pudo iniciar el simulador: {e}\n")
+        except Exception as e:
+            print(f"❌ Error inesperado al iniciar el simulador: {e}\n")
+
+        input("Presione ENTER para volver al menú de simuladores...")
 
 
 def menu_simuladores():

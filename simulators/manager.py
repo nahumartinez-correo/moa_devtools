@@ -1,11 +1,12 @@
 """Gestión de simuladores y ejecución de procesos auxiliares."""
 
 import os
+import importlib.util
 import shutil
 import subprocess
 import sys
 from pathlib import Path
-from typing import List
+from typing import Dict, List
 
 
 CODES_DIR = Path(__file__).resolve().parent / "codes"
@@ -43,9 +44,47 @@ def iniciar_simulador_sin_parametros(simulador):
     return proceso
 
 
-def _abrir_proceso_en_consola(entrypoint: Path):
+def iniciar_simulador_con_condicion(simulador: str, condicion: str):
+    """Inicia un simulador con una condición específica."""
+    entrypoint = _obtener_entrypoint(simulador)
+
+    if not entrypoint.exists():
+        raise FileNotFoundError(f"No se encontró el entrypoint para {simulador}")
+
+    proceso = _abrir_proceso_en_consola(entrypoint, ["--condicion", condicion])
+    _simuladores_activos.append(
+        {"nombre": simulador, "proceso": proceso, "condicion": condicion}
+    )
+    return proceso
+
+
+def obtener_condiciones_simulador(simulador: str) -> Dict[str, dict]:
+    """Carga dinámicamente las condiciones de un simulador."""
+    conditions_path = CODES_DIR / simulador / f"{simulador}_conditions.py"
+
+    if not conditions_path.exists():
+        return {}
+
+    spec = importlib.util.spec_from_file_location(
+        f"{simulador}_conditions_module", conditions_path
+    )
+    if spec is None or spec.loader is None:
+        return {}
+
+    modulo = importlib.util.module_from_spec(spec)
+    try:
+        spec.loader.exec_module(modulo)
+    except Exception:
+        return {}
+
+    conditions = getattr(modulo, "CONDITIONS", {})
+    return conditions if isinstance(conditions, dict) else {}
+
+
+def _abrir_proceso_en_consola(entrypoint: Path, extra_args=None):
     """Abre el simulador en una nueva consola cuando es posible."""
-    args = [sys.executable, str(entrypoint)]
+    extra_args = extra_args or []
+    args = [sys.executable, str(entrypoint)] + list(extra_args)
     popen_kwargs = {}
 
     if os.name == "nt":
@@ -53,7 +92,7 @@ def _abrir_proceso_en_consola(entrypoint: Path):
     else:
         terminal = _terminal_disponible()
         if terminal:
-            args = [terminal, "-e", sys.executable, str(entrypoint)]
+            args = [terminal, "-e", sys.executable, str(entrypoint)] + list(extra_args)
         else:
             popen_kwargs["start_new_session"] = True
             popen_kwargs["stdout"] = subprocess.DEVNULL
