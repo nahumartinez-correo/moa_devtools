@@ -1,15 +1,15 @@
 # --------------------------------------------------------------
-# Simulador_MP_response_110011.py
-# Respuesta para código de procesamiento 110011 (crear orden QR).
+# Simulador_MP_response_300010.py
+# Respuesta para código de procesamiento 300010 (consulta de device Point).
 # Construye campos 105/106/107 si corresponde, según la condición.
 # --------------------------------------------------------------
 
 from Simulador_MP_logger import log
 
-class Response110011:
+class Response300010:
     """
-    Generador de campos asociados al código de procesamiento 110011.
-    Alta de una orden de pago utilizando QR Integrado.
+    Generador de campos asociados al código de procesamiento 300010.
+    Consulta un device de Smart Point.
     """
 
     @staticmethod
@@ -52,12 +52,12 @@ class Response110011:
                         raw = responder.int_to_bcd_2bytes(longitud) + contenido
 
                         responder.fields_copy[105] = {
-                            "nombre": "Crear orden QR (server_down)",
+                            "nombre": "Consulta device Point (server_down)",
                             "valor": "Campo 105 generado - server_down",
                             "raw": raw
                         }
 
-                        log(f"[ 110011 - QR / server_down ] Campo 105 generado:")
+                        log(f"[ 300010 - Point / server_down ] Campo 105 generado:")
                         log(f"  http_code  = {http_code.strip()}")
                         log(f"  error_code = {error_code.strip()}")
                         log(f"  message    = {message.strip()}")
@@ -83,21 +83,24 @@ class Response110011:
                     # --------------------------
                     case 105:
                         http_code = "200".ljust(10)
-                        cuerpo = "".ljust(90)
+                        device_status = "active".ljust(20)
+                        device_name = "DEVICE001".ljust(20)
+                        filler = "".ljust(50)
 
-                        contenido = (http_code + cuerpo).encode("ascii")
+                        contenido = (http_code + device_status + device_name + filler).encode("ascii")
                         longitud = len(contenido)
                         raw = responder.int_to_bcd_2bytes(longitud) + contenido
 
                         responder.fields_copy[105] = {
-                            "nombre": "Crear orden QR",
+                            "nombre": "Consulta device Point",
                             "valor": "Campo 105 generado (normal)",
                             "raw": raw
                         }
 
-                        log(f"[ 110011 - QR / OK ] Campo 105 generado:")
-                        log(f"  http_code = {http_code.strip()}")
-                        log("  Relleno: 90 bytes")
+                        log(f"[ 300010 - Point / OK ] Campo 105 generado:")
+                        log(f"  http_code     = {http_code.strip()}")
+                        log(f"  device_name   = {device_name.strip()}")
+                        log(f"  device_status = {device_status.strip()}")
 
                     case 106:
                         return

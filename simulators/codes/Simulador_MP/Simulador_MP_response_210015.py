@@ -1,6 +1,6 @@
 # --------------------------------------------------------------
 # Simulador_MP_response_210015.py
-# Respuesta para código de procesamiento 210015 (buscar un pago con QR).
+# Respuesta para código de procesamiento 210015 (búsqueda de pago QR).
 # Construye campos 105/106/107 si corresponde, según la condición.
 # --------------------------------------------------------------
 
@@ -9,7 +9,7 @@ from Simulador_MP_logger import log
 class Response210015:
     """
     Generador de campos asociados al código de procesamiento 210015.
-    Cada campo puede variar según la condición simulada.
+    Busca pagos QR por referencia externa y descripción.
     """
 
     @staticmethod
@@ -43,21 +43,20 @@ class Response210015:
                 match numero_de_bit:
 
                     case 105:
-                        http_code = "500".ljust(4)
-                        error_code = "9999".ljust(4)
-                        message = "SERVER DOWN".ljust(492)
+                        http_code = "500".ljust(10)
+                        error_code = "9999".ljust(10)
+                        message = "SERVER DOWN".ljust(80)
 
                         contenido = (http_code + error_code + message).encode("ascii")
                         longitud = len(contenido)
                         raw = responder.int_to_bcd_2bytes(longitud) + contenido
 
                         responder.fields_copy[105] = {
-                            "nombre": "Datos de orden de pago (server_down)",
+                            "nombre": "Búsqueda de pago QR (server_down)",
                             "valor": "Campo 105 generado - server_down",
                             "raw": raw
                         }
 
-                        # --- LOGUEO ---
                         log(f"[ 210015 - QR / server_down ] Campo 105 generado:")
                         log(f"  http_code  = {http_code.strip()}")
                         log(f"  error_code = {error_code.strip()}")
@@ -83,111 +82,52 @@ class Response210015:
                     # Campo 105 normal
                     # --------------------------
                     case 105:
-                        # [0 - 4]
-                        http_code = "200".ljust(4)
-                        # [5 - 9]
-                        dummy_1 = "".ljust(6)
-                        # [10 - 29]
-                        mp_status_pago = "approved".ljust(20)
-                        # [30 - 39]
-                        mp_order_id = "1234567890".ljust(10)
-                        # [40 - 75]
-                        mp_payment_date = "26112025133000".ljust(35)
-                        # [76 - 99]
-                        dummy_2 = "".ljust(25)
+                        respuesta = "200".ljust(10)
+                        status_pago = "approved".ljust(20)
+                        order_id = "ORDQR0001".ljust(10)
+                        payment_date = "2023-08-01T12:00:00Z".ljust(35)
 
-                        # [100 - 119]
-                        mp_payment_id = "1235".ljust(20)
-                        # [120 - 139]
-                        mp_auth_code = "12345678901234567890".ljust(20)
-                        # [140 - 149]
-                        mp_refund_id = "".ljust(10)
-                        # [150 - 184]
-                        mp_refund_date = "".ljust(35)
-                        # [185 - 199]
-                        dummy_3 = "".ljust(15)
+                        payment_id = "PAYQRSEARCH00000001".ljust(20)
+                        auth_code = "AUTHQRSEARCH001".ljust(20)
+                        refund_id = "".ljust(10)
+                        refund_date = "".ljust(35)
 
-                        # [200 - 219]
-                        mp_description = "Pago aprobado".ljust(20)
-                        # [220 - 234]
-                        mp_ext_reference = "2255887744".ljust(15)
-                        # [235 - 246]
-                        mp_refund_amount = "".ljust(12)
-                        # [245 - 299]
-                        dummy_4 = "".ljust(53)
+                        description = "Busqueda QR".ljust(20)
+                        ext_reference = "QRSEARCHREF01".ljust(15)
+                        refund_amount = "000000000000".ljust(12)
 
-                        # [300 - 311]
-                        mp_amount = "000000230000".ljust(12)
-                        # [312 - 331]
-                        mp_refund_status = "".ljust(20)
-                        # [332 - 399]
-                        dummy_5 = "".ljust(68)
+                        amount = "000000010000".ljust(12)
+                        refund_status = "none".ljust(20)
 
-                        # [400 - 439]
-                        mp_payment_method = "QRI".ljust(40)
-                        # [440 - 459]
-                        mp_payment_type = "QRI".ljust(20)
-                        # [460 - 479]
-                        mp_refund_payment_id = "".ljust(20)
-                        # [480 - 484]
-                        mp_paging_total = "1".ljust(5)
-                        # [485 - 499]
-                        dummy_6 = "".ljust(15)
+                        payment_method = "amex".ljust(40)
+                        payment_type = "credit_card".ljust(20)
+                        refund_payment_id = "".ljust(20)
+                        paging_total = "00001".ljust(5)
+                        filler4 = "".ljust(15)
 
-                        contenido = (
-                            http_code +
-                            dummy_1 +
-                            mp_status_pago +
-                            mp_order_id +
-                            mp_payment_date +
-                            dummy_2 +
-                            mp_payment_id +
-                            mp_auth_code +
-                            mp_refund_id +
-                            mp_refund_date +
-                            dummy_3 +
-                            mp_description +
-                            mp_ext_reference +
-                            mp_refund_amount +
-                            dummy_4 +
-                            mp_amount +
-                            mp_refund_status +
-                            dummy_5 +
-                            mp_payment_method +
-                            mp_payment_type +
-                            mp_refund_payment_id +
-                            mp_paging_total +
-                            dummy_6
-                        ).encode("ascii")
+                        bloque0 = (respuesta + status_pago + order_id + payment_date).ljust(100)
+                        bloque1 = (payment_id + auth_code + refund_id + refund_date).ljust(100)
+                        bloque2 = (description + ext_reference + refund_amount).ljust(100)
+                        bloque3 = (amount + refund_status).ljust(100)
+                        bloque4 = (payment_method + payment_type + refund_payment_id + paging_total + filler4).ljust(100)
 
+                        contenido = (bloque0 + bloque1 + bloque2 + bloque3 + bloque4).encode("ascii")
                         longitud = len(contenido)
                         raw = responder.int_to_bcd_2bytes(longitud) + contenido
 
                         responder.fields_copy[105] = {
-                            "nombre": "Datos de orden de pago",
+                            "nombre": "Búsqueda de pago QR",
                             "valor": "Campo 105 generado (normal)",
                             "raw": raw
                         }
 
-                        # Logueo detallado
                         log(f"[ 210015 - QR / OK ] Campo 105 generado:")
-                        log(f" - Http_code: {http_code.strip()}")
-                        log(f" - mp_status_pago: {mp_status_pago.strip()}")
-                        log(f" - mp_order_id: {mp_order_id.strip()}")
-                        log(f" - mp_payment_date: {mp_payment_date.strip()}")
-                        log(f" - mp_payment_id: {mp_payment_id.strip()}")
-                        log(f" - mp_auth_code: {mp_auth_code.strip()}")
-                        log(f" - mp_refund_id: {mp_refund_id.strip()}")
-                        log(f" - mp_refund_date: {mp_refund_date.strip()}")
-                        log(f" - mp_description: {mp_description.strip()}")
-                        log(f" - mp_ext_reference: {mp_ext_reference.strip()}")
-                        log(f" - mp_refund_amount: {mp_refund_amount.strip()}")
-                        log(f" - mp_amount: {mp_amount.strip()}")
-                        log(f" - mp_refund_status: {mp_refund_status.strip()}")
-                        log(f" - mp_payment_method: {mp_payment_method.strip()}")
-                        log(f" - mp_payment_type: {mp_payment_type.strip()}")
-                        log(f" - mp_refund_payment_id: {mp_refund_payment_id.strip()}")
-                        log(f" - mp_paging_total: {mp_paging_total.strip()}")
+                        log(f"  http_code      = {respuesta.strip()}")
+                        log(f"  status_pago    = {status_pago.strip()}")
+                        log(f"  order_id       = {order_id.strip()}")
+                        log(f"  payment_id     = {payment_id.strip()}")
+                        log(f"  paging_total   = {paging_total.strip()}")
+                        log(f"  payment_method = {payment_method.strip()}")
 
                     case 106:
                         return

@@ -1,15 +1,15 @@
 # --------------------------------------------------------------
-# Simulador_MP_response_110011.py
-# Respuesta para código de procesamiento 110011 (crear orden QR).
+# Simulador_MP_response_200015.py
+# Respuesta para código de procesamiento 200015 (consulta de pago Point extra info).
 # Construye campos 105/106/107 si corresponde, según la condición.
 # --------------------------------------------------------------
 
 from Simulador_MP_logger import log
 
-class Response110011:
+class Response200015:
     """
-    Generador de campos asociados al código de procesamiento 110011.
-    Alta de una orden de pago utilizando QR Integrado.
+    Generador de campos asociados al código de procesamiento 200015.
+    Consulta un pago y retorna datos adicionales de Smart Point.
     """
 
     @staticmethod
@@ -52,12 +52,12 @@ class Response110011:
                         raw = responder.int_to_bcd_2bytes(longitud) + contenido
 
                         responder.fields_copy[105] = {
-                            "nombre": "Crear orden QR (server_down)",
+                            "nombre": "Consulta pago Point extra (server_down)",
                             "valor": "Campo 105 generado - server_down",
                             "raw": raw
                         }
 
-                        log(f"[ 110011 - QR / server_down ] Campo 105 generado:")
+                        log(f"[ 200015 - Point / server_down ] Campo 105 generado:")
                         log(f"  http_code  = {http_code.strip()}")
                         log(f"  error_code = {error_code.strip()}")
                         log(f"  message    = {message.strip()}")
@@ -82,22 +82,47 @@ class Response110011:
                     # Campo 105 normal
                     # --------------------------
                     case 105:
-                        http_code = "200".ljust(10)
-                        cuerpo = "".ljust(90)
+                        respuesta = "200".ljust(10)
+                        filler0 = "".ljust(90)
 
-                        contenido = (http_code + cuerpo).encode("ascii")
+                        payment_id = "PAYPOINTEXTRA0000001".ljust(20)
+                        caller_id = "CALLERPOINT000000001".ljust(20)
+                        filler1 = "".ljust(60)
+
+                        poi = "POINT OF INTEREST".ljust(40)
+                        poi_type = "POINT_TYPE".ljust(40)
+                        filler2 = "".ljust(20)
+
+                        operator_id = "OP12345678".ljust(10)
+                        filler3 = "".ljust(90)
+
+                        device_name = "DEVICE001".ljust(10)
+                        filler4 = "".ljust(90)
+
+                        bloque0 = (respuesta + filler0).ljust(100)
+                        bloque1 = (payment_id + caller_id + filler1).ljust(100)
+                        bloque2 = (poi + poi_type + filler2).ljust(100)
+                        bloque3 = (operator_id + filler3).ljust(100)
+                        bloque4 = (device_name + filler4).ljust(100)
+
+                        contenido = (bloque0 + bloque1 + bloque2 + bloque3 + bloque4).encode("ascii")
                         longitud = len(contenido)
                         raw = responder.int_to_bcd_2bytes(longitud) + contenido
 
                         responder.fields_copy[105] = {
-                            "nombre": "Crear orden QR",
+                            "nombre": "Consulta pago Point extra",
                             "valor": "Campo 105 generado (normal)",
                             "raw": raw
                         }
 
-                        log(f"[ 110011 - QR / OK ] Campo 105 generado:")
-                        log(f"  http_code = {http_code.strip()}")
-                        log("  Relleno: 90 bytes")
+                        log(f"[ 200015 - Point / OK ] Campo 105 generado:")
+                        log(f"  http_code   = {respuesta.strip()}")
+                        log(f"  payment_id  = {payment_id.strip()}")
+                        log(f"  caller_id   = {caller_id.strip()}")
+                        log(f"  poi         = {poi.strip()}")
+                        log(f"  poi_type    = {poi_type.strip()}")
+                        log(f"  operator_id = {operator_id.strip()}")
+                        log(f"  device_name = {device_name.strip()}")
 
                     case 106:
                         return
