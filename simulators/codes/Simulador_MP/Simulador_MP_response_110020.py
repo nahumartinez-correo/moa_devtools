@@ -1,15 +1,15 @@
 # --------------------------------------------------------------
-# Simulador_MP_response_110011.py
-# Respuesta para código de procesamiento 110011 (crear orden QR).
+# Simulador_MP_response_110020.py
+# Respuesta para código de procesamiento 110020 (eliminar orden QR).
 # Construye campos 105/106/107 si corresponde, según la condición.
 # --------------------------------------------------------------
 
 from Simulador_MP_logger import log
 
-class Response110011:
+class Response110020:
     """
-    Generador de campos asociados al código de procesamiento 110011.
-    Alta de una orden de pago utilizando QR Integrado.
+    Generador de campos asociados al código de procesamiento 110020.
+    Elimina una orden de pago creada con QR Integrado.
     """
 
     @staticmethod
@@ -52,12 +52,12 @@ class Response110011:
                         raw = responder.int_to_bcd_2bytes(longitud) + contenido
 
                         responder.fields_copy[105] = {
-                            "nombre": "Crear orden QR (server_down)",
+                            "nombre": "Eliminar orden QR (server_down)",
                             "valor": "Campo 105 generado - server_down",
                             "raw": raw
                         }
 
-                        log(f"[ 110011 - QR / server_down ] Campo 105 generado:")
+                        log(f"[ 110020 - QR / server_down ] Campo 105 generado:")
                         log(f"  http_code  = {http_code.strip()}")
                         log(f"  error_code = {error_code.strip()}")
                         log(f"  message    = {message.strip()}")
@@ -82,7 +82,7 @@ class Response110011:
                     # Campo 105 normal
                     # --------------------------
                     case 105:
-                        http_code = "200".ljust(10)
+                        http_code = "204".ljust(10)
                         cuerpo = "".ljust(90)
 
                         contenido = (http_code + cuerpo).encode("ascii")
@@ -90,12 +90,12 @@ class Response110011:
                         raw = responder.int_to_bcd_2bytes(longitud) + contenido
 
                         responder.fields_copy[105] = {
-                            "nombre": "Crear orden QR",
+                            "nombre": "Eliminar orden QR",
                             "valor": "Campo 105 generado (normal)",
                             "raw": raw
                         }
 
-                        log(f"[ 110011 - QR / OK ] Campo 105 generado:")
+                        log(f"[ 110020 - QR / OK ] Campo 105 generado:")
                         log(f"  http_code = {http_code.strip()}")
                         log("  Relleno: 90 bytes")
 
