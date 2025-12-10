@@ -1,15 +1,15 @@
 # --------------------------------------------------------------
-# Simulador_MP_response_110011.py
-# Respuesta para código de procesamiento 110011 (crear orden QR).
+# Simulador_MP_response_200010.py
+# Respuesta para código de procesamiento 200010 (consulta de pago Point).
 # Construye campos 105/106/107 si corresponde, según la condición.
 # --------------------------------------------------------------
 
 from Simulador_MP_logger import log
 
-class Response110011:
+class Response200010:
     """
-    Generador de campos asociados al código de procesamiento 110011.
-    Alta de una orden de pago utilizando QR Integrado.
+    Generador de campos asociados al código de procesamiento 200010.
+    Consulta un pago realizado con Smart Point.
     """
 
     @staticmethod
@@ -52,12 +52,12 @@ class Response110011:
                         raw = responder.int_to_bcd_2bytes(longitud) + contenido
 
                         responder.fields_copy[105] = {
-                            "nombre": "Crear orden QR (server_down)",
+                            "nombre": "Consulta de pago Point (server_down)",
                             "valor": "Campo 105 generado - server_down",
                             "raw": raw
                         }
 
-                        log(f"[ 110011 - QR / server_down ] Campo 105 generado:")
+                        log(f"[ 200010 - Point / server_down ] Campo 105 generado:")
                         log(f"  http_code  = {http_code.strip()}")
                         log(f"  error_code = {error_code.strip()}")
                         log(f"  message    = {message.strip()}")
@@ -82,22 +82,50 @@ class Response110011:
                     # Campo 105 normal
                     # --------------------------
                     case 105:
-                        http_code = "200".ljust(10)
-                        cuerpo = "".ljust(90)
+                        respuesta = "200".ljust(10)
+                        status_pago = "approved".ljust(20)
+                        order_id = "".ljust(10)
+                        payment_date = "2023-08-01T12:00:00Z".ljust(35)
 
-                        contenido = (http_code + cuerpo).encode("ascii")
+                        payment_id = "PAYPOINT000000000001".ljust(20)
+                        auth_code = "AUTHPOINT1234567890".ljust(20)
+                        refund_id = "".ljust(10)
+                        refund_date = "".ljust(35)
+
+                        description = "Compra en Point".ljust(20)
+                        ext_reference = "PSREFPOINT001".ljust(15)
+                        refund_amount = "000000000000".ljust(12)
+
+                        amount = "000000010000".ljust(12)
+                        refund_status = "none".ljust(20)
+
+                        payment_method = "visa".ljust(40)
+                        payment_type = "credit_card".ljust(20)
+                        refund_payment_id = "".ljust(20)
+
+                        bloque0 = (respuesta + status_pago + order_id + payment_date).ljust(100)
+                        bloque1 = (payment_id + auth_code + refund_id + refund_date).ljust(100)
+                        bloque2 = (description + ext_reference + refund_amount).ljust(100)
+                        bloque3 = (amount + refund_status).ljust(100)
+                        bloque4 = (payment_method + payment_type + refund_payment_id).ljust(100)
+
+                        contenido = (bloque0 + bloque1 + bloque2 + bloque3 + bloque4).encode("ascii")
                         longitud = len(contenido)
                         raw = responder.int_to_bcd_2bytes(longitud) + contenido
 
                         responder.fields_copy[105] = {
-                            "nombre": "Crear orden QR",
+                            "nombre": "Consulta de pago Point",
                             "valor": "Campo 105 generado (normal)",
                             "raw": raw
                         }
 
-                        log(f"[ 110011 - QR / OK ] Campo 105 generado:")
-                        log(f"  http_code = {http_code.strip()}")
-                        log("  Relleno: 90 bytes")
+                        log(f"[ 200010 - Point / OK ] Campo 105 generado:")
+                        log(f"  http_code      = {respuesta.strip()}")
+                        log(f"  status_pago    = {status_pago.strip()}")
+                        log(f"  payment_id     = {payment_id.strip()}")
+                        log(f"  auth_code      = {auth_code.strip()}")
+                        log(f"  refund_status  = {refund_status.strip()}")
+                        log(f"  payment_method = {payment_method.strip()}")
 
                     case 106:
                         return
