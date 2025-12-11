@@ -1,5 +1,5 @@
 # --------------------------------------------------------------
-# Simulador_MP_response_210015.py
+# response_105_210015.py
 # Respuesta para código de procesamiento 210015 (buscar un pago con QR).
 # Construye campos 105/106/107 si corresponde, según la condición.
 # --------------------------------------------------------------

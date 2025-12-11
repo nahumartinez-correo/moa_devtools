@@ -6,10 +6,7 @@
 # --------------------------------------------------------------
 
 from datetime import datetime
-from Simulador_MP_response_100011 import Response100011
-from Simulador_MP_response_100010 import Response100010
-from Simulador_MP_response_110011 import Response110011
-from Simulador_MP_response_210015 import Response210015
+import importlib
 from Simulador_MP_conditions import CONDITIONS
 
 
@@ -116,8 +113,18 @@ class Responder:
 
     def procesar_campo(self, codigo: str, numero_de_bit: int):
         """
-        Llama al módulo específico correspondiente al código
-        de procesamiento recibido.
+        Llama al módulo específico correspondiente al código de
+        procesamiento recibido mediante import dinámico.
+
+        Convención adoptada para responder dinámicamente
+        -----------------------------------------------
+        - Directorio: ``responders/<bit>/``.
+        - Nombre de archivo: ``response_<bit>_<codigo_proc>.py``.
+        - Clase interna esperada: ``Response<codigo_proc>``.
+
+        Esto permite agregar nuevos responders (ej. bits 106 o 107) solo
+        creando el archivo en la carpeta correspondiente, sin tocar este
+        orquestador.
 
         Parámetros
         ----------
@@ -131,25 +138,19 @@ class Responder:
         None
         """
 
-        match codigo:
-            # Crear orden de pago con Smart Point
-            case "100011":
-                return Response100011.build_field(self, numero_de_bit)
+        module_name = f"responders.{numero_de_bit}.response_{numero_de_bit}_{codigo}"
+        class_name = f"Response{codigo}"
 
-            # Consultar orden de pago con Smart Point
-            case "100010":
-                return Response100010.build_field(self, numero_de_bit)
-
-            # Crear orden de pago con QR
-            case "110011":
-                return Response110011.build_field(self, numero_de_bit)
-
-            # Consultar un pago con QR
-            case "210015":
-                return Response210015.build_field(self, numero_de_bit)
-
-            case _:
-                log(f"No hay módulo definido para el código {codigo}")
+        try:
+            # Se carga dinámicamente el módulo siguiendo la convención de
+            # nombres detallada arriba.
+            mod = importlib.import_module(module_name)
+            resp_class = getattr(mod, class_name)
+            return resp_class.build_field(self, numero_de_bit)
+        except ModuleNotFoundError:
+            log(f"[WARN] No existe módulo response_{numero_de_bit} para código {codigo}.")
+        except Exception as exc:  # pragma: no cover - logging defensivo
+            log(f"[ERROR] Fallo en responder para código {codigo}, bit {numero_de_bit}: {exc}")
 
     # ----------------------------------------------------------
     # Construcción final de la respuesta ISO8583

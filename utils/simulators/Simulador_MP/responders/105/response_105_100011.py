@@ -1,5 +1,5 @@
 # --------------------------------------------------------------
-# Simulador_MP_response_100011.py
+# response_105_100011.py
 # Respuesta para código de procesamiento 100011 (crear orden con Smart Point).
 # Construye campos 105/106/107 si corresponde, según la condición.
 # --------------------------------------------------------------
