@@ -1,7 +1,8 @@
 """
 Módulo que implementa el menú del compilador. Gestiona el flujo completo:
-verificación de permisos, selección de versión, obtención de cambios en SVN,
-compilación individual o masiva, y reversión de headers al finalizar.
+verificación de permisos, selección de versión, obtención de cambios en
+control de versiones, compilación individual o masiva, y reversión de headers
+al finalizar.
 """
 
 import os
@@ -11,10 +12,10 @@ from utils.permissions import es_administrador
 from utils.logger import log_info, log_error
 from utils.service_manager import detener_todos, iniciar_todos
 from compiler.session_state import SessionState
-from compiler.svn_changes import obtener_archivos_modificados
 from compiler.include_patcher import aplicar_patches_generales
 from compiler.compiler_core import compilar_archivo, compilar_lista_archivos
 from compiler.restore_manager import revertir_headers
+from compiler.vcs_backend import get_vcs_backend_for_version
 
 
 CARPETA_MOAPROJ = r"C:\moaproj"
@@ -46,6 +47,14 @@ def menu_compilador():
 
         estado.version = version
 
+        try:
+            estado.vcs_backend = get_vcs_backend_for_version(version)
+        except ValueError as exc:
+            log_error(str(exc))
+            print("No se pudo determinar el backend de control de versiones.\n")
+            input("Presione ENTER para volver...")
+            continue
+
         ruta_post = os.path.join(CARPETA_MOAPROJ, version, "src")
 
         _limpiar_pantalla()
@@ -53,9 +62,9 @@ def menu_compilador():
 
         estado.modificados_h = aplicar_patches_generales(version)
 
-        archivos = obtener_archivos_modificados(ruta_post)
+        archivos = _obtener_archivos_modificados(estado.vcs_backend, ruta_post)
         if not archivos:
-            print("No se encontraron archivos modificados en SVN.\n")
+            print("No se encontraron archivos modificados en control de versiones.\n")
             input("Presione ENTER para volver...")
             continue
 
@@ -87,7 +96,7 @@ def _sub_menu_compilacion(estado, ruta_post, archivos_relativos):
     """
     while True:
         _limpiar_pantalla()
-        print("=== ARCHIVOS MODIFICADOS EN SVN ===\n")
+        print("=== ARCHIVOS MODIFICADOS EN CONTROL DE VERSIONES ===\n")
         print("Ruta base:", ruta_post, "\n")
 
         for i, a in enumerate(archivos_relativos, 1):
@@ -126,7 +135,7 @@ def _finalizar_menu(estado):
 
     if estado.modificados_h:
         print("Revirtiendo modificaciones en headers...\n")
-        revertir_headers(estado.modificados_h)
+        revertir_headers(estado.modificados_h, estado.version)
     else:
         print("No se detectaron headers modificados.\n")
 
@@ -137,3 +146,13 @@ def _finalizar_menu(estado):
 def _limpiar_pantalla():
     """Limpia la consola."""
     os.system("cls")
+
+
+def _obtener_archivos_modificados(backend, ruta_post):
+    try:
+        return backend.list_modified_files(ruta_post, exclude_ext=[".h"])
+    except Exception as exc:  # pylint: disable=broad-except
+        log_error(f"Error obteniendo archivos modificados: {exc}")
+        print("No se pudieron obtener los cambios del control de versiones.\n")
+        input("Presione ENTER para volver...")
+        return []

@@ -2,7 +2,7 @@
 Módulo de compilación de MOA DevTools.
 
 Incluye:
-- svn_manager: control de versiones con SVN.
+- vcs_backend: capa de control de versiones (SVN/Git).
 - includes_manager: actualización/restauración de includes.
 - builder: ejecución del compilador BC.
 """

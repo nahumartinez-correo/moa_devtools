@@ -18,3 +18,4 @@ class SessionState:
     def __init__(self):
         self.version = None
         self.modificados_h = []
+        self.vcs_backend = None
