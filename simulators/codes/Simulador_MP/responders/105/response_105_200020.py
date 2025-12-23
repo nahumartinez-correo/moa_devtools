@@ -83,7 +83,7 @@ class Response200020:
                     # --------------------------
                     case 105:
                         respuesta = "200".ljust(10)
-                        status_pago = "refunded".ljust(20)
+                        status_pago = "approved".ljust(20)
                         order_id = "".ljust(10)
                         refund_date = "2023-08-02T10:00:00Z".ljust(35)
 
@@ -97,7 +97,7 @@ class Response200020:
                         refund_amount = "000000010000".ljust(12)
 
                         amount = "000000010000".ljust(12)
-                        refund_status = "approved".ljust(20)
+                        refund_status = "".ljust(20)
 
                         payment_method = "visa".ljust(40)
                         payment_type = "credit_card".ljust(20)
