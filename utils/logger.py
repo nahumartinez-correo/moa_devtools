@@ -7,7 +7,9 @@ from datetime import datetime
 
 LOG_PATH = r"C:\logs\moa_devtools.log"
 
-os.makedirs(os.path.dirname(LOG_PATH), exist_ok=True)
+log_dir = os.path.dirname(LOG_PATH)
+if log_dir:
+    os.makedirs(log_dir, exist_ok=True)
 
 def log(mensaje):
     """Escribe un mensaje con timestamp en el archivo de log."""
