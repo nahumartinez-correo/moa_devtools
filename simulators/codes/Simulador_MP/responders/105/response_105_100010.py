@@ -5,8 +5,7 @@
 # --------------------------------------------------------------
 
 from Simulador_MP_logger import log
-from mp_order_state import (
-    build_numeric_reference,
+from Simulador_MP_order_state import (
     clear_current_order,
     get_current_order,
     get_request_datetime,
@@ -107,21 +106,35 @@ class Response100010:
                             responder.skip_response = True  # No se construye respuesta si no hay orden válida.
                             return
 
-                        http_code = "200".ljust(4)
+                        response_code = "200".ljust(4)
                         order_id = current_order.get("order_id", "").ljust(32)
                         payment_id = current_order.get("payment_id", "").ljust(32)
-                        status_pago = "processed".ljust(32)
-                        payment_ref = build_numeric_reference().ljust(20)
-                        mp_status = "processed".ljust(15)
-                        dummy = "".ljust(365)
+                        payment_ref = current_order.get("payment_ref", "").ljust(16)
+
+                        pending_polls = current_order.get("pending_status_polls", 0)
+
+                        if pending_polls > 0:
+                            payment_status = "at_terminal".ljust(32)
+                            mp_order_status = "at_terminal".ljust(15)
+                            mp_status_detail = "at_terminal".ljust(30)
+                            current_order["pending_status_polls"] = pending_polls - 1
+                            clear_on_finish = False
+                        else:
+                            payment_status = "processed".ljust(32)
+                            mp_order_status = "processed".ljust(15)
+                            mp_status_detail = "processed".ljust(30)
+                            clear_on_finish = True
+
+                        dummy = "".ljust(339)
 
                         contenido = (
-                            http_code +
+                            response_code +
                             order_id +
                             payment_id +
-                            status_pago +
+                            payment_status +
                             payment_ref +
-                            mp_status +
+                            mp_order_status +
+                            mp_status_detail +
                             dummy
                         ).encode("ascii")
 
@@ -134,17 +147,18 @@ class Response100010:
                             "raw": raw
                         }
 
-                        # Una vez respondido con processed, se considera finalizada la orden.
-                        clear_current_order()
+                        if clear_on_finish:
+                            clear_current_order()
 
                         # --- LOGUEO DETALLADO ---
                         log(f"[ 100010 / OK ] Campo 105 generado:")
-                        log(f" - Http_code: {http_code.strip()}")
+                        log(f" - Http_code: {response_code.strip()}")
                         log(f" - Order_id: {order_id.strip()}")
                         log(f" - Payment_id: {payment_id.strip()}")
-                        log(f" - Status_pago: {status_pago.strip()}")
+                        log(f" - Payment_status: {payment_status.strip()}")
                         log(f" - Payment_ref: {payment_ref.strip()}")
-                        log(f" - mp_status: {mp_status.strip()}")
+                        log(f" - mp_order_status: {mp_order_status.strip()}")
+                        log(f" - mp_status_detail: {mp_status_detail.strip()}")
 
                     case 106:
                         return

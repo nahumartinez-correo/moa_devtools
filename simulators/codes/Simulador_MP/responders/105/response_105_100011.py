@@ -5,14 +5,16 @@
 # --------------------------------------------------------------
 
 from Simulador_MP_logger import log
-from mp_order_state import (
+from Simulador_MP_order_state import (
     build_identifier,
+    build_numeric_reference,
     clear_current_order,
     get_current_order,
     get_request_datetime,
     is_order_expired,
     set_current_order,
 )
+import random
 
 
 class Response100011:
@@ -102,24 +104,46 @@ class Response100011:
                             current_order = None
 
                         if current_order:
-                            log("Ya existe una orden pendiente. No se permite crear una nueva hasta completar o expirar la anterior.")
-                            responder.skip_response = True  # Indica al orquestador que no debe responder nada.
+                            response_code = "409".ljust(200)
+                            response_error = "409 - Conflict".ljust(100)
+                            response_msg = "There is already a queued order on the terminal.".ljust(100)
+                            response_cause = "already_queued_orderon_terminal".ljust(100)
+
+                            contenido_conflicto = (
+                                response_code +
+                                response_error +
+                                response_msg +
+                                response_cause
+                            ).encode("ascii")
+
+                            longitud_conflicto = len(contenido_conflicto)
+                            raw_conflicto = responder.int_to_bcd_2bytes(longitud_conflicto) + contenido_conflicto
+
+                            responder.fields_copy[105] = {
+                                "nombre": "Datos de orden de pago (conflicto)",
+                                "valor": "Campo 105 generado (conflicto 409)",
+                                "raw": raw_conflicto
+                            }
+
+                            log("[ 100011 ] Conflicto: ya existe una orden activa. Se devuelve 409.")
                             return
 
                         order_id = build_identifier("ORD").ljust(32)
                         payment_id = build_identifier("PAY").ljust(32)
-                        status_pago = "created".ljust(32)
-                        payment_ref = "".ljust(20)
-                        mp_status = "created".ljust(15)
-                        dummy = "".ljust(365)
+                        payment_status = "created".ljust(32)
+                        payment_ref = build_numeric_reference().ljust(16)
+                        mp_order_status = "created".ljust(15)
+                        mp_status_detail = "created".ljust(30)
+                        dummy = "".ljust(339)
 
                         contenido = (
                             "201".ljust(4) +
                             order_id +
                             payment_id +
-                            status_pago +
+                            payment_status +
                             payment_ref +
-                            mp_status +
+                            mp_order_status +
+                            mp_status_detail +
                             dummy
                         ).encode("ascii")
 
@@ -135,8 +159,12 @@ class Response100011:
                         set_current_order({
                             "order_id": order_id.strip(),
                             "payment_id": payment_id.strip(),
-                            "status": "created",
-                            "created_at": request_dt
+                            "payment_status": "created",
+                            "payment_ref": payment_ref.strip(),
+                            "mp_order_status": "created",
+                            "mp_status_detail": "created",
+                            "created_at": request_dt,
+                            "pending_status_polls": random.randint(0, 2)
                         })
 
                         # Logueo detallado
@@ -144,10 +172,11 @@ class Response100011:
                         log(f" - Http_code: 201")
                         log(f" - Order_id: {order_id.strip()}")
                         log(f" - Payment_id: {payment_id.strip()}")
-                        log(f" - Status_pago: {status_pago.strip()}")
+                        log(f" - Payment_status: {payment_status.strip()}")
                         log(f" - Payment_ref: {payment_ref.strip()}")
-                        log(f" - mp_status: {mp_status.strip()}")
-                        log(" - Relleno: 368 bytes")
+                        log(f" - mp_order_status: {mp_order_status.strip()}")
+                        log(f" - mp_status_detail: {mp_status_detail.strip()}")
+                        log(" - Relleno: 339 bytes")
 
                     case 106:
                         return

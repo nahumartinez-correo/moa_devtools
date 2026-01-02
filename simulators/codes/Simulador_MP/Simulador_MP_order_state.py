@@ -3,7 +3,16 @@ Módulo de estado compartido para la simulación de Smart Point.
 
 Se almacena en memoria una única orden activa con los campos mínimos
 necesarios para que los responders 100011 (creación) y 100010
-(consulta) puedan coordinarse.
+(consulta) puedan coordinarse. La estructura puede contener, entre
+otros, los siguientes campos:
+    - order_id
+    - payment_id
+    - payment_status
+    - payment_ref
+    - mp_order_status
+    - mp_status_detail
+    - created_at (datetime de referencia)
+    - pending_status_polls (intentos previos a processed)
 """
 
 from datetime import datetime, timedelta
@@ -102,6 +111,6 @@ def build_identifier(prefix: str, length: int = 29) -> str:
     return f"{prefix}{suffix}"
 
 
-def build_numeric_reference(digits: int = 10) -> str:
+def build_numeric_reference(digits: int = 16) -> str:
     """Genera una cadena numérica aleatoria de la longitud indicada."""
     return "".join(random.choices(string.digits, k=digits))
