@@ -111,13 +111,14 @@ class Response100010:
                         payment_id = current_order.get("payment_id", "").ljust(32)
                         payment_ref = current_order.get("payment_ref", "").ljust(16)
 
-                        pending_polls = current_order.get("pending_status_polls", 0)
+                        pending_status_polls = current_order.get("pending_status_polls", 0)
 
-                        if pending_polls > 0:
+                        if pending_status_polls > 0:
                             payment_status = "at_terminal".ljust(32)
                             mp_order_status = "at_terminal".ljust(15)
                             mp_status_detail = "at_terminal".ljust(30)
-                            current_order["pending_status_polls"] = pending_polls - 1
+                            pending_status_polls -= 1
+                            current_order["pending_status_polls"] = pending_status_polls
                             clear_on_finish = False
                         else:
                             payment_status = "processed".ljust(32)
@@ -159,6 +160,8 @@ class Response100010:
                         log(f" - Payment_ref: {payment_ref.strip()}")
                         log(f" - mp_order_status: {mp_order_status.strip()}")
                         log(f" - mp_status_detail: {mp_status_detail.strip()}")
+                        log(" - Relleno: 339 bytes")
+                        log(f"Respuestas con at_terminal: {pending_status_polls}")
 
                     case 106:
                         return

@@ -134,6 +134,7 @@ class Response100011:
                         payment_ref = build_numeric_reference().ljust(16)
                         mp_order_status = "created".ljust(15)
                         mp_status_detail = "created".ljust(30)
+                        pending_status_polls = random.randint(0, 2)
                         dummy = "".ljust(339)
 
                         contenido = (
@@ -164,7 +165,7 @@ class Response100011:
                             "mp_order_status": "created",
                             "mp_status_detail": "created",
                             "created_at": request_dt,
-                            "pending_status_polls": random.randint(0, 2)
+                            "pending_status_polls": pending_status_polls
                         })
 
                         # Logueo detallado
@@ -177,6 +178,7 @@ class Response100011:
                         log(f" - mp_order_status: {mp_order_status.strip()}")
                         log(f" - mp_status_detail: {mp_status_detail.strip()}")
                         log(" - Relleno: 339 bytes")
+                        log(f"Respuestas con at_terminal: {pending_status_polls}")
 
                     case 106:
                         return
