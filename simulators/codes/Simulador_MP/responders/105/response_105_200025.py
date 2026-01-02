@@ -5,6 +5,7 @@
 # --------------------------------------------------------------
 
 from Simulador_MP_logger import log
+from Simulador_MP_order_state import build_identifier, build_numeric_reference
 
 class Response200025:
     """
@@ -82,50 +83,50 @@ class Response200025:
                     # Campo 105 normal
                     # --------------------------
                     case 105:
-                        respuesta = "200".ljust(10)
-                        status_pago = "approved".ljust(20)
-                        order_id = "".ljust(10)
-                        refund_date = "2023-08-02T10:00:00Z".ljust(35)
+                        parsed_fields = responder.parsed.get("parsed_fields", {})
+                        campo_109 = parsed_fields.get(109, {})
+                        order_id = str(campo_109.get("mp_order_id_PS", "") or "").strip()
+                        if not order_id:
+                            log("[ 200025 - Refund ] WARNING: mp_order_id_PS ausente en campo 109")
 
-                        payment_id = "PAYREFUNDPOINT00001".ljust(20)
-                        auth_code = "AUTHREFUND00000000".ljust(20)
-                        refund_id = "REFUND0001".ljust(10)
-                        refund_payment_date = refund_date
+                        refund_id = build_identifier("REF", length=29)
+                        payment_ref = build_numeric_reference(digits=16)
 
-                        description = "Refund Point".ljust(20)
-                        ext_reference = "REFPOINT001".ljust(15)
-                        refund_amount = "000000010000".ljust(12)
+                        response_code = "201".ljust(4)
+                        order_id_field = order_id.ljust(32)
+                        refund_id_field = refund_id.ljust(32)
+                        refund_status = "processed".ljust(32)
+                        payment_ref_field = payment_ref.ljust(16)
+                        mp_order_status = "refunded".ljust(15)
+                        mp_status_detail = "refunded".ljust(30)
 
-                        amount = "000000010000".ljust(12)
-                        refund_status = "".ljust(20)
-
-                        payment_method = "visa".ljust(40)
-                        payment_type = "credit_card".ljust(20)
-                        refund_payment_id = "PAYREFUNDID0000001".ljust(20)
-
-                        bloque0 = (respuesta + status_pago + order_id + refund_date).ljust(100)
-                        bloque1 = (payment_id + auth_code + refund_id + refund_payment_date).ljust(100)
-                        bloque2 = (description + ext_reference + refund_amount).ljust(100)
-                        bloque3 = (amount + refund_status).ljust(100)
-                        bloque4 = (payment_method + payment_type + refund_payment_id).ljust(100)
-
-                        contenido = (bloque0 + bloque1 + bloque2 + bloque3 + bloque4).encode("ascii")
+                        contenido_str = (
+                            response_code +
+                            order_id_field +
+                            refund_id_field +
+                            refund_status +
+                            payment_ref_field +
+                            mp_order_status +
+                            mp_status_detail
+                        )
+                        contenido = contenido_str.encode("ascii")
                         longitud = len(contenido)
                         raw = responder.int_to_bcd_2bytes(longitud) + contenido
 
                         responder.fields_copy[105] = {
-                            "nombre": "Reembolso de pago",
-                            "valor": "Campo 105 generado (normal)",
+                            "nombre": "Reembolso de pago (200025 - Smart Point)",
+                            "valor": "Campo 105 generado (refund procesado)",
                             "raw": raw
                         }
 
                         log(f"[ 200025 - Refund / OK ] Campo 105 generado:")
-                        log(f"  http_code      = {respuesta.strip()}")
-                        log(f"  status_pago    = {status_pago.strip()}")
-                        log(f"  refund_id      = {refund_id.strip()}")
-                        log(f"  refund_amount  = {refund_amount.strip()}")
-                        log(f"  refund_status  = {refund_status.strip()}")
-                        log(f"  payment_method = {payment_method.strip()}")
+                        log(f"  response_code   = {response_code.strip()}")
+                        log(f"  order_id        = {order_id_field.strip()}")
+                        log(f"  refund_id       = {refund_id_field.strip()}")
+                        log(f"  refund_status   = {refund_status.strip()}")
+                        log(f"  payment_ref     = {payment_ref_field.strip()}")
+                        log(f"  mp_order_status = {mp_order_status.strip()}")
+                        log(f"  mp_status_detail= {mp_status_detail.strip()}")
 
                     case 106:
                         return

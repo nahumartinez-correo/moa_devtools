@@ -5,6 +5,13 @@
 # --------------------------------------------------------------
 
 from Simulador_MP_logger import log
+from Simulador_MP_order_state import (
+    clear_current_order,
+    get_current_order,
+    get_request_datetime,
+    is_order_expired,
+)
+
 
 class Response100010:
     """
@@ -30,6 +37,7 @@ class Response100010:
         """
 
         condicion = responder.condicion
+        parsed_fields = responder.parsed.get("parsed_fields", {})
 
         # =======================================================
         # ============= 1) MATCH POR CONDICIÓN ===================
@@ -83,21 +91,52 @@ class Response100010:
                     # Campo 105 normal
                     # --------------------------
                     case 105:
-                        http_code = "200".ljust(4)
-                        order_id = "ORDTST01KAE6YQ8CEE52TPH30PP1WW9D".ljust(32)
-                        payment_id = "PAY01KAE6YQ8CEE52TPH30S204EYT".ljust(32)
-                        status_pago = "processed".ljust(32)
-                        payment_ref = "1234567890".ljust(20)
-                        mp_status = "processed".ljust(15)
-                        dummy = "".ljust(365)
+                        request_dt = get_request_datetime(parsed_fields)
+                        current_order = get_current_order()
+
+                        if is_order_expired(current_order, request_dt):
+                            log("[ 100010 ] Orden expirada por timeout. Se limpia el estado global.")
+                            clear_current_order()
+                            current_order = None
+
+                        order_id_solicitado = parsed_fields.get(109, {}).get("mp_order_id_PS", "").strip()
+
+                        if not current_order or current_order.get("order_id") != order_id_solicitado:
+                            log("No hay orden activa para el order_id consultado.")
+                            responder.skip_response = True  # No se construye respuesta si no hay orden válida.
+                            return
+
+                        response_code = "200".ljust(4)
+                        order_id = current_order.get("order_id", "").ljust(32)
+                        payment_id = current_order.get("payment_id", "").ljust(32)
+                        payment_ref = current_order.get("payment_ref", "").ljust(16)
+
+                        pending_status_polls = current_order.get("pending_status_polls", 0)
+
+                        if pending_status_polls > 0:
+                            payment_status = "at_terminal".ljust(32)
+                            mp_order_status = "at_terminal".ljust(15)
+                            mp_status_detail = "at_terminal".ljust(30)
+                            pending_status_polls -= 1
+                            current_order["pending_status_polls"] = pending_status_polls
+                            clear_on_finish = False
+                        else:
+                            payment_status = "processed".ljust(32)
+                            mp_order_status = "processed".ljust(15)
+                            mp_status_detail = "processed".ljust(30)
+                            clear_on_finish = True
+
+                        dummy = "".ljust(339)
 
                         contenido = (
-                            http_code +
+                            response_code +
                             order_id +
                             payment_id +
-                            status_pago +
+                            payment_status +
                             payment_ref +
-                            mp_status
+                            mp_order_status +
+                            mp_status_detail +
+                            dummy
                         ).encode("ascii")
 
                         longitud = len(contenido)
@@ -109,14 +148,20 @@ class Response100010:
                             "raw": raw
                         }
 
+                        if clear_on_finish:
+                            clear_current_order()
+
                         # --- LOGUEO DETALLADO ---
                         log(f"[ 100010 / OK ] Campo 105 generado:")
-                        log(f" - Http_code: {http_code.strip()}")
+                        log(f" - Http_code: {response_code.strip()}")
                         log(f" - Order_id: {order_id.strip()}")
                         log(f" - Payment_id: {payment_id.strip()}")
-                        log(f" - Status_pago: {status_pago.strip()}")
+                        log(f" - Payment_status: {payment_status.strip()}")
                         log(f" - Payment_ref: {payment_ref.strip()}")
-                        log(f" - mp_status: {mp_status.strip()}")
+                        log(f" - mp_order_status: {mp_order_status.strip()}")
+                        log(f" - mp_status_detail: {mp_status_detail.strip()}")
+                        log(" - Relleno: 339 bytes")
+                        log(f"Respuestas con at_terminal: {pending_status_polls}")
 
                     case 106:
                         return
