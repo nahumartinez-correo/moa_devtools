@@ -5,6 +5,14 @@
 # --------------------------------------------------------------
 
 from Simulador_MP_logger import log
+from mp_order_state import (
+    build_numeric_reference,
+    clear_current_order,
+    get_current_order,
+    get_request_datetime,
+    is_order_expired,
+)
+
 
 class Response100010:
     """
@@ -30,6 +38,7 @@ class Response100010:
         """
 
         condicion = responder.condicion
+        parsed_fields = responder.parsed.get("parsed_fields", {})
 
         # =======================================================
         # ============= 1) MATCH POR CONDICIÓN ===================
@@ -83,11 +92,26 @@ class Response100010:
                     # Campo 105 normal
                     # --------------------------
                     case 105:
+                        request_dt = get_request_datetime(parsed_fields)
+                        current_order = get_current_order()
+
+                        if is_order_expired(current_order, request_dt):
+                            log("[ 100010 ] Orden expirada por timeout. Se limpia el estado global.")
+                            clear_current_order()
+                            current_order = None
+
+                        order_id_solicitado = parsed_fields.get(109, {}).get("mp_order_id_PS", "").strip()
+
+                        if not current_order or current_order.get("order_id") != order_id_solicitado:
+                            log("No hay orden activa para el order_id consultado.")
+                            responder.skip_response = True  # No se construye respuesta si no hay orden válida.
+                            return
+
                         http_code = "200".ljust(4)
-                        order_id = "ORDTST01KAE6YQ8CEE52TPH30PP1WW9D".ljust(32)
-                        payment_id = "PAY01KAE6YQ8CEE52TPH30S204EYT".ljust(32)
+                        order_id = current_order.get("order_id", "").ljust(32)
+                        payment_id = current_order.get("payment_id", "").ljust(32)
                         status_pago = "processed".ljust(32)
-                        payment_ref = "1234567890".ljust(20)
+                        payment_ref = build_numeric_reference().ljust(20)
                         mp_status = "processed".ljust(15)
                         dummy = "".ljust(365)
 
@@ -97,7 +121,8 @@ class Response100010:
                             payment_id +
                             status_pago +
                             payment_ref +
-                            mp_status
+                            mp_status +
+                            dummy
                         ).encode("ascii")
 
                         longitud = len(contenido)
@@ -108,6 +133,9 @@ class Response100010:
                             "valor": "Campo 105 generado (normal)",
                             "raw": raw
                         }
+
+                        # Una vez respondido con processed, se considera finalizada la orden.
+                        clear_current_order()
 
                         # --- LOGUEO DETALLADO ---
                         log(f"[ 100010 / OK ] Campo 105 generado:")
