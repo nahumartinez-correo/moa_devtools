@@ -9,11 +9,13 @@ import subprocess
 
 from utils import service_manager
 from utils.logger import log_info, log_error
+from compiler.includes_manager import obtener_reemplazos_generales
 
 
 BASE_MOAPROJ = r"C:\moaproj"
 RUTA_POST = os.path.join(BASE_MOAPROJ, "post")
 RUTA_GIT = os.path.join(BASE_MOAPROJ, "Mosaic-gitlab")
+RUTA_GIT_SRC = os.path.join(RUTA_GIT, "src")
 RUTA_CDSGENE_POST = os.path.join(RUTA_POST, "cdsgene")
 RUTA_CDSMAIN_POST = os.path.join(RUTA_POST, "cdsmain")
 RUTA_CDSGENE_GIT = os.path.join(RUTA_GIT, "cdsgene")
@@ -30,6 +32,7 @@ SUCURSAL = "B0016"
 def actualizar_diccionarios_por_integracion():
     log_info("Inicio de actualización de diccionarios por integración.")
     servicios_detenidos = False
+    headers_backup = None
     exito = False
 
     try:
@@ -58,6 +61,9 @@ def actualizar_diccionarios_por_integracion():
         print("Copiando contenido de cdsmain...")
         _copiar_contenido(RUTA_CDSMAIN_GIT, RUTA_CDSMAIN_POST)
 
+        print("Aplicando reemplazos de includes en headers...")
+        headers_backup = _aplicar_reemplazos_includes()
+
         print("Compilando password...")
         _ejecutar_comando(
             [
@@ -70,6 +76,10 @@ def actualizar_diccionarios_por_integracion():
             ],
             "Compilación de password",
         )
+
+        print("Restaurando headers...")
+        _restaurar_headers(headers_backup)
+        headers_backup = None
 
         print("Iniciando servicios...")
         service_manager.iniciar_servicios(SERVICIOS)
@@ -96,6 +106,9 @@ def actualizar_diccionarios_por_integracion():
         print("Ocurrió un error durante la actualización. Revisar logs.")
         return False
     finally:
+        if headers_backup:
+            print("Restaurando headers tras error...")
+            _restaurar_headers(headers_backup)
         if servicios_detenidos and not exito:
             print("Intentando recuperar servicios...")
             log_info("Intentando iniciar servicios tras error.")
@@ -106,6 +119,7 @@ def _validar_rutas():
     rutas = [
         RUTA_POST,
         RUTA_GIT,
+        RUTA_GIT_SRC,
         RUTA_CDSGENE_POST,
         RUTA_CDSMAIN_POST,
         RUTA_CDSGENE_GIT,
@@ -209,3 +223,56 @@ def _ejecutar_comando(cmd, descripcion, cwd=None):
         log_info(f"{descripcion} STDOUT: {resultado.stdout.strip()}")
     if resultado.stderr:
         log_error(f"{descripcion} STDERR: {resultado.stderr.strip()}")
+
+
+def _aplicar_reemplazos_includes():
+    reemplazos = obtener_reemplazos_generales("Mosaic-gitlab")
+    if not reemplazos:
+        return {}
+
+    headers_backup = {}
+    for root, _, files in os.walk(RUTA_GIT_SRC):
+        for nombre in files:
+            if not nombre.lower().endswith(".h"):
+                continue
+            ruta = os.path.join(root, nombre)
+            try:
+                with open(ruta, "r", encoding="utf-8", errors="ignore") as f:
+                    contenido = f.read()
+            except Exception as exc:
+                log_error(f"No fue posible leer {ruta}: {exc}")
+                raise
+
+            nuevo = contenido
+            cambios = 0
+            for viejo, nuevo_val in reemplazos.items():
+                if viejo in nuevo:
+                    cambios += nuevo.count(viejo)
+                nuevo = nuevo.replace(viejo, nuevo_val)
+
+            if cambios == 0 or nuevo == contenido:
+                continue
+
+            try:
+                with open(ruta, "w", encoding="utf-8") as f:
+                    f.write(nuevo)
+                headers_backup[ruta] = contenido
+                log_info(f"Header actualizado: {ruta}")
+            except Exception as exc:
+                log_error(f"No fue posible escribir {ruta}: {exc}")
+                raise
+
+    return headers_backup
+
+
+def _restaurar_headers(headers_backup):
+    if not headers_backup:
+        return
+
+    for ruta, contenido in headers_backup.items():
+        try:
+            with open(ruta, "w", encoding="utf-8") as f:
+                f.write(contenido)
+            log_info(f"Header restaurado: {ruta}")
+        except Exception as exc:
+            log_error(f"No se pudo restaurar {ruta}: {exc}")
