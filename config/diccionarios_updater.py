@@ -6,6 +6,7 @@ import glob
 import os
 import shutil
 import subprocess
+import time
 
 from utils import service_manager
 from utils.logger import log_info, log_error
@@ -87,6 +88,8 @@ def actualizar_diccionarios_por_integracion():
 
         print("Iniciando servicios...")
         service_manager.iniciar_servicios(SERVICIOS)
+        print("Esperando a que los servicios estén disponibles...")
+        time.sleep(3)
 
         print("Ejecutando InitSuc...")
         _ejecutar_comando(
