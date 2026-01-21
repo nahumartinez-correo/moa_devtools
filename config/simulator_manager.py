@@ -4,6 +4,7 @@ from utils.permissions import es_administrador
 from utils import service_manager
 from utils.common import limpiar_consola
 from config import switch_config, session_state
+from config.diccionarios_updater import actualizar_diccionarios_por_integracion
 
 
 def menu_configuracion():
@@ -18,6 +19,7 @@ def menu_configuracion():
             return
 
         opciones = [
+            "Actualizar diccionarios por integración",
             "MercadoPago - Usar simulador",
             "MercadoPago - Usar OpenShift",
             "MercadoPago - Usar PC de Ramiro (IP)",
@@ -29,12 +31,22 @@ def menu_configuracion():
             print("\n↩️  Volviendo al menú principal...\n")
             return
 
+        if opcion == 1:
+            limpiar_consola("MOA DevTools - ACTUALIZAR DICCIONARIOS")
+            print("Actualizando diccionarios por integración...\n")
+            if actualizar_diccionarios_por_integracion():
+                print("\nActualización finalizada correctamente.")
+            else:
+                print("\nLa actualización finalizó con errores.")
+            input("\nPresione ENTER para volver al menú anterior...")
+            continue
+
         limpiar_consola("MOA DevTools - CONFIGURACIÓN DE SIMULADOR")
         seleccion = opciones[opcion - 1]
         print(f"🧩 Configurando entorno para: {seleccion}\n")
 
         # 🧠 Registrar estado del simulador según la opción elegida
-        if opcion == 1:
+        if opcion == 2:
             session_state.set_usar_simulador(True)
             print("🔹 Variable global: usar_simulador = True")
             log_info("Configurado para usar simulador (session_state actualizado).")
@@ -55,7 +67,7 @@ def menu_configuracion():
 
         print("📝 Modificando archivo SwitchDemand.ini...\n")
         try:
-            switch_config.actualizar_configuracion(opcion)
+            switch_config.actualizar_configuracion(opcion - 1)
             print("✅ Archivo actualizado correctamente.\n")
             log_info(f"Configuración de MercadoPago actualizada (opción {opcion}).")
         except Exception as e:
