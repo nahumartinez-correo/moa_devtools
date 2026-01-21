@@ -89,14 +89,10 @@ def actualizar_diccionarios_por_integracion():
         print("Iniciando servicios...")
         service_manager.iniciar_servicios(SERVICIOS)
         print("Esperando a que los servicios estén disponibles...")
-        time.sleep(3)
+        _esperar_servicios()
 
         print("Ejecutando InitSuc...")
-        _ejecutar_comando(
-            ["cmd", "/c", "InitSuc.bat", ENV, SUCURSAL],
-            "InitSuc",
-            cwd=RUTA_INIT_SUC,
-        )
+        _ejecutar_initsuc()
 
         print("Ejecutando oper_test...")
         _ejecutar_comando(
@@ -252,6 +248,45 @@ def _ejecutar_comando(
         log_info(f"{descripcion} STDOUT: {resultado.stdout.strip()}")
     if stderr_filtrado_texto and not (ignore_stderr_if_match and hay_match):
         log_error(f"{descripcion} STDERR: {stderr_filtrado_texto}")
+
+
+def _esperar_servicios(intentos=5, demora_segundos=3):
+    for _ in range(intentos):
+        time.sleep(demora_segundos)
+
+
+def _ejecutar_initsuc(max_reintentos=3, demora_segundos=3):
+    cmd = ["cmd", "/c", "InitSuc.bat", ENV, SUCURSAL]
+    for intento in range(1, max_reintentos + 1):
+        log_info(f"Ejecutando comando: InitSuc (intento {intento})")
+        resultado = subprocess.run(
+            cmd,
+            cwd=RUTA_INIT_SUC,
+            capture_output=True,
+            text=True,
+        )
+        stdout = (resultado.stdout or "").strip()
+        stderr = (resultado.stderr or "").strip()
+
+        if stdout:
+            log_info(f"InitSuc STDOUT: {stdout}")
+        if stderr:
+            log_error(f"InitSuc STDERR: {stderr}")
+
+        if resultado.returncode == 0:
+            return
+
+        if "Servicio main del proyecto post fuera de linea" in stdout:
+            if intento < max_reintentos:
+                print("InitSuc reportó servicio fuera de línea. Reintentando...")
+                time.sleep(demora_segundos)
+                continue
+
+        log_error(
+            f"Comando falló (InitSuc). STDOUT: {resultado.stdout} "
+            f"STDERR: {resultado.stderr}"
+        )
+        raise RuntimeError("Comando falló: InitSuc")
 
 
 def _aplicar_reemplazos_includes():
