@@ -78,6 +78,7 @@ def actualizar_diccionarios_por_integracion():
             ignore_stderr_substrings=[
                 "Source file 'C:\\moaproj\\password' not in directory path for project: post"
             ],
+            ignore_stderr_if_match=True,
         )
 
         print("Restaurando headers...")
@@ -208,7 +209,13 @@ def _copiar_contenido(origen, destino):
                 raise
 
 
-def _ejecutar_comando(cmd, descripcion, cwd=None, ignore_stderr_substrings=None):
+def _ejecutar_comando(
+    cmd,
+    descripcion,
+    cwd=None,
+    ignore_stderr_substrings=None,
+    ignore_stderr_if_match=False,
+):
     log_info(f"Ejecutando comando: {descripcion}")
     resultado = subprocess.run(
         cmd,
@@ -218,6 +225,7 @@ def _ejecutar_comando(cmd, descripcion, cwd=None, ignore_stderr_substrings=None)
     )
     stderr = resultado.stderr or ""
     ignore_stderr_substrings = ignore_stderr_substrings or []
+    hay_match = any(fragmento in stderr for fragmento in ignore_stderr_substrings)
     stderr_lineas = stderr.splitlines()
     stderr_filtrado = [
         linea
@@ -227,7 +235,9 @@ def _ejecutar_comando(cmd, descripcion, cwd=None, ignore_stderr_substrings=None)
     stderr_filtrado_texto = "\n".join(stderr_filtrado).strip()
 
     if resultado.returncode != 0:
-        if ignore_stderr_substrings and not stderr_filtrado_texto:
+        if ignore_stderr_if_match and hay_match:
+            log_info(f"Comando con warning ignorado ({descripcion}).")
+        elif ignore_stderr_substrings and not stderr_filtrado_texto:
             log_info(f"Comando con warning ignorado ({descripcion}).")
         else:
             log_error(
@@ -237,7 +247,7 @@ def _ejecutar_comando(cmd, descripcion, cwd=None, ignore_stderr_substrings=None)
             raise RuntimeError(f"Comando falló: {descripcion}")
     if resultado.stdout:
         log_info(f"{descripcion} STDOUT: {resultado.stdout.strip()}")
-    if stderr_filtrado_texto:
+    if stderr_filtrado_texto and not (ignore_stderr_if_match and hay_match):
         log_error(f"{descripcion} STDERR: {stderr_filtrado_texto}")
 
 
