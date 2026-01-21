@@ -24,7 +24,7 @@ RUTA_PASSWORD = os.path.join(BASE_MOAPROJ, "password")
 RUTA_INIT_SUC = os.path.join(BASE_MOAPROJ, "scripts", "InitSuc")
 RUTA_OPER_TEST = os.path.join(BASE_MOAPROJ, "scripts", "Oper_Test")
 
-SERVICIOS = ["CDS_post01gene", "CDS_post01main"]
+SERVICIOS = ["CDS_post01gene", "CDS_post01main", "RTBatch"]
 ENV = "post"
 SUCURSAL = "B0016"
 
@@ -75,6 +75,9 @@ def actualizar_diccionarios_por_integracion():
                 RUTA_PASSWORD,
             ],
             "Compilación de password",
+            ignore_stderr_substrings=[
+                "Source file 'C:\\moaproj\\password' not in directory path for project: post"
+            ],
         )
 
         print("Restaurando headers...")
@@ -205,7 +208,7 @@ def _copiar_contenido(origen, destino):
                 raise
 
 
-def _ejecutar_comando(cmd, descripcion, cwd=None):
+def _ejecutar_comando(cmd, descripcion, cwd=None, ignore_stderr_substrings=None):
     log_info(f"Ejecutando comando: {descripcion}")
     resultado = subprocess.run(
         cmd,
@@ -213,16 +216,29 @@ def _ejecutar_comando(cmd, descripcion, cwd=None):
         capture_output=True,
         text=True,
     )
+    stderr = resultado.stderr or ""
+    ignore_stderr_substrings = ignore_stderr_substrings or []
+    stderr_lineas = stderr.splitlines()
+    stderr_filtrado = [
+        linea
+        for linea in stderr_lineas
+        if not any(fragmento in linea for fragmento in ignore_stderr_substrings)
+    ]
+    stderr_filtrado_texto = "\n".join(stderr_filtrado).strip()
+
     if resultado.returncode != 0:
-        log_error(
-            f"Comando falló ({descripcion}). STDOUT: {resultado.stdout} "
-            f"STDERR: {resultado.stderr}"
-        )
-        raise RuntimeError(f"Comando falló: {descripcion}")
+        if ignore_stderr_substrings and not stderr_filtrado_texto:
+            log_info(f"Comando con warning ignorado ({descripcion}).")
+        else:
+            log_error(
+                f"Comando falló ({descripcion}). STDOUT: {resultado.stdout} "
+                f"STDERR: {resultado.stderr}"
+            )
+            raise RuntimeError(f"Comando falló: {descripcion}")
     if resultado.stdout:
         log_info(f"{descripcion} STDOUT: {resultado.stdout.strip()}")
-    if resultado.stderr:
-        log_error(f"{descripcion} STDERR: {resultado.stderr.strip()}")
+    if stderr_filtrado_texto:
+        log_error(f"{descripcion} STDERR: {stderr_filtrado_texto}")
 
 
 def _aplicar_reemplazos_includes():
