@@ -6,8 +6,6 @@ import glob
 import os
 import shutil
 import subprocess
-import time
-
 from utils import service_manager
 from utils.logger import log_info, log_error
 from compiler.includes_manager import obtener_reemplazos_generales
@@ -87,12 +85,18 @@ def actualizar_diccionarios_por_integracion():
         headers_backup = None
 
         print("Iniciando servicios...")
+        _log_estado_servicios("Estado previo al inicio")
         service_manager.iniciar_servicios(SERVICIOS)
-        print("Esperando a que los servicios estén disponibles...")
-        _esperar_servicios()
+        _log_estado_servicios("Estado posterior al inicio")
 
         print("Ejecutando InitSuc...")
-        _ejecutar_initsuc()
+        _log_cdsstat("main")
+        _log_cdsstat("gene")
+        _ejecutar_comando(
+            ["cmd", "/c", "InitSuc.bat", ENV, SUCURSAL],
+            "InitSuc",
+            cwd=RUTA_INIT_SUC,
+        )
 
         print("Ejecutando oper_test...")
         _ejecutar_comando(
@@ -250,43 +254,52 @@ def _ejecutar_comando(
         log_error(f"{descripcion} STDERR: {stderr_filtrado_texto}")
 
 
-def _esperar_servicios(intentos=5, demora_segundos=3):
-    for _ in range(intentos):
-        time.sleep(demora_segundos)
+def _log_estado_servicios(titulo):
+    log_info(titulo)
+    for servicio in SERVICIOS:
+        salida = _sc_query(servicio)
+        if salida:
+            log_info(f"{servicio} estado: {salida}")
+        else:
+            log_error(f"{servicio} sin respuesta en sc query")
 
 
-def _ejecutar_initsuc(max_reintentos=3, demora_segundos=3):
-    cmd = ["cmd", "/c", "InitSuc.bat", ENV, SUCURSAL]
-    for intento in range(1, max_reintentos + 1):
-        log_info(f"Ejecutando comando: InitSuc (intento {intento})")
+def _sc_query(servicio):
+    try:
         resultado = subprocess.run(
-            cmd,
-            cwd=RUTA_INIT_SUC,
+            ["sc", "query", servicio],
             capture_output=True,
             text=True,
         )
-        stdout = (resultado.stdout or "").strip()
-        stderr = (resultado.stderr or "").strip()
+    except Exception as exc:
+        log_error(f"Error consultando servicio {servicio}: {exc}")
+        return ""
 
-        if stdout:
-            log_info(f"InitSuc STDOUT: {stdout}")
-        if stderr:
-            log_error(f"InitSuc STDERR: {stderr}")
+    salida = resultado.stdout.strip()
+    if resultado.returncode != 0:
+        log_error(f"sc query falló para {servicio}: {resultado.stderr}")
+    return salida
 
-        if resultado.returncode == 0:
-            return
 
-        if "Servicio main del proyecto post fuera de linea" in stdout:
-            if intento < max_reintentos:
-                print("InitSuc reportó servicio fuera de línea. Reintentando...")
-                time.sleep(demora_segundos)
-                continue
-
-        log_error(
-            f"Comando falló (InitSuc). STDOUT: {resultado.stdout} "
-            f"STDERR: {resultado.stderr}"
+def _log_cdsstat(servicio):
+    cmd = ["cdsstat", f"-S{servicio}", f"-n{ENV}"]
+    try:
+        resultado = subprocess.run(
+            cmd,
+            capture_output=True,
+            text=True,
         )
-        raise RuntimeError("Comando falló: InitSuc")
+    except Exception as exc:
+        log_error(f"Error ejecutando cdsstat ({servicio}): {exc}")
+        return
+
+    stdout = (resultado.stdout or "").strip()
+    stderr = (resultado.stderr or "").strip()
+    if stdout:
+        log_info(f"cdsstat {servicio} STDOUT: {stdout}")
+    if stderr:
+        log_error(f"cdsstat {servicio} STDERR: {stderr}")
+    log_info(f"cdsstat {servicio} returncode: {resultado.returncode}")
 
 
 def _aplicar_reemplazos_includes():
