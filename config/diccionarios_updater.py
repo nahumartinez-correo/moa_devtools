@@ -6,33 +6,25 @@ import glob
 import os
 import shutil
 import subprocess
-import time
+
+from config.constants import (
+    RUTA_POST,
+    RUTA_GIT,
+    RUTA_CDSGENE_POST,
+    RUTA_CDSMAIN_POST,
+    RUTA_CDSGENE_GIT,
+    RUTA_CDSMAIN_GIT,
+    RUTA_PASSWORD,
+    SERVICIOS,
+)
+from config.includes_updater import aplicar_includes, revertir_includes
 from utils import service_manager
 from utils.logger import log_info, log_error
-from compiler.includes_manager import obtener_reemplazos_generales
-
-
-BASE_MOAPROJ = r"C:\moaproj"
-RUTA_POST = os.path.join(BASE_MOAPROJ, "post")
-RUTA_GIT = os.path.join(BASE_MOAPROJ, "Mosaic-gitlab")
-RUTA_GIT_SRC = os.path.join(RUTA_GIT, "src")
-RUTA_CDSGENE_POST = os.path.join(RUTA_POST, "cdsgene")
-RUTA_CDSMAIN_POST = os.path.join(RUTA_POST, "cdsmain")
-RUTA_CDSGENE_GIT = os.path.join(RUTA_GIT, "cdsgene")
-RUTA_CDSMAIN_GIT = os.path.join(RUTA_GIT, "cdsmain")
-RUTA_PASSWORD = os.path.join(BASE_MOAPROJ, "password")
-RUTA_INIT_SUC = os.path.join(BASE_MOAPROJ, "scripts", "InitSuc")
-RUTA_OPER_TEST = os.path.join(BASE_MOAPROJ, "scripts", "Oper_Test")
-
-SERVICIOS = ["CDS_post01gene", "CDS_post01main", "RTBatch"]
-ENV = "post"
-SUCURSAL = "B0016"
 
 
 def actualizar_diccionarios_por_integracion():
     log_info("Inicio de actualización de diccionarios por integración.")
     servicios_detenidos = False
-    headers_backup = None
     exito = False
 
     try:
@@ -62,7 +54,9 @@ def actualizar_diccionarios_por_integracion():
         _copiar_contenido(RUTA_CDSMAIN_GIT, RUTA_CDSMAIN_POST)
 
         print("Aplicando reemplazos de includes en headers...")
-        headers_backup = _aplicar_reemplazos_includes()
+        if not aplicar_includes():
+            log_error("No fue posible aplicar los includes.")
+            return False
 
         print("Compilando password...")
         _ejecutar_comando(
@@ -82,10 +76,12 @@ def actualizar_diccionarios_por_integracion():
         )
 
         print("Restaurando headers...")
-        _restaurar_headers(headers_backup)
-        headers_backup = None
+        if not revertir_includes():
+            log_error("No fue posible revertir los includes.")
+            return False
 
-        _ejecutar_bloque_scripts()
+        print("Iniciando servicios...")
+        service_manager.iniciar_servicios(SERVICIOS)
 
         exito = True
         log_info("Actualización de diccionarios finalizada correctamente.")
@@ -95,9 +91,9 @@ def actualizar_diccionarios_por_integracion():
         print("Ocurrió un error durante la actualización. Revisar logs.")
         return False
     finally:
-        if headers_backup:
+        if not exito:
             print("Restaurando headers tras error...")
-            _restaurar_headers(headers_backup)
+            revertir_includes()
         if servicios_detenidos and not exito:
             print("Intentando recuperar servicios...")
             log_info("Intentando iniciar servicios tras error.")
@@ -108,14 +104,11 @@ def _validar_rutas():
     rutas = [
         RUTA_POST,
         RUTA_GIT,
-        RUTA_GIT_SRC,
         RUTA_CDSGENE_POST,
         RUTA_CDSMAIN_POST,
         RUTA_CDSGENE_GIT,
         RUTA_CDSMAIN_GIT,
         RUTA_PASSWORD,
-        RUTA_INIT_SUC,
-        RUTA_OPER_TEST,
     ]
     for ruta in rutas:
         if not os.path.exists(ruta):
@@ -234,148 +227,3 @@ def _ejecutar_comando(
         log_info(f"{descripcion} STDOUT: {resultado.stdout.strip()}")
     if stderr_filtrado_texto and not (ignore_stderr_if_match and hay_match):
         log_error(f"{descripcion} STDERR: {stderr_filtrado_texto}")
-
-
-def _log_estado_servicios(titulo):
-    log_info(titulo)
-    for servicio in SERVICIOS:
-        salida = _sc_query(servicio)
-        if salida:
-            log_info(f"{servicio} estado: {salida}")
-        else:
-            log_error(f"{servicio} sin respuesta en sc query")
-
-
-def _sc_query(servicio):
-    try:
-        resultado = subprocess.run(
-            ["sc", "query", servicio],
-            capture_output=True,
-            text=True,
-        )
-    except Exception as exc:
-        log_error(f"Error consultando servicio {servicio}: {exc}")
-        return ""
-
-    salida = resultado.stdout.strip()
-    if resultado.returncode != 0:
-        log_error(f"sc query falló para {servicio}: {resultado.stderr}")
-    return salida
-
-
-def _log_cdsstat(servicio):
-    cmd = ["cdsstat", f"-S{servicio}", f"-n{ENV}"]
-    try:
-        resultado = subprocess.run(
-            cmd,
-            capture_output=True,
-            text=True,
-        )
-    except Exception as exc:
-        log_error(f"Error ejecutando cdsstat ({servicio}): {exc}")
-        return
-
-    stdout = (resultado.stdout or "").strip()
-    stderr = (resultado.stderr or "").strip()
-    if stdout:
-        log_info(f"cdsstat {servicio} STDOUT: {stdout}")
-    if stderr:
-        log_error(f"cdsstat {servicio} STDERR: {stderr}")
-    log_info(f"cdsstat {servicio} returncode: {resultado.returncode}")
-    return resultado.returncode
-
-
-def _esperar_cdsstat_listo(intervalo_segundos=2, max_intentos=10):
-    print("Esperando a que cdsstat esté disponible...")
-    for intento in range(1, max_intentos + 1):
-        print(f"Verificando cdsstat (intento {intento}/{max_intentos})...")
-        main_rc = _log_cdsstat("main")
-        gene_rc = _log_cdsstat("gene")
-        if main_rc == 0 and gene_rc == 0:
-            log_info("cdsstat disponible para main y gene.")
-            return
-        if intento < max_intentos:
-            time.sleep(intervalo_segundos)
-
-    log_error("cdsstat no estuvo disponible dentro del tiempo esperado.")
-    raise RuntimeError("cdsstat no estuvo disponible a tiempo")
-
-
-def _ejecutar_bloque_scripts():
-    print("Deteniendo servicios antes de ejecutar scripts...")
-    if not service_manager.detener_servicios(SERVICIOS):
-        log_error("No fue posible detener todos los servicios antes de scripts.")
-        raise RuntimeError("No se pudieron detener servicios para scripts")
-
-    print("Iniciando servicios...")
-    _log_estado_servicios("Estado previo al inicio")
-    service_manager.iniciar_servicios(SERVICIOS)
-    _log_estado_servicios("Estado posterior al inicio")
-
-    print("Ejecutando InitSuc...")
-    _esperar_cdsstat_listo()
-    _ejecutar_comando(
-        ["cmd", "/c", "InitSuc.bat", ENV, SUCURSAL],
-        "InitSuc",
-        cwd=RUTA_INIT_SUC,
-    )
-
-    print("Ejecutando oper_test...")
-    _ejecutar_comando(
-        ["perl", "oper_test.pl", ENV, SUCURSAL],
-        "oper_test",
-        cwd=RUTA_OPER_TEST,
-    )
-
-
-def _aplicar_reemplazos_includes():
-    reemplazos = obtener_reemplazos_generales("Mosaic-gitlab")
-    if not reemplazos:
-        return {}
-
-    headers_backup = {}
-    for root, _, files in os.walk(RUTA_GIT_SRC):
-        for nombre in files:
-            if not nombre.lower().endswith(".h"):
-                continue
-            ruta = os.path.join(root, nombre)
-            try:
-                with open(ruta, "r", encoding="utf-8", errors="ignore") as f:
-                    contenido = f.read()
-            except Exception as exc:
-                log_error(f"No fue posible leer {ruta}: {exc}")
-                raise
-
-            nuevo = contenido
-            cambios = 0
-            for viejo, nuevo_val in reemplazos.items():
-                if viejo in nuevo:
-                    cambios += nuevo.count(viejo)
-                nuevo = nuevo.replace(viejo, nuevo_val)
-
-            if cambios == 0 or nuevo == contenido:
-                continue
-
-            try:
-                with open(ruta, "w", encoding="utf-8") as f:
-                    f.write(nuevo)
-                headers_backup[ruta] = contenido
-                log_info(f"Header actualizado: {ruta}")
-            except Exception as exc:
-                log_error(f"No fue posible escribir {ruta}: {exc}")
-                raise
-
-    return headers_backup
-
-
-def _restaurar_headers(headers_backup):
-    if not headers_backup:
-        return
-
-    for ruta, contenido in headers_backup.items():
-        try:
-            with open(ruta, "w", encoding="utf-8") as f:
-                f.write(contenido)
-            log_info(f"Header restaurado: {ruta}")
-        except Exception as exc:
-            log_error(f"No se pudo restaurar {ruta}: {exc}")
