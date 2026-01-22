@@ -6,17 +6,17 @@
 CoordMode, Mouse, Screen
 
 ; --- CONFIGURACIÓN ---
-appPath := "D:\MOA\BIN\rt.exe"
-waitStartup := 10000          ; Tiempo de espera al iniciar (ms)
 delayClickDefault := 200    ; Tiempo entre clics por defecto (ms)
+delayShort := 100           ; Espera breve entre acciones (ms)
+delayMedium := 300          ; Espera media entre acciones (ms)
 logFile := "C:\MOA\Test\test_log.txt"   ; Ruta del log
-pythonScript := "C:\MOA\Test\Simulador_MP\Simulador_MP.py"
+
+pesoEnvio := 100
+montoEfectivo := 10000
+montoTarjeta := 220000
+cuotasPago := 1
 
 ; --- COORDENADAS ---
-
-; Botón para abrir la caja
-btnCaja_X := 160,  btnCaja_Y := 55
-msgBoxBrowser_X := 1050,  msgBoxBrowser_Y := 590
 
 ; Controles para identificar al cliente
 btnIdentificarCliente_X := 655,  btnIdentificarCliente_Y := 500
@@ -85,27 +85,8 @@ FileCreateDir, %logDir%
 Log("==============================================")
 Log("Inicio del test: Venta carta simple internacional")
 
-; --- Levantar servidor Python en paralelo con consola visible ---
-;Log("Iniciando script Python: " . pythonScript)
-;Run, cmd.exe /k "python.exe ""%pythonScript%"""
-;Log("Servidor Python iniciado (consola visible).")
-
-Run, %appPath%
-Log("Aplicación iniciada.")
-Sleep, %waitStartup%
-
 ; -----------------------
-; 1) Se abre la caja
-; -----------------------
-
-; Se presiona el botón del menú superior -  F2 Caja
-ClickBtn(btnCaja_X, btnCaja_Y, , "F2 Caja")
-
-; Se cancela el MsgBox que indica que me falta la tabla Browser
-ClickBtn(msgBoxBrowser_X, msgBoxBrowser_Y, , "Cerrar MsgBox Browser")
-
-; -----------------------
-; 2) Se identifica al cliente
+; 1) Se identifica al cliente
 ; -----------------------
 
 ; Se presiona el botón del menú lateral - Identificar cliente
@@ -151,13 +132,13 @@ ClickBtn(textBoxPeso_X, textBoxPeso_Y, , "Ingreso del peso")
 
 ; Se borra contenido anterior
 Send, ^a
-Sleep, 100
+Sleep, %delayShort%
 Send, {Del}
-Sleep, 100
+Sleep, %delayShort%
 
 ; Se ingresa el nuevo valor
-Send, 100
-Sleep, 300
+Send, %pesoEnvio%
+Sleep, %delayMedium%
 
 ; Se da Enter para confirmar la operación
 Send, {Enter}
@@ -180,26 +161,26 @@ ClickBtn(textBoxEfectivo_X, textBoxEfectivo_Y, , "Ingreso de monto en efectivo")
 
 ; Se borra contenido anterior
 Send, ^a
-Sleep, 100
+Sleep, %delayShort%
 Send, {Del}
-Sleep, 100
+Sleep, %delayShort%
 
 ; Se ingresa el nuevo valor
-Send, 10000
-Sleep, 300
+Send, %montoEfectivo%
+Sleep, %delayMedium%
 
 ; Se selecciona el control para ingresar el monto pagado con las tarjetas
 ClickBtn(textBoxTarjeta_X, textBoxTarjeta_Y, , "Ingreso de monto con tarjeta")
 
 ; Se borra contenido anterior
 Send, ^a
-Sleep, 100
+Sleep, %delayShort%
 Send, {Del}
-Sleep, 100
+Sleep, %delayShort%
 
 ; Se ingresa el nuevo valor
-Send, 220000
-Sleep, 300
+Send, %montoTarjeta%
+Sleep, %delayMedium%
 
 ; Se da Enter para confirmar la operación
 Send, {Enter}
@@ -231,13 +212,13 @@ ClickBtn(textBoxCuotas_X, textBoxCuotas_Y, , "Cuotas del pago")
 
 ; Se borra contenido anterior
 Send, ^a
-Sleep, 100
+Sleep, %delayShort%
 Send, {Del}
-Sleep, 100
+Sleep, %delayShort%
 
 ; Se ingresa el nuevo valor
-Send, 1
-Sleep, 300
+Send, %cuotasPago%
+Sleep, %delayMedium%
 
 ; Se da Enter para confirmar la operación
 Send, {Enter}
