@@ -302,6 +302,11 @@ def _esperar_cdsstat_listo(intervalo_segundos=2, max_intentos=10):
 
 
 def _ejecutar_bloque_scripts():
+    print("Deteniendo servicios antes de ejecutar scripts...")
+    if not service_manager.detener_servicios(SERVICIOS):
+        log_error("No fue posible detener todos los servicios antes de scripts.")
+        raise RuntimeError("No se pudieron detener servicios para scripts")
+
     print("Iniciando servicios...")
     _log_estado_servicios("Estado previo al inicio")
     service_manager.iniciar_servicios(SERVICIOS)
