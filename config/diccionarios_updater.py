@@ -6,6 +6,7 @@ import glob
 import os
 import shutil
 import subprocess
+import time
 from utils import service_manager
 from utils.logger import log_info, log_error
 from compiler.includes_manager import obtener_reemplazos_generales
@@ -90,8 +91,7 @@ def actualizar_diccionarios_por_integracion():
         _log_estado_servicios("Estado posterior al inicio")
 
         print("Ejecutando InitSuc...")
-        _log_cdsstat("main")
-        _log_cdsstat("gene")
+        _esperar_cdsstat_listo()
         _ejecutar_comando(
             ["cmd", "/c", "InitSuc.bat", ENV, SUCURSAL],
             "InitSuc",
@@ -300,6 +300,23 @@ def _log_cdsstat(servicio):
     if stderr:
         log_error(f"cdsstat {servicio} STDERR: {stderr}")
     log_info(f"cdsstat {servicio} returncode: {resultado.returncode}")
+    return resultado.returncode
+
+
+def _esperar_cdsstat_listo(intervalo_segundos=2, max_intentos=10):
+    print("Esperando a que cdsstat esté disponible...")
+    for intento in range(1, max_intentos + 1):
+        print(f"Verificando cdsstat (intento {intento}/{max_intentos})...")
+        main_rc = _log_cdsstat("main")
+        gene_rc = _log_cdsstat("gene")
+        if main_rc == 0 and gene_rc == 0:
+            log_info("cdsstat disponible para main y gene.")
+            return
+        if intento < max_intentos:
+            time.sleep(intervalo_segundos)
+
+    log_error("cdsstat no estuvo disponible dentro del tiempo esperado.")
+    raise RuntimeError("cdsstat no estuvo disponible a tiempo")
 
 
 def _aplicar_reemplazos_includes():
