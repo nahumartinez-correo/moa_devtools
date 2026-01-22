@@ -35,6 +35,7 @@ class Responder:
         self.parsed = parsed_message
         self.interactivo = interactivo
         self.condicion = condicion
+        self.skip_response = False  # Permite a los responders suprimir la respuesta completa.
 
         self.fields_copy = dict(self.parsed.get("parsed_fields", {}))
 
@@ -190,6 +191,10 @@ class Responder:
         else:
             self.activar_bit_en_bitmap(105)
             self.procesar_campo(codigo, 105)
+
+        if getattr(self, "skip_response", False):
+            log("[INFO] Respuesta suprimida por configuración del responder (skip_response=True).")
+            return b""
 
         new_bitmap = self.bitmap_int.to_bytes(16, "big")
         new_mti = b"\x02\x10"
