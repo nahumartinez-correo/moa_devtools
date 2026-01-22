@@ -85,25 +85,7 @@ def actualizar_diccionarios_por_integracion():
         _restaurar_headers(headers_backup)
         headers_backup = None
 
-        print("Iniciando servicios...")
-        _log_estado_servicios("Estado previo al inicio")
-        service_manager.iniciar_servicios(SERVICIOS)
-        _log_estado_servicios("Estado posterior al inicio")
-
-        print("Ejecutando InitSuc...")
-        _esperar_cdsstat_listo()
-        _ejecutar_comando(
-            ["cmd", "/c", "InitSuc.bat", ENV, SUCURSAL],
-            "InitSuc",
-            cwd=RUTA_INIT_SUC,
-        )
-
-        print("Ejecutando oper_test...")
-        _ejecutar_comando(
-            ["perl", "oper_test.pl", ENV, SUCURSAL],
-            "oper_test",
-            cwd=RUTA_OPER_TEST,
-        )
+        _ejecutar_bloque_scripts()
 
         exito = True
         log_info("Actualización de diccionarios finalizada correctamente.")
@@ -317,6 +299,28 @@ def _esperar_cdsstat_listo(intervalo_segundos=2, max_intentos=10):
 
     log_error("cdsstat no estuvo disponible dentro del tiempo esperado.")
     raise RuntimeError("cdsstat no estuvo disponible a tiempo")
+
+
+def _ejecutar_bloque_scripts():
+    print("Iniciando servicios...")
+    _log_estado_servicios("Estado previo al inicio")
+    service_manager.iniciar_servicios(SERVICIOS)
+    _log_estado_servicios("Estado posterior al inicio")
+
+    print("Ejecutando InitSuc...")
+    _esperar_cdsstat_listo()
+    _ejecutar_comando(
+        ["cmd", "/c", "InitSuc.bat", ENV, SUCURSAL],
+        "InitSuc",
+        cwd=RUTA_INIT_SUC,
+    )
+
+    print("Ejecutando oper_test...")
+    _ejecutar_comando(
+        ["perl", "oper_test.pl", ENV, SUCURSAL],
+        "oper_test",
+        cwd=RUTA_OPER_TEST,
+    )
 
 
 def _aplicar_reemplazos_includes():
