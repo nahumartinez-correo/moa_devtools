@@ -13,17 +13,23 @@ ENCABEZADO_PRUEBAS = "MOA DevTools - PRUEBAS AUTOMÁTICAS"
 
 
 def obtener_lista_tests():
-    """Obtiene los archivos .ahk válidos (que comiencen con 'test_')."""
+    """Obtiene los archivos .ahk válidos (test_ o NN.)."""
     carpeta_tests = os.path.join(os.path.dirname(__file__), "codes")
     tests = []
 
     for nombre in os.listdir(carpeta_tests):
-        if nombre.lower().startswith("test_") and nombre.lower().endswith(".ahk"):
+        nombre_lower = nombre.lower()
+        es_test = nombre_lower.startswith("test_")
+        es_preparacion = len(nombre_lower) >= 4 and nombre_lower[0].isdigit() and nombre_lower[1].isdigit() and nombre_lower[2:4] == ". "
+        if (es_test or es_preparacion) and nombre_lower.endswith(".ahk"):
             ruta = os.path.join(carpeta_tests, nombre)
-            nombre_legible = (
-                "Test - "
-                + nombre[5:-4].replace("_", " ").capitalize()
-            )
+            if es_preparacion:
+                nombre_legible = nombre[:-4]
+            else:
+                nombre_legible = (
+                    "Test - "
+                    + nombre[5:-4].replace("_", " ").capitalize()
+                )
             tests.append((nombre_legible, ruta))
     return sorted(tests, key=lambda x: x[0].lower())
 
