@@ -9,7 +9,7 @@ CoordMode, Mouse, Screen
 delayClickDefault := 200    ; Tiempo entre clics por defecto (ms)
 delayShort := 100           ; Espera breve entre acciones (ms)
 delayMedium := 300          ; Espera media entre acciones (ms)
-logFile := "C:\MOA\Test\test_log.txt"   ; Ruta del log
+logFile := "C:\moa_devtools\logs\test_log.txt"   ; Ruta del log
 
 pesoEnvio := 100
 montoEfectivo := 10000

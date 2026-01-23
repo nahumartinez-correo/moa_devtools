@@ -9,7 +9,7 @@ CoordMode, Mouse, Screen
 appPath := "D:\MOA\BIN\rt.exe"
 waitStartup := 10000          ; Tiempo de espera al iniciar (ms)
 delayClickDefault := 200      ; Tiempo entre clics por defecto (ms)
-logFile := "C:\MOA\Test\test_log.txt"   ; Ruta del log
+logFile := "C:\moa_devtools\logs\test_log.txt"   ; Ruta del log
 
 ; --- COORDENADAS ---
 btnCaja_X := 160,  btnCaja_Y := 55

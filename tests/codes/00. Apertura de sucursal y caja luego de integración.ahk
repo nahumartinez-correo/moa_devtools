@@ -10,7 +10,7 @@ rtCommand := "rt -npost -c"
 waitStartup := 10000          ; Tiempo de espera al iniciar (ms)
 waitPostMensajes := 3000      ; Tiempo de espera después de mensajes (ms)
 delayClickDefault := 200      ; Tiempo entre clics por defecto (ms)
-logFile := "C:\MOA\Test\test_log.txt"   ; Ruta del log
+logFile := "C:\moa_devtools\logs\test_log.txt"   ; Ruta del log
 
 ; --- COORDENADAS ---
 btnAfip_X := 1124, btnAfip_Y := 605
