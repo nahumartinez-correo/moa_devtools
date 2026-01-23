@@ -59,12 +59,6 @@ ClickBtn(x, y, delay := 0, label := "") {
     Sleep, % (delay ? delay : delayClickDefault)
 }
 
-; Pausar/Reanudar ejecución con F9
-F9::
-    Pause, Toggle, 1
-    Log("Se alterna el estado de pausa con F9.")
-return
-
 ; -----------------------
 ; --- INICIO DEL TEST ---
 ; -----------------------

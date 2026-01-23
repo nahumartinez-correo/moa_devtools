@@ -8,7 +8,7 @@ CoordMode, Mouse, Screen
 ; --- CONFIGURACIÓN ---
 rtCommand := "rt -npost -c"
 waitStartup := 10000          ; Tiempo de espera al iniciar (ms)
-waitPostMensajes := 3000      ; Tiempo de espera después de mensajes (ms)
+waitPostMensajes := 5000      ; Tiempo de espera después de mensajes (ms)
 delayClickDefault := 200      ; Tiempo entre clics por defecto (ms)
 logFile := "C:\moa_devtools\logs\test_log.txt"   ; Ruta del log
 
