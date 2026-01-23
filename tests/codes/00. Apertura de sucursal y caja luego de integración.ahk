@@ -55,7 +55,7 @@ Log("Inicio del script: Apertura de sucursal y caja luego de integración")
 
 ; 1) Levantar el RT sin conexión desde una terminal
 Log("Se inicia el RT sin conexión.")
-Run, cmd.exe /c "%rtCommand%"
+Run, cmd.exe /c "%rtCommand%", , , rtPid
 Sleep, %waitStartup%
 
 ; 3) Cartel de AFIP
@@ -123,6 +123,7 @@ Log("Se confirma la apertura de caja.")
 Send, {Enter}
 
 Log("Script finalizado correctamente.")
-MsgBox, 64, Finalizado, Apertura de sucursal y caja completada.
+Log("Se cierra la consola que lanzó el RT.")
+Process, Close, %rtPid%
 
 ExitApp
