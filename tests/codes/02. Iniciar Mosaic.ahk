@@ -1,5 +1,5 @@
 ﻿; =========================================================
-; Script: 01. Iniciar Mosaic.ahk
+; Script: 02. Iniciar Mosaic.ahk
 ; Inicializa Mosaic, espera el arranque y abre la caja
 ; =========================================================
 
@@ -8,10 +8,12 @@ CoordMode, Mouse, Screen
 ; --- CONFIGURACIÓN ---
 appPath := "D:\MOA\BIN\rt.exe"
 waitStartup := 10000          ; Tiempo de espera al iniciar (ms)
+waitAfterStart := 3000        ; Tiempo de espera tras abrir caja (ms)
 delayClickDefault := 200      ; Tiempo entre clics por defecto (ms)
 logFile := "C:\moa_devtools\logs\test_log.txt"   ; Ruta del log
 
 ; --- COORDENADAS ---
+btnAfip_X := 1124,  btnAfip_Y := 605
 btnCaja_X := 160,  btnCaja_Y := 55
 
 ; --- FUNCIONES AUXILIARES ---
@@ -47,10 +49,14 @@ Run, %appPath%
 Log("Aplicación iniciada.")
 Sleep, %waitStartup%
 
+; 3) Cartel de AFIP
+ClickBtn(btnAfip_X, btnAfip_Y, , "Cartel AFIP")
+
 ; Se presiona el botón del menú superior - F2 Caja
 ClickBtn(btnCaja_X, btnCaja_Y, , "F2 Caja")
 
+Sleep, %waitAfterStart%
+
 Log("Script finalizado correctamente.")
-MsgBox, 64, Finalizado, Mosaic iniciado y caja abierta correctamente.
 
 ExitApp

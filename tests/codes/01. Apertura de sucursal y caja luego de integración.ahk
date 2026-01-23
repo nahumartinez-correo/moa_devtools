@@ -1,5 +1,5 @@
 ﻿; =====================================================================
-; Script: 00. Apertura de sucursal y caja luego de integración.ahk
+; Script: 01. Apertura de sucursal y caja luego de integración.ahk
 ; Automatiza la apertura inicial de sucursal y caja luego de integración
 ; =====================================================================
 
