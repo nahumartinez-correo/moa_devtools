@@ -29,6 +29,7 @@ btnConfirmar_X := 650, btnConfirmar_Y := 500
 btnMediosPago_X := 40, btnMediosPago_Y := 350
 btnTarjetas_X := 550, btnTarjetas_Y := 220
 btnMontoTarjeta_X := 600, btnMontoTarjeta_Y := 350
+btnFocoVentana_X := 40, btnFocoVentana_Y := 250
 btnCodigosInternos_X := 180, btnCodigosInternos_Y := 350
 btnMercadoPago_X := 400, btnMercadoPago_Y := 150
 btnPointCredito_X := 400, btnPointCredito_Y := 150
@@ -58,6 +59,12 @@ ClickBtn(x, y, delay := 0, label := "") {
     Sleep, % (delay ? delay : delayClickDefault)
 }
 
+; Pausar/Reanudar ejecución con F9
+F9::
+    Pause, Toggle, 1
+    Log("Se alterna el estado de pausa con F9.")
+return
+
 ; -----------------------
 ; --- INICIO DEL TEST ---
 ; -----------------------
@@ -68,6 +75,9 @@ FileCreateDir, %logDir%
 
 Log("==============================================")
 Log("Inicio del test: Venta carta simple SON Smart Point")
+
+; 0) Poner en foco la ventana principal si quedó tapada por el simulador
+ClickBtn(btnFocoVentana_X, btnFocoVentana_Y, , "Foco ventana principal")
 
 ; 1) Identificar al cliente
 ClickBtn(btnIdentificarCliente_X, btnIdentificarCliente_Y, , "Identificar cliente")
