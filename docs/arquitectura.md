@@ -5,6 +5,9 @@ principales, el flujo de trabajo esperado y las dependencias operativas que se
 asumen para ejecutar las herramientas de compilación, configuración, pruebas y
 simulación.
 
+Nota operativa: este contenido debe actualizarse cuando se incorporen nuevos
+módulos o dependencias relevantes.
+
 ------------------------------------------------------------
 1. Visión general
 ------------------------------------------------------------
