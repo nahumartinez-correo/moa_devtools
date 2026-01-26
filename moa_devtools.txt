@@ -58,6 +58,8 @@ moa_devtools
 |   |   |
 |   |   |-- 02. Iniciar Mosaic.ahk
 |   |   |
+|   |   |-- test_refund_operacion_simple_con_smart_point.ahk
+|   |   |
 |   |   |-- test_venta_carta_simple_con_smart_point.ahk
 |   |
 |   |-- set_up_tests
