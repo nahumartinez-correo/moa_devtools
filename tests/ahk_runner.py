@@ -13,17 +13,23 @@ ENCABEZADO_PRUEBAS = "MOA DevTools - PRUEBAS AUTOMÁTICAS"
 
 
 def obtener_lista_tests():
-    """Obtiene los archivos .ahk válidos (que comiencen con 'test_')."""
+    """Obtiene los archivos .ahk válidos (test_ o NN.)."""
     carpeta_tests = os.path.join(os.path.dirname(__file__), "codes")
     tests = []
 
     for nombre in os.listdir(carpeta_tests):
-        if nombre.lower().startswith("test_") and nombre.lower().endswith(".ahk"):
+        nombre_lower = nombre.lower()
+        es_test = nombre_lower.startswith("test_")
+        es_preparacion = len(nombre_lower) >= 4 and nombre_lower[0].isdigit() and nombre_lower[1].isdigit() and nombre_lower[2:4] == ". "
+        if (es_test or es_preparacion) and nombre_lower.endswith(".ahk"):
             ruta = os.path.join(carpeta_tests, nombre)
-            nombre_legible = (
-                "Test - "
-                + nombre[5:-4].replace("_", " ").capitalize()
-            )
+            if es_preparacion:
+                nombre_legible = nombre[:-4]
+            else:
+                nombre_legible = (
+                    "Test - "
+                    + nombre[5:-4].replace("_", " ").capitalize()
+                )
             tests.append((nombre_legible, ruta))
     return sorted(tests, key=lambda x: x[0].lower())
 
@@ -82,8 +88,12 @@ def ejecutar_test(ruta_test, nombre_legible):
     limpiar_consola(ENCABEZADO_PRUEBAS)
     print(f"🧪 Ejecutando {nombre_legible}...\n")
 
-    nombre_prueba = os.path.splitext(os.path.basename(ruta_test))[0]
+    nombre_archivo = os.path.basename(ruta_test)
+    nombre_prueba = os.path.splitext(nombre_archivo)[0]
     tiene_setup = preparar_entorno_tablas(nombre_prueba)
+
+    if nombre_archivo.lower().startswith("test_"):
+        ejecutar_inicio_mosaic()
 
     # 🔹 Logs de control de simuladores
     usar_simulador = session_state.get_usar_simulador()
@@ -132,6 +142,25 @@ def ejecutar_test(ruta_test, nombre_legible):
         restaurar_entorno_tablas(nombre_prueba)
 
     input("\nPresione ENTER para volver al menú de pruebas...")
+
+
+def ejecutar_inicio_mosaic():
+    """Ejecuta el script de inicio de Mosaic si existe."""
+    ruta_script = os.path.join(os.path.dirname(__file__), "codes", "02. Iniciar Mosaic.ahk")
+    if not os.path.isfile(ruta_script):
+        return
+
+    print("🚀 Iniciando Mosaic antes de la prueba...\n")
+    try:
+        subprocess.run(["AutoHotkey.exe", ruta_script], check=True, text=True)
+        print("\n✅ Mosaic iniciado correctamente.\n")
+    except FileNotFoundError:
+        print("❌ No se encontró AutoHotkey.exe en el PATH del sistema.")
+        print("Instálelo o agregue su ruta a las variables de entorno.")
+    except subprocess.CalledProcessError:
+        print("\n⚠️  Error al iniciar Mosaic.\n")
+    except Exception as e:
+        print(f"\n⚠️  No se pudo iniciar Mosaic: {e}\n")
 
 
 def menu_pruebas():
