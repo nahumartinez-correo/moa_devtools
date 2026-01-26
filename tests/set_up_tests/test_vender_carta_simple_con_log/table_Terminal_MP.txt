@@ -1,4 +1,0 @@
-gene
-post:adt_tmp_termi_win|C1274AGEW0152|post:adt_tmp_device_name|QZ0053105|post:adt_tmp_ext_ref|QRZ0053W105|post:adt_tmp_codint_sap|130410|post:adt_tmp_codint_mp|MPC|post:adt_tmp_tipo_ope|CO|post:adt_tmp_term_type|NEWLAND_N950|post:adt_tmp_dev_serial|N950NCBB02160147
-post:adt_tmp_termi_win|C1274AGEW0152|post:adt_tmp_device_name|QZ0053105|post:adt_tmp_ext_ref|QRZ0053W105|post:adt_tmp_codint_sap|130410|post:adt_tmp_codint_mp|MPD|post:adt_tmp_tipo_ope|CO|post:adt_tmp_term_type|NEWLAND_N950|post:adt_tmp_dev_serial|N950NCBB02160147
-post:adt_tmp_termi_win|C1274AGEW0152|post:adt_tmp_device_name|QZ0053105|post:adt_tmp_ext_ref|QRZ0053W105|post:adt_tmp_codint_sap|130410|post:adt_tmp_codint_mp|QRI|post:adt_tmp_tipo_ope|CO

@@ -44,13 +44,15 @@ moa_devtools
 |   |
 |   |-- codes
 |   |   |
-|   |   |-- test_vender_carta_simple_con_log.ahk
+|   |   |-- test_venta_carta_simple_con_smart_point.ahk
 |   |
 |   |-- set_up_tests
 |       |
-|       |-- test_vender_carta_simple_con_log
+|       |-- test_venta_carta_simple_con_smart_point
 |           |
 |           |-- simulators.txt
+|           |
+|           |-- table_CodInt.txt
 |           |
 |           |-- table_Tarjeta_POS.txt
 |           |
