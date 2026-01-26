@@ -10,9 +10,12 @@ appPath := "D:\MOA\BIN\rt.exe"
 waitStartup := 10000          ; Tiempo de espera al iniciar (ms)
 delayClickDefault := 200      ; Tiempo entre clics por defecto (ms)
 delayShort := 200             ; Espera breve entre acciones (ms)
+delayMedium := 1000         ; Espera media entre acciones (ms)
+delayLong := 3000          ; Espera larga entre acciones (ms)
 logFile := "C:\moa_devtools\logs\test_log.txt"   ; Ruta del log
 
 ; --- COORDENADAS ---
+btnFocoVentana_X := 40, btnFocoVentana_Y := 250
 btnMenuActividades_X := 470, btnMenuActividades_Y := 60
 btnAnulacionDocs_X := 275, btnAnulacionDocs_Y := 385
 btnDesplegarDocumentos_X := 780, btnDesplegarDocumentos_Y := 145
@@ -56,10 +59,8 @@ FileCreateDir, %logDir%
 Log("==============================================")
 Log("Inicio del test: Refund de operación simple con Smart Point")
 
-; 1) Levantar Mosaic
-Run, %appPath%
-Log("Aplicación iniciada.")
-Sleep, %waitStartup%
+; 0) Poner en foco la ventana principal si quedó tapada por el simulador
+ClickBtn(btnFocoVentana_X, btnFocoVentana_Y, , "Foco ventana principal")
 
 ; 2) Menú actividades
 ClickBtn(btnMenuActividades_X, btnMenuActividades_Y, , "Menú actividades")
@@ -91,21 +92,27 @@ ClickBtn(btnFocoVentanaPrincipal_X, btnFocoVentanaPrincipal_Y, , "Foco ventana p
 
 ; 11) Confirmar operación
 Send, {Enter}
-Sleep, %delayShort%
+Sleep, %delayLong%
 
 ; 12) Confirmar impresión del ticket
 ClickBtn(btnConfirmarTicket_X, btnConfirmarTicket_Y, , "Confirmar ticket")
 
-; 13) Aceptar CAI vencido
-ClickBtn(btnAceptarCaiVencido_X, btnAceptarCaiVencido_Y, , "Aceptar CAI vencido")
-
-; 14) Poner en foco nuevamente la ventana principal
+; 13) Poner en foco nuevamente la ventana principal
 ClickBtn(btnFocoVentanaPrincipal2_X, btnFocoVentanaPrincipal2_Y, , "Foco ventana principal")
 
-; 15) Confirmar nota de crédito
+; 14) Aceptar CAI vencido
+Sleep, %delayMedium%
+ClickBtn(btnAceptarCaiVencido_X, btnAceptarCaiVencido_Y, , "Aceptar CAI vencido")
+Sleep, %delayMedium%
+
+; 15) Poner en foco nuevamente la ventana principal
+ClickBtn(btnFocoVentanaPrincipal2_X, btnFocoVentanaPrincipal2_Y, , "Foco ventana principal")
+
+; 16) Confirmar nota de crédito
+Sleep, %delayLong%
 ClickBtn(btnConfirmarNotaCredito_X, btnConfirmarNotaCredito_Y, , "Confirmar nota de crédito")
 
-; 16) Volver al menú inicial
+; 17) Volver al menú inicial
 ClickBtn(btnMenuInicial_X, btnMenuInicial_Y, , "Menú inicial")
 
 Log("Test finalizado correctamente.")

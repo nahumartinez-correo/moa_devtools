@@ -120,6 +120,8 @@ Send, {Enter}
 Sleep, %delayMedium%
 Send, {Enter}
 Sleep, %delayLong%
+Sleep, %delayMedium%
+Sleep, %delayMedium%
 
 ; 7) Resolución de impresión
 ClickBtn(btnErrorImpresora_X, btnErrorImpresora_Y, , "Error de impresora")
