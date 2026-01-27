@@ -1,0 +1,5 @@
+gene
+post:adt_codint_mp|06|post:adt_codint_cod|130410|post:adt_codint_desc|MERCADO PAGO
+post:adt_codint_mp|07|post:adt_codint_cod|140001|post:adt_codint_desc|PAGO MIS CUENTAS
+post:adt_codint_mp|07|post:adt_codint_cod|140002|post:adt_codint_desc|PAGO LINK
+
