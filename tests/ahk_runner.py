@@ -137,9 +137,11 @@ def ejecutar_test(ruta_test, nombre_legible):
     except Exception as e:
         print(f"❌ Error al ejecutar la prueba: {e}")
         log_error(str(e))
-
-    if tiene_setup:
-        restaurar_entorno_tablas(nombre_prueba)
+    finally:
+        if tiene_setup:
+            restaurar_entorno_tablas(nombre_prueba)
+        if usar_simulador:
+            simulators_manager.detener_simuladores()
 
     input("\nPresione ENTER para volver al menú de pruebas...")
 
