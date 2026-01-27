@@ -1,5 +1,5 @@
 ﻿; =========================================================
-; Script: test_venta_carta_simple_son_smart_point.ahk
+; Script: test_venta_carta_simple_con_smart_point.ahk
 ; Automatiza venta de carta simple con Smart Point
 ; =========================================================
 
@@ -68,7 +68,7 @@ SplitPath, logFile, , logDir
 FileCreateDir, %logDir%
 
 Log("==============================================")
-Log("Inicio del test: Venta carta simple SON Smart Point")
+Log("Inicio del test: Venta carta simple con Smart Point")
 
 ; 0) Poner en foco la ventana principal si quedó tapada por el simulador
 ClickBtn(btnFocoVentana_X, btnFocoVentana_Y, , "Foco ventana principal")
@@ -120,6 +120,8 @@ Send, {Enter}
 Sleep, %delayMedium%
 Send, {Enter}
 Sleep, %delayLong%
+Sleep, %delayMedium%
+Sleep, %delayMedium%
 
 ; 7) Resolución de impresión
 ClickBtn(btnErrorImpresora_X, btnErrorImpresora_Y, , "Error de impresora")
