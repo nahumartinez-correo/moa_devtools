@@ -110,6 +110,7 @@ ClickBtn(btnFocoVentanaPrincipal2_X, btnFocoVentanaPrincipal2_Y, , "Foco ventana
 
 ; 16) Confirmar nota de crédito
 Sleep, %delayLong%
+Sleep, %delayLong%
 ClickBtn(btnConfirmarNotaCredito_X, btnConfirmarNotaCredito_Y, , "Confirmar nota de crédito")
 
 ; 17) Volver al menú inicial
