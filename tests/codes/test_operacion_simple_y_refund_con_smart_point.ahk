@@ -15,6 +15,7 @@ delayLongVenta := 10000       ; Espera larga entre acciones (ms)
 delayShortRefund := 200       ; Espera breve entre acciones (ms)
 delayMediumRefund := 1000     ; Espera media entre acciones (ms)
 delayLongRefund := 3000       ; Espera larga entre acciones (ms)
+delayMedium := 1000           ; Espera media entre acciones (ms)
 logFile := "C:\moa_devtools\logs\test_log.txt"   ; Ruta del log
 
 pesoCarta := 20
@@ -45,6 +46,7 @@ btnErrorImpresora_X := 1050, btnErrorImpresora_Y := 600
 btnFocoVenta_X := 450, btnFocoVenta_Y := 350
 btnConfirmarTicketVenta_X := 950, btnConfirmarTicketVenta_Y := 600
 btnMenuAnterior_X := 270, btnMenuAnterior_Y := 470
+btnSalir_X := 700, btnSalir_Y := 550
 btnMenuActividades_X := 470, btnMenuActividades_Y := 60
 btnAnulacionDocs_X := 275, btnAnulacionDocs_Y := 385
 btnDesplegarDocumentos_X := 780, btnDesplegarDocumentos_Y := 145
@@ -207,4 +209,16 @@ ClickBtn(btnConfirmarNotaCredito_X, btnConfirmarNotaCredito_Y, , "Confirmar nota
 ClickBtn(btnMenuInicial_X, btnMenuInicial_Y, , "Menú inicial")
 
 Log("Test finalizado correctamente.")
+
+btnMenuAnterior_X := 280, btnMenuAnterior_Y := 450
+
+; 24) Se aguarda que se actualice la interfaz
+Sleep, %delayMedium%
+
+; 25) Se hace click en Menú anterior
+ClickBtn(btnMenuAnterior_X, btnMenuAnterior_Y, , "Menú anterior")
+
+; 26) Se hace click en Salir
+ClickBtn(btnSalir_X, btnSalir_Y, , "Salir")
+
 ExitApp

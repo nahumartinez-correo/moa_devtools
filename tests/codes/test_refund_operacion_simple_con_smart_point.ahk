@@ -29,6 +29,8 @@ btnAceptarCaiVencido_X := 1050, btnAceptarCaiVencido_Y := 590
 btnFocoVentanaPrincipal2_X := 20, btnFocoVentanaPrincipal2_Y := 100
 btnConfirmarNotaCredito_X := 1000, btnConfirmarNotaCredito_Y := 590
 btnMenuInicial_X := 300, btnMenuInicial_Y := 450
+btnMenuAnterior_X := 280, btnMenuAnterior_Y := 450
+btnSalir_X := 700, btnSalir_Y := 550
 
 ; --- FUNCIONES AUXILIARES ---
 
@@ -117,4 +119,14 @@ ClickBtn(btnConfirmarNotaCredito_X, btnConfirmarNotaCredito_Y, , "Confirmar nota
 ClickBtn(btnMenuInicial_X, btnMenuInicial_Y, , "Menú inicial")
 
 Log("Test finalizado correctamente.")
+
+; 18) Se aguarda que se actualice la interfaz
+Sleep, %delayMedium%
+
+; 19) Se hace click en Menú anterior
+ClickBtn(btnMenuAnterior_X, btnMenuAnterior_Y, , "Menú anterior")
+
+; 20) Se hace click en Salir
+ClickBtn(btnSalir_X, btnSalir_Y, , "Salir")
+
 ExitApp
