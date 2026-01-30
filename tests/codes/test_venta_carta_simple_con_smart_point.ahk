@@ -71,9 +71,6 @@ FileCreateDir, %logDir%
 Log("==============================================")
 Log("Inicio del test: Venta carta simple con Smart Point")
 
-; 0) Poner en foco la ventana principal si quedó tapada por el simulador
-ClickBtn(btnFocoVentana_X, btnFocoVentana_Y, , "Foco ventana principal")
-
 ; 1) Identificar al cliente
 ClickBtn(btnIdentificarCliente_X, btnIdentificarCliente_Y, , "Identificar cliente")
 ClickBtn(btnDesplegarClientes_X, btnDesplegarClientes_Y, , "Desplegar clientes")
@@ -133,10 +130,6 @@ ClickBtn(btnConfirmarTicket_X, btnConfirmarTicket_Y, , "Confirmar impresión")
 ClickBtn(btnMenuAnterior_X, btnMenuAnterior_Y, , "Menú anterior")
 ClickBtn(btnMenuAnterior_X, btnMenuAnterior_Y, , "Menú anterior")
 
-Log("Test finalizado correctamente.")
-
-btnMenuAnterior_X := 280, btnMenuAnterior_Y := 450
-
 ; 8) Se aguarda que se actualice la interfaz
 Sleep, %delayMedium%
 
@@ -145,5 +138,8 @@ ClickBtn(btnMenuAnterior_X, btnMenuAnterior_Y, , "Menú anterior")
 
 ; 10) Se hace click en Salir
 ClickBtn(btnSalir_X, btnSalir_Y, , "Salir")
+
+Log("==============================================")
+Log("Test finalizado correctamente.")
 
 ExitApp

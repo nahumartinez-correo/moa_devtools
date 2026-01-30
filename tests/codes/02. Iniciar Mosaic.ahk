@@ -62,13 +62,4 @@ Sleep, %waitAfterStart%
 
 Log("Script finalizado correctamente.")
 
-; 23) Se aguarda que se actualice la interfaz
-Sleep, %delayMedium%
-
-; 24) Se hace click en Menú anterior
-ClickBtn(btnMenuAnterior_X, btnMenuAnterior_Y, , "Menú anterior")
-
-; 25) Se hace click en Salir
-ClickBtn(btnSalir_X, btnSalir_Y, , "Salir")
-
 ExitApp

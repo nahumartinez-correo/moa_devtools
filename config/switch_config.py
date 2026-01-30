@@ -24,8 +24,8 @@ CONFIGURACIONES = {
     },
     4: {
         "descripcion": "DNS de la PC de Ramiro para pruebas de MercadoPago - Smart Point",
-        "ip": "ws-interfaz-mosaic-mp-5005.apps.ocpbarr.correo.local",
-        "port": "443"
+        "ip": "ws-interfaz-mosaic-mp-tcp-ws-interfaz-mosaic-mp-dev.apps.ocpbarr.correo.local",
+        "port": "32005"
     },
 }
 
@@ -68,7 +68,7 @@ def iniciar_servicio(nombre):
 
 # --- MODIFICACIÓN DE ARCHIVO ---
 def actualizar_configuracion(opcion):
-    """Actualiza el bloque [port10] con los valores de la opción indicada."""
+    """Actualiza el bloque [port14] con los valores de la opción indicada."""
     if opcion not in CONFIGURACIONES:
         raise ValueError("Opción inválida")
 
@@ -81,18 +81,18 @@ def actualizar_configuracion(opcion):
         lineas = f.readlines()
 
     nuevas_lineas = []
-    dentro_port10 = False
+    dentro_port14 = False
 
     for linea in lineas:
-        if linea.strip().startswith("[port10]"):
-            dentro_port10 = True
+        if linea.strip().startswith("[port14]"):
+            dentro_port14 = True
             nuevas_lineas.append(linea)
             continue
 
-        if dentro_port10 and linea.strip().startswith("["):
-            dentro_port10 = False
+        if dentro_port14 and linea.strip().startswith("["):
+            dentro_port14 = False
 
-        if dentro_port10:
+        if dentro_port14:
             if linea.strip().startswith("descripcion="):
                 nuevas_lineas.append(f"descripcion={config['descripcion']}\n")
             elif linea.strip().startswith("ip="):

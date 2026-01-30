@@ -90,9 +90,6 @@ FileCreateDir, %logDir%
 Log("==============================================")
 Log("Inicio del test: Operación simple y refund con Smart Point")
 
-; 0) Se pone en foco la ventana principal si quedó tapada por el simulador
-ClickBtn(btnFocoVentana_X, btnFocoVentana_Y, , "Foco ventana principal")
-
 ; 1) Se identifica al cliente
 ClickBtn(btnIdentificarCliente_X, btnIdentificarCliente_Y, , "Identificar cliente")
 ClickBtn(btnDesplegarClientes_X, btnDesplegarClientes_Y, , "Desplegar clientes")
@@ -153,6 +150,8 @@ ClickBtn(btnMenuAnterior_X, btnMenuAnterior_Y, , "Menú anterior")
 ClickBtn(btnMenuAnterior_X, btnMenuAnterior_Y, , "Menú anterior")
 
 Sleep, 1000
+
+Log("==============================================")
 Log("Se inicia el refund de la operación simple.")
 
 ; 8) Se ingresa al menú actividades
@@ -189,28 +188,22 @@ Sleep, %delayLongRefund%
 
 ; 18) Se confirma la impresión del ticket
 ClickBtn(btnConfirmarTicketRefund_X, btnConfirmarTicketRefund_Y, , "Confirmar ticket")
-
-; 19) Se pone en foco nuevamente la ventana principal
-ClickBtn(btnFocoVentanaPrincipal2_X, btnFocoVentanaPrincipal2_Y, , "Foco ventana principal")
-
-; 20) Se acepta CAI vencido
 Sleep, %delayMediumRefund%
+
+; 19) Se acepta CAI vencido
 ClickBtn(btnAceptarCaiVencido_X, btnAceptarCaiVencido_Y, , "Aceptar CAI vencido")
-Sleep, %delayMediumRefund%
 
-; 21) Se pone en foco nuevamente la ventana principal
+; 20) Se pone en foco nuevamente la ventana principal
 ClickBtn(btnFocoVentanaPrincipal2_X, btnFocoVentanaPrincipal2_Y, , "Foco ventana principal")
 
-; 22) Se confirma la nota de crédito
+; 21) Se confirma la nota de crédito
+Sleep, %delayMedium%
+Sleep, %delayLongRefund%
 Sleep, %delayLongRefund%
 ClickBtn(btnConfirmarNotaCredito_X, btnConfirmarNotaCredito_Y, , "Confirmar nota de crédito")
 
 ; 23) Se vuelve al menú inicial
 ClickBtn(btnMenuInicial_X, btnMenuInicial_Y, , "Menú inicial")
-
-Log("Test finalizado correctamente.")
-
-btnMenuAnterior_X := 280, btnMenuAnterior_Y := 450
 
 ; 24) Se aguarda que se actualice la interfaz
 Sleep, %delayMedium%
@@ -220,5 +213,8 @@ ClickBtn(btnMenuAnterior_X, btnMenuAnterior_Y, , "Menú anterior")
 
 ; 26) Se hace click en Salir
 ClickBtn(btnSalir_X, btnSalir_Y, , "Salir")
+
+Log("==============================================")
+Log("Test finalizado correctamente.")
 
 ExitApp
