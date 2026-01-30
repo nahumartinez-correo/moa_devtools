@@ -8,6 +8,7 @@ CoordMode, Mouse, Screen
 ; --- CONFIGURACIÓN ---
 waitPowerShell := 5000        ; Tiempo de espera al abrir PowerShell (ms)
 waitDetectTerminal := 15000   ; Tiempo máximo de detección de terminal (ms)
+waitAfterFirstRun := 10000    ; Tiempo de espera después de levantar consola (ms)
 delayClickDefault := 200      ; Tiempo entre clics por defecto (ms)
 delayMedium := 1000           ; Espera media entre acciones (ms)
 logFile := "C:\moa_devtools\logs\test_log.txt"   ; Ruta del log
@@ -125,6 +126,9 @@ if (logTerminalId) {
 } else {
     Log("No se detectó la terminal de log dentro del tiempo esperado.")
 }
+
+Log("Se espera el inicio completo luego de la primera ejecución.")
+Sleep, %waitAfterFirstRun%
 
 ; Paso 4: Cartel de AFIP
 ClickBtn(btnAfip_X, btnAfip_Y, , "Cartel AFIP")
