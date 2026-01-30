@@ -1,4 +1,4 @@
-﻿﻿; =========================================================
+﻿; =========================================================
 ; Script: 03. Cerrar caja correctamente.ahk
 ; Se ejecuta el cierre de caja correctamente con cambio de usuario
 ; =========================================================
