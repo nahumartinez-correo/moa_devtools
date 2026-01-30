@@ -10,11 +10,14 @@ appPath := "D:\MOA\BIN\rt.exe"
 waitStartup := 10000          ; Tiempo de espera al iniciar (ms)
 waitAfterStart := 3000        ; Tiempo de espera tras abrir caja (ms)
 delayClickDefault := 200      ; Tiempo entre clics por defecto (ms)
+delayMedium := 1000           ; Espera media entre acciones (ms)
 logFile := "C:\moa_devtools\logs\test_log.txt"   ; Ruta del log
 
 ; --- COORDENADAS ---
 btnAfip_X := 1124,  btnAfip_Y := 605
 btnCaja_X := 160,  btnCaja_Y := 55
+btnMenuAnterior_X := 280, btnMenuAnterior_Y := 450
+btnSalir_X := 700, btnSalir_Y := 550
 
 ; --- FUNCIONES AUXILIARES ---
 
