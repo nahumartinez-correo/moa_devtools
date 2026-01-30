@@ -137,6 +137,9 @@ Notas operativas:
 
 - Los scripts AHK se ubican en `tests/codes/`.
 - Los setups de tablas se ubican en `tests/set_up_tests/<nombre_prueba>/`.
+- El punto de entrada operativo es `tests/ahk_runner.py`.
+- La secuencia anterior era: preparar tablas → iniciar Mosaic → levantar simuladores → ejecutar script AHK.
+- La secuencia estándar de ejecución es: levantar simuladores → preparar tablas → iniciar Mosaic → ejecutar script AHK.
 - Se utiliza un flag global (`config.session_state`) para decidir si se
   levantan simuladores o no.
 

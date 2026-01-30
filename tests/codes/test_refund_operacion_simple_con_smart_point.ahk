@@ -29,6 +29,8 @@ btnAceptarCaiVencido_X := 1050, btnAceptarCaiVencido_Y := 590
 btnFocoVentanaPrincipal2_X := 20, btnFocoVentanaPrincipal2_Y := 100
 btnConfirmarNotaCredito_X := 1000, btnConfirmarNotaCredito_Y := 590
 btnMenuInicial_X := 300, btnMenuInicial_Y := 450
+btnMenuAnterior_X := 280, btnMenuAnterior_Y := 450
+btnSalir_X := 700, btnSalir_Y := 550
 
 ; --- FUNCIONES AUXILIARES ---
 
@@ -59,61 +61,67 @@ FileCreateDir, %logDir%
 Log("==============================================")
 Log("Inicio del test: Refund de operación simple con Smart Point")
 
-; 0) Poner en foco la ventana principal si quedó tapada por el simulador
-ClickBtn(btnFocoVentana_X, btnFocoVentana_Y, , "Foco ventana principal")
-
-; 2) Menú actividades
+; 1) Menú actividades
 ClickBtn(btnMenuActividades_X, btnMenuActividades_Y, , "Menú actividades")
 
-; 3) Anulación de documentos
+; 2) Anulación de documentos
 ClickBtn(btnAnulacionDocs_X, btnAnulacionDocs_Y, , "Anulación de documentos")
 
-; 4) Desplegar documentos
+; 3) Desplegar documentos
 ClickBtn(btnDesplegarDocumentos_X, btnDesplegarDocumentos_Y, , "Desplegar documentos")
 
-; 5) Seleccionar primera operación
+; 4) Seleccionar primera operación
 ClickBtn(btnPrimerOperacion_X, btnPrimerOperacion_Y, , "Primera operación")
 
-; 6) Seleccionar primera transacción
+; 5) Seleccionar primera transacción
 ClickBtn(btnPrimeraTransaccion_X, btnPrimeraTransaccion_Y, , "Primera transacción")
 
-; 7) Confirmar operación
+; 6) Confirmar operación
 Send, {Enter}
 Sleep, %delayShort%
 
-; 8) Aceptar anulación de documentos
+; 7) Aceptar anulación de documentos
 ClickBtn(btnAceptarAnulacion_X, btnAceptarAnulacion_Y, , "Aceptar anulación")
 
-; 9) Aceptar supervisión de cajero
+; 8) Aceptar supervisión de cajero
 ClickBtn(btnAceptarSupervision_X, btnAceptarSupervision_Y, , "Aceptar supervisión")
 
-; 10) Poner en foco nuevamente la ventana principal
+; 9) Poner en foco nuevamente la ventana principal
 ClickBtn(btnFocoVentanaPrincipal_X, btnFocoVentanaPrincipal_Y, , "Foco ventana principal")
 
-; 11) Confirmar operación
+; 10) Confirmar operación
 Send, {Enter}
 Sleep, %delayLong%
 
-; 12) Confirmar impresión del ticket
+; 11) Confirmar impresión del ticket
 ClickBtn(btnConfirmarTicket_X, btnConfirmarTicket_Y, , "Confirmar ticket")
+Sleep, %delayMedium%
+
+; 12) Aceptar CAI vencido
+ClickBtn(btnAceptarCaiVencido_X, btnAceptarCaiVencido_Y, , "Aceptar CAI vencido")
 
 ; 13) Poner en foco nuevamente la ventana principal
 ClickBtn(btnFocoVentanaPrincipal2_X, btnFocoVentanaPrincipal2_Y, , "Foco ventana principal")
 
-; 14) Aceptar CAI vencido
+; 14) Confirmar nota de crédito
 Sleep, %delayMedium%
-ClickBtn(btnAceptarCaiVencido_X, btnAceptarCaiVencido_Y, , "Aceptar CAI vencido")
-Sleep, %delayMedium%
-
-; 15) Poner en foco nuevamente la ventana principal
-ClickBtn(btnFocoVentanaPrincipal2_X, btnFocoVentanaPrincipal2_Y, , "Foco ventana principal")
-
-; 16) Confirmar nota de crédito
+Sleep, %delayLong%
 Sleep, %delayLong%
 ClickBtn(btnConfirmarNotaCredito_X, btnConfirmarNotaCredito_Y, , "Confirmar nota de crédito")
 
-; 17) Volver al menú inicial
+; 15) Volver al menú inicial
 ClickBtn(btnMenuInicial_X, btnMenuInicial_Y, , "Menú inicial")
 
+; 16) Se aguarda que se actualice la interfaz
+Sleep, %delayMedium%
+
+; 17) Se hace click en Menú anterior
+ClickBtn(btnMenuAnterior_X, btnMenuAnterior_Y, , "Menú anterior")
+
+; 18) Se hace click en Salir
+ClickBtn(btnSalir_X, btnSalir_Y, , "Salir")
+
+Log("==============================================")
 Log("Test finalizado correctamente.")
+
 ExitApp
