@@ -112,7 +112,7 @@ if (ErrorLevel) {
     WinGet, powerShellId, ID, A
     Log("Se detectó la ventana de PowerShell.")
 }
-SendPowerShellCommand("$env:USERNAME = ""ZEXTHCASTILLO""", "Se configura USERNAME en PowerShell (ZEXTHCASTILLO).")
+SendPowerShellCommand("$env:USERNAME = ""TESTER2""", "Se configura USERNAME en PowerShell (TESTER2).")
 
 ; Paso 2 y 3: Se ejecuta rt -npost y se captura el PID de la terminal nueva
 snapshot := GetConsoleWindowSnapshot()
