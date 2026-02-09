@@ -24,6 +24,16 @@ except Exception:
 HOST = "0.0.0.0"
 PORT = 9999
 
+
+def esperar_confirmacion_envio():
+    """Se espera confirmación explícita antes del envío en modo interactivo."""
+    log("Presione ENTER para ENVIAR la respuesta...")
+    try:
+        input()
+    except KeyboardInterrupt:
+        log("Detención por teclado solicitada. Saliendo.")
+        raise
+
 def is_port_in_use(port: int) -> bool:
     """Verifica si el puerto local está ocupado."""
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
@@ -131,20 +141,16 @@ def start_server(interactivo: bool = False, condicion: str | None = None):
 
                         response = responder.build_response_message()
 
+                        if interactivo:
+                            log(f"Respuesta preparada ({len(response)} bytes): {response.hex().upper()}")
+                            esperar_confirmacion_envio()
+
                         try:
                             conn.sendall(response)
                             log(f"Respuesta enviada ({len(response)} bytes).")
                         except Exception as e:
                             log(f"Error al enviar respuesta: {e}")
                             break
-
-                        if interactivo:
-                            log("Esperando ENTER para continuar...")
-                            try:
-                                input()
-                            except KeyboardInterrupt:
-                                log("Detención por teclado solicitada. Saliendo.")
-                                raise
 
                         clear_screen()
                         log("Reiniciando ciclo de espera de requests...")
