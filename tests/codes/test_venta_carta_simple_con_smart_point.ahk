@@ -40,6 +40,7 @@ btnErrorImpresora_X := 1050, btnErrorImpresora_Y := 600
 btnFocoVenta_X := 450, btnFocoVenta_Y := 350
 btnConfirmarTicket_X := 950, btnConfirmarTicket_Y := 600
 btnMenuAnterior_X := 270, btnMenuAnterior_Y := 470
+btnSalir_X := 700, btnSalir_Y := 550
 
 ; --- FUNCIONES AUXILIARES ---
 
@@ -69,9 +70,6 @@ FileCreateDir, %logDir%
 
 Log("==============================================")
 Log("Inicio del test: Venta carta simple con Smart Point")
-
-; 0) Poner en foco la ventana principal si quedó tapada por el simulador
-ClickBtn(btnFocoVentana_X, btnFocoVentana_Y, , "Foco ventana principal")
 
 ; 1) Identificar al cliente
 ClickBtn(btnIdentificarCliente_X, btnIdentificarCliente_Y, , "Identificar cliente")
@@ -132,5 +130,16 @@ ClickBtn(btnConfirmarTicket_X, btnConfirmarTicket_Y, , "Confirmar impresión")
 ClickBtn(btnMenuAnterior_X, btnMenuAnterior_Y, , "Menú anterior")
 ClickBtn(btnMenuAnterior_X, btnMenuAnterior_Y, , "Menú anterior")
 
+; 8) Se aguarda que se actualice la interfaz
+Sleep, %delayMedium%
+
+; 9) Se hace click en Menú anterior
+ClickBtn(btnMenuAnterior_X, btnMenuAnterior_Y, , "Menú anterior")
+
+; 10) Se hace click en Salir
+ClickBtn(btnSalir_X, btnSalir_Y, , "Salir")
+
+Log("==============================================")
 Log("Test finalizado correctamente.")
+
 ExitApp

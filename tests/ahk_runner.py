@@ -90,11 +90,6 @@ def ejecutar_test(ruta_test, nombre_legible):
 
     nombre_archivo = os.path.basename(ruta_test)
     nombre_prueba = os.path.splitext(nombre_archivo)[0]
-    tiene_setup = preparar_entorno_tablas(nombre_prueba)
-
-    if nombre_archivo.lower().startswith("test_"):
-        ejecutar_inicio_mosaic()
-
     # 🔹 Logs de control de simuladores
     usar_simulador = session_state.get_usar_simulador()
     log_info(f"Estado de usar_simulador: {usar_simulador}")
@@ -109,6 +104,11 @@ def ejecutar_test(ruta_test, nombre_legible):
             print(f"❌ Error al iniciar simuladores: {e}")
     else:
         print("ℹ️  Modo simulador NO activado. Se ejecutará sin simuladores.\n")
+
+    tiene_setup = preparar_entorno_tablas(nombre_prueba)
+
+    if nombre_archivo.lower().startswith("test_"):
+        ejecutar_inicio_mosaic()
 
     # 🔹 Ejecución de la prueba AHK
     try:
@@ -137,9 +137,11 @@ def ejecutar_test(ruta_test, nombre_legible):
     except Exception as e:
         print(f"❌ Error al ejecutar la prueba: {e}")
         log_error(str(e))
-
-    if tiene_setup:
-        restaurar_entorno_tablas(nombre_prueba)
+    finally:
+        if tiene_setup:
+            restaurar_entorno_tablas(nombre_prueba)
+        if usar_simulador:
+            simulators_manager.detener_simuladores()
 
     input("\nPresione ENTER para volver al menú de pruebas...")
 

@@ -10,6 +10,7 @@ rtCommand := "rt -npost -c"
 waitStartup := 10000          ; Tiempo de espera al iniciar (ms)
 waitPostMensajes := 5000      ; Tiempo de espera después de mensajes (ms)
 delayClickDefault := 200      ; Tiempo entre clics por defecto (ms)
+delayMedium := 1000           ; Espera media entre acciones (ms)
 logFile := "C:\moa_devtools\logs\test_log.txt"   ; Ruta del log
 
 ; --- COORDENADAS ---
@@ -23,6 +24,8 @@ btnAceptarAperturaManual_X := 1052, btnAceptarAperturaManual_Y := 589
 btnAceptarScriptSinHost_X := 1100, btnAceptarScriptSinHost_Y := 600
 btnFocoVentana_X := 600, btnFocoVentana_Y := 250
 btnCaja_X := 150, btnCaja_Y := 60
+btnMenuAnterior_X := 280, btnMenuAnterior_Y := 450
+btnSalir_X := 700, btnSalir_Y := 550
 
 ; --- FUNCIONES AUXILIARES ---
 
@@ -55,7 +58,7 @@ Log("Inicio del script: Apertura de sucursal y caja luego de integración")
 
 ; 1) Levantar el RT sin conexión desde una terminal
 Log("Se inicia el RT sin conexión.")
-Run, cmd.exe /c "%rtCommand%", , , rtPid
+Run, cmd.exe /c "%rtCommand%"
 Sleep, %waitStartup%
 
 ; 3) Cartel de AFIP
@@ -122,8 +125,13 @@ ClickBtn(btnCaja_X, btnCaja_Y, , "Botón Caja")
 Log("Se confirma la apertura de caja.")
 Send, {Enter}
 
-Log("Script finalizado correctamente.")
-Log("Se cierra la consola que lanzó el RT.")
-Process, Close, %rtPid%
+; 23) Se aguarda que se actualice la interfaz
+Sleep, %delayMedium%
+
+; 24) Se hace click en Menú anterior
+ClickBtn(btnMenuAnterior_X, btnMenuAnterior_Y, , "Menú anterior")
+
+; 25) Se hace click en Salir
+ClickBtn(btnSalir_X, btnSalir_Y, , "Salir")
 
 ExitApp
