@@ -21,4 +21,12 @@ CONDITIONS = {
         "usa_106": True,
         "usa_107": False,
     },
+
+    "request_Refund_ya_completado_anteriormente": {
+        "descripcion": "Simula nuevo request de un Refund completado anteriormente",
+        "codigo_39": "00",
+        "usa_105": True,
+        "usa_106": True,
+        "usa_107": False,
+    },
 }

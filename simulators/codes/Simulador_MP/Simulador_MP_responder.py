@@ -8,6 +8,7 @@
 from datetime import datetime
 import importlib
 from Simulador_MP_conditions import CONDITIONS
+from Simulador_MP_refund_dedup_store import was_processed, mark_processed, normalize_order_id
 
 
 def log(msg: str) -> None:
@@ -168,10 +169,19 @@ class Responder:
             Mensaje ISO8583 final con prefijo TCP.
         """
 
-        self.setear_campo_39()
-
         codigo = self.parsed.get("parsed_fields", {}).get(3, {}).get("valor", "")
         log(f"[RESPUESTA] Código de procesamiento detectado: {codigo}")
+
+        if codigo == "200025":
+            campo_109 = self.parsed.get("parsed_fields", {}).get(109, {})
+            id_109 = normalize_order_id(campo_109.get("mp_order_id_PS", ""))
+            self.refund_order_id_109 = id_109
+
+            if was_processed(id_109):
+                self.condicion = "request_Refund_ya_completado_anteriormente"
+                log(f"[RESPUESTA] Se fuerza condición por refund duplicado para ID 109: {id_109}")
+
+        self.setear_campo_39()
 
         if self.condicion in CONDITIONS:
             cfg = CONDITIONS[self.condicion]
@@ -191,6 +201,11 @@ class Responder:
         else:
             self.activar_bit_en_bitmap(105)
             self.procesar_campo(codigo, 105)
+
+            if codigo == "200025" and self.condicion not in CONDITIONS:
+                id_109 = getattr(self, "refund_order_id_109", "")
+                mark_processed(id_109)
+                log(f"[RESPUESTA] Se registra refund procesado en memoria para ID 109: {id_109}")
 
         if getattr(self, "skip_response", False):
             log("[INFO] Respuesta suprimida por configuración del responder (skip_response=True).")
