@@ -44,11 +44,11 @@ class Response200025:
                 match numero_de_bit:
 
                     case 105:
-                        http_code = "500".ljust(10)
-                        error_code = "9999".ljust(10)
-                        message = "SERVER DOWN".ljust(80)
+                        mp_response_code = "500".ljust(10)
+                        mp_response_error = "9999".ljust(10)
+                        mp_response_message = "SERVER DOWN".ljust(80)
 
-                        contenido = (http_code + error_code + message).encode("ascii")
+                        contenido = (mp_response_code + mp_response_error + mp_response_message).encode("ascii")
                         longitud = len(contenido)
                         raw = responder.int_to_bcd_2bytes(longitud) + contenido
 
@@ -59,9 +59,46 @@ class Response200025:
                         }
 
                         log(f"[ 200025 - Refund / server_down ] Campo 105 generado:")
-                        log(f"  http_code  = {http_code.strip()}")
-                        log(f"  error_code = {error_code.strip()}")
-                        log(f"  message    = {message.strip()}")
+                        log(f"  mp_response_code  = {mp_response_code.strip()}")
+                        log(f"  mp_response_error = {mp_response_error.strip()}")
+                        log(f"  mp_response_message    = {mp_response_message.strip()}")
+
+                    case 106:
+                        return
+
+                    case 107:
+                        return
+
+                    case _:
+                        return
+
+
+            # --------------------------
+            # Condición: request_Refund_ya_completado_anteriormente
+            # --------------------------
+            case "request_Refund_ya_completado_anteriormente":
+                match numero_de_bit:
+
+                    case 105:
+                        mp_response_code = "409".ljust(10)
+                        dummy = "".ljust(190)
+                        mp_response_error = "order_already_refunded".ljust(100)
+                        mp_response_message = "the order is already refunded.".ljust(100)
+
+                        contenido = (mp_response_code + dummy + mp_response_error + mp_response_message).encode("ascii")
+                        longitud = len(contenido)
+                        raw = responder.int_to_bcd_2bytes(longitud) + contenido
+
+                        responder.fields_copy[105] = {
+                            "nombre": "Reembolso de pago (request_Refund_ya_completado_anteriormente)",
+                            "valor": "Campo 105 generado - request_Refund_ya_completado_anteriormente",
+                            "raw": raw
+                        }
+
+                        log(f"[ 200025 - Refund / request_Refund_ya_completado_anteriormente ] Campo 105 generado:")
+                        log(f"  mp_response_code  = {mp_response_code.strip()}")
+                        log(f"  mp_response_error = {mp_response_error.strip()}")
+                        log(f"  mp_response_message    = {mp_response_message.strip()}")
 
                     case 106:
                         return
@@ -92,7 +129,7 @@ class Response200025:
                         refund_id = build_identifier("REF", length=29)
                         payment_ref = build_numeric_reference(digits=16)
 
-                        response_code = "201".ljust(4)
+                        mp_response_code = "201".ljust(4)
                         order_id_field = order_id.ljust(32)
                         refund_id_field = refund_id.ljust(32)
                         refund_status = "processed".ljust(32)
@@ -101,7 +138,7 @@ class Response200025:
                         mp_status_detail = "refunded".ljust(30)
 
                         contenido_str = (
-                            response_code +
+                            mp_response_code +
                             order_id_field +
                             refund_id_field +
                             refund_status +
@@ -120,7 +157,7 @@ class Response200025:
                         }
 
                         log(f"[ 200025 - Refund / OK ] Campo 105 generado:")
-                        log(f"  response_code   = {response_code.strip()}")
+                        log(f"  mp_response_code   = {mp_response_code.strip()}")
                         log(f"  order_id        = {order_id_field.strip()}")
                         log(f"  refund_id       = {refund_id_field.strip()}")
                         log(f"  refund_status   = {refund_status.strip()}")
