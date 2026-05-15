@@ -29,4 +29,12 @@ CONDITIONS = {
         "usa_106": True,
         "usa_107": False,
     },
+
+    "status_at_terminal": {
+        "descripcion": "Simula una orden en el point que no se puede cancelar desde Mosaic",
+        "codigo_39": "00",
+        "usa_105": True,
+        "usa_106": False,
+        "usa_107": False,
+    },
 }

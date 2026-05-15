@@ -83,22 +83,29 @@ class Response100020:
                     # Campo 105 normal
                     # --------------------------
                     case 105:
-                        http_code = "204".ljust(10)
-                        cuerpo = "".ljust(90)
+                        mp_response_code = "409".ljust(200)
+                        mp_response_message = "409 - Conflict".ljust(100)
+                        mp_response_cause = "the order cannot be canceled because the current status, 'processed', doesn't allow cancelation. Thecannot_cancel_order".ljust(200)
 
-                        contenido = (http_code + cuerpo).encode("ascii")
+                        contenido_str = (
+                            mp_response_code +
+                            mp_response_message +
+                            mp_response_cause
+                        )
+                        contenido = contenido_str.encode("ascii")
                         longitud = len(contenido)
                         raw = responder.int_to_bcd_2bytes(longitud) + contenido
 
                         responder.fields_copy[105] = {
-                            "nombre": "Eliminar orden Smart Point",
-                            "valor": "Campo 105 generado (normal)",
+                            "nombre": "Reembolso de pago (200025 - Smart Point)",
+                            "valor": "Campo 105 generado (refund procesado)",
                             "raw": raw
                         }
 
-                        log(f"[ 100020 - Smart Point / OK ] Campo 105 generado:")
-                        log(f"  http_code = {http_code.strip()}")
-                        log("  Relleno: 90 bytes")
+                        log(f"[ 200025 - Refund / OK ] Campo 105 generado:")
+                        log(f"  mp_response_code    = {mp_response_code.strip()}")
+                        log(f"  mp_response_message = {mp_response_message.strip()}")
+                        log(f"  mp_response_cause   = {mp_response_cause.strip()}")
 
                     case 106:
                         return

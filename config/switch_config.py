@@ -13,19 +13,14 @@ CONFIGURACIONES = {
         "port": "9999"
     },
     2: {
-        "descripcion": "OpenShift de MercadoPago - Smart Point",
-        "ip": "10.1.21.27",
+        "descripcion": "Openshift - Desarrollo",
+        "ip": "ws-interfaz-mosaic-mp-tcp-ws-interfaz-mosaic-mp-dev.apps.ocpbarr.correo.local",
         "port": "32005"
     },
     3: {
-        "descripcion": "IP de la PC de Ramiro para pruebas de MercadoPago - Smart Point",
-        "ip": "10.254.128.130",
-        "port": "5005"
-    },
-    4: {
-        "descripcion": "DNS de la PC de Ramiro para pruebas de MercadoPago - Smart Point",
+        "descripcion": "Openshift - Testeo",
         "ip": "ws-interfaz-mosaic-mp-tcp-ws-interfaz-mosaic-mp-dev.apps.ocpbarr.correo.local",
-        "port": "32005"
+        "port": "32006"
     },
 }
 
