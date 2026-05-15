@@ -81,6 +81,44 @@ class Response100010:
                         return
 
 
+            # --------------------------
+            # Condición: status_at_terminal
+            # --------------------------
+            case "status_at_terminal":
+                match numero_de_bit:
+
+                    case 105:
+                        http_code = "409".ljust(200)
+                        mp_response_error = "409 - Conflict                      ".ljust(100)
+                        mp_response_message = "the order cannot be canceled because the current status, 'at_terminal', doesn't allow cancelation. T".ljust(100)
+                        mp_response_cause = "cannot_cancel_order                                 ".ljust(100)
+
+                        contenido = (http_code + mp_response_error + mp_response_message + mp_response_cause).encode("ascii")
+                        longitud = len(contenido)
+                        raw = responder.int_to_bcd_2bytes(longitud) + contenido
+
+                        responder.fields_copy[105] = {
+                            "nombre": "Datos de consulta de status de orden de pago (status_at_terminal)",
+                            "valor": "Campo 105 generado - status_at_terminal",
+                            "raw": raw
+                        }
+
+                        # --- LOGUEO DETALLADO ---
+                        log(f"[ 100010 / status_at_terminal ] Campo 105 generado:")
+                        log(f"  http_code  = {http_code.strip()}")
+                        log(f"  mp_response_error    = {mp_response_error.strip()}")
+                        log(f"  mp_response_message    = {mp_response_message.strip()}")
+                        log(f"  mp_response_cause    = {mp_response_cause.strip()}")
+
+                    case 106:
+                        return
+
+                    case 107:
+                        return
+
+                    case _:
+                        return
+
             # =======================================================
             # ============= 2) DEFAULT (RESPUESTA NORMAL) ============
             # =======================================================

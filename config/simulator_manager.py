@@ -30,9 +30,8 @@ def menu_configuracion():
             "Crear sucursal",
             "Crear operador",
             "MercadoPago - Usar simulador",
-            "MercadoPago - Usar OpenShift",
-            "MercadoPago - Usar PC de Ramiro (IP)",
-            "MercadoPago - Usar PC de Ramiro (DNS)"
+            "MercadoPago - Usar OpenShift - Desarrollo",
+            "MercadoPago - Usar OpenShift - Testeo"
         ]
 
         opcion = mostrar_menu("CONFIGURACIÓN DE MERCADOPAGO", opciones)
